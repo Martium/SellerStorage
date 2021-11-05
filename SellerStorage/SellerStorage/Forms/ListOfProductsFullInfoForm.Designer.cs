@@ -1,7 +1,7 @@
 ﻿
-namespace SellerStorage
+namespace SellerStorage.Forms
 {
-    partial class Form1
+    partial class ListOfProductsFullInfoForm
     {
         /// <summary>
         /// Required designer variable.
