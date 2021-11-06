@@ -22,5 +22,14 @@ namespace SellerStorage.Repository.SqlLiteDataBase
 
             return createNewProductInfoCommand;
         }
+
+       /* public string UpdateFullProductInfoCommand(FullProductInfoWithIdModel fullProductInfoModel)
+        {
+            string updateProductInfoCommand = 
+                $@"
+                      UPDATE '{FullProductInfoTableName}'
+                        SET 
+                ";
+        }*/
     }
 }

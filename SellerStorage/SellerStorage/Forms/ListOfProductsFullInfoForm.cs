@@ -35,18 +35,36 @@ namespace SellerStorage.Forms
             ProductsListDataGridView.AllowUserToDeleteRows = false;
             ProductsListDataGridView.AllowUserToOrderColumns = false;
             ProductsListDataGridView.AllowUserToResizeRows = false;
+
+            ProductsListDataGridView.Columns[0].HeaderText = @"Id";
+            ProductsListDataGridView.Columns[1].HeaderText = @"Data";
+            ProductsListDataGridView.Columns[2].HeaderText = @"Produkto Tipas";
+            ProductsListDataGridView.Columns[3].HeaderText = @"Aprašymas";
+
+            ProductsListDataGridView.Columns[4].HeaderText = @"Kiekis";
+            ProductsListDataGridView.Columns[5].HeaderText = @"Kiekio Likutis";
+            ProductsListDataGridView.Columns[6].HeaderText = @"Vnt kaina pirktoje valiutoje";
+            ProductsListDataGridView.Columns[7].HeaderText = @"Kiekio kaina pirktoje valiutoje";
+            ProductsListDataGridView.Columns[8].HeaderText = @"Vnt kaina Eurais";
+            ProductsListDataGridView.Columns[9].HeaderText = @"Kiekio kaina Eurais";
+            ProductsListDataGridView.Columns[10].HeaderText = @"Produkto Vnt. išlaidos";
+
+            ProductsListDataGridView.Columns[11].HeaderText = @"Planuojamas vnt pelnas";
+            ProductsListDataGridView.Columns[12].HeaderText = @"Produkto kiekio pelnas";
+            ProductsListDataGridView.Columns[13].HeaderText = @"Parduota vnt kaina";
         }
 
         private void FillFakeInfo()
         {
-            BindingList<FullProductInfoModel> list = new BindingList<FullProductInfoModel>();
+            BindingList<FullProductInfoWithIdModel> list = new BindingList<FullProductInfoWithIdModel>();
 
             ProductsListDataGridView.DataSource = list;
 
             for (int i = 1; i < 200; i++)
             {
-                list.Add(new FullProductInfoModel()
+                list.Add(new FullProductInfoWithIdModel()
                 {
+                    ProductId = i,
                     ProductReceiptDate = DateTime.Now.Date,
                     ProductType = "kazkas",
                     ProductDescription = "bazinga",
@@ -63,7 +81,6 @@ namespace SellerStorage.Forms
                     ProductExpectedSellingPrice = 2,
                     ProductProfit = 2,
                     ProductSoldPrice = 2
-
                 });
             }
         }
@@ -86,6 +103,7 @@ namespace SellerStorage.Forms
         }
 
         #endregion
+
 
     }
 }

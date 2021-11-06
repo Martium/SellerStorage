@@ -30,5 +30,10 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
 
             return affectedRows == 1;
         }
+
+        public bool UpdateProductInfo(FullProductInfoModel fullProductInfo)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

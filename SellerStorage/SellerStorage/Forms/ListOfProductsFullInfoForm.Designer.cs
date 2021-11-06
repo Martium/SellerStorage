@@ -31,7 +31,10 @@ namespace SellerStorage.Forms
         {
             this.components = new System.ComponentModel.Container();
             this.ProductsListDataGridView = new System.Windows.Forms.DataGridView();
+            this.fullProductInfoModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.OpenNewProductFormButton = new System.Windows.Forms.Button();
+            this.fullProductInfoWithIdModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productReceiptDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,9 +48,9 @@ namespace SellerStorage.Forms
             this.productExpectedSellingPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productSoldPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productProfitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullProductInfoModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ProductsListDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fullProductInfoModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fullProductInfoWithIdModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // ProductsListDataGridView
@@ -58,6 +61,7 @@ namespace SellerStorage.Forms
             this.ProductsListDataGridView.AutoGenerateColumns = false;
             this.ProductsListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ProductsListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.productIdDataGridViewTextBoxColumn,
             this.productReceiptDateDataGridViewTextBoxColumn,
             this.productTypeDataGridViewTextBoxColumn,
             this.productDescriptionDataGridViewTextBoxColumn,
@@ -71,13 +75,17 @@ namespace SellerStorage.Forms
             this.productExpectedSellingPriceDataGridViewTextBoxColumn,
             this.productSoldPriceDataGridViewTextBoxColumn,
             this.productProfitDataGridViewTextBoxColumn});
-            this.ProductsListDataGridView.DataSource = this.fullProductInfoModelBindingSource;
+            this.ProductsListDataGridView.DataSource = this.fullProductInfoWithIdModelBindingSource;
             this.ProductsListDataGridView.Location = new System.Drawing.Point(12, 105);
             this.ProductsListDataGridView.MultiSelect = false;
             this.ProductsListDataGridView.Name = "ProductsListDataGridView";
             this.ProductsListDataGridView.ReadOnly = true;
             this.ProductsListDataGridView.Size = new System.Drawing.Size(1259, 433);
             this.ProductsListDataGridView.TabIndex = 1;
+            // 
+            // fullProductInfoModelBindingSource
+            // 
+            this.fullProductInfoModelBindingSource.DataSource = typeof(SellerStorage.Models.FullProductInfoModel);
             // 
             // OpenNewProductFormButton
             // 
@@ -89,100 +97,107 @@ namespace SellerStorage.Forms
             this.OpenNewProductFormButton.UseVisualStyleBackColor = true;
             this.OpenNewProductFormButton.Click += new System.EventHandler(this.OpenNewProductFormButton_Click);
             // 
+            // fullProductInfoWithIdModelBindingSource
+            // 
+            this.fullProductInfoWithIdModelBindingSource.DataSource = typeof(SellerStorage.Models.FullProductInfoWithIdModel);
+            // 
+            // productIdDataGridViewTextBoxColumn
+            // 
+            this.productIdDataGridViewTextBoxColumn.DataPropertyName = "ProductId";
+            this.productIdDataGridViewTextBoxColumn.HeaderText = "ProductId";
+            this.productIdDataGridViewTextBoxColumn.Name = "productIdDataGridViewTextBoxColumn";
+            this.productIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // productReceiptDateDataGridViewTextBoxColumn
             // 
             this.productReceiptDateDataGridViewTextBoxColumn.DataPropertyName = "ProductReceiptDate";
-            this.productReceiptDateDataGridViewTextBoxColumn.HeaderText = "Data";
+            this.productReceiptDateDataGridViewTextBoxColumn.HeaderText = "ProductReceiptDate";
             this.productReceiptDateDataGridViewTextBoxColumn.Name = "productReceiptDateDataGridViewTextBoxColumn";
             this.productReceiptDateDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productTypeDataGridViewTextBoxColumn
             // 
             this.productTypeDataGridViewTextBoxColumn.DataPropertyName = "ProductType";
-            this.productTypeDataGridViewTextBoxColumn.HeaderText = "Produkto tipas";
+            this.productTypeDataGridViewTextBoxColumn.HeaderText = "ProductType";
             this.productTypeDataGridViewTextBoxColumn.Name = "productTypeDataGridViewTextBoxColumn";
             this.productTypeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productDescriptionDataGridViewTextBoxColumn
             // 
             this.productDescriptionDataGridViewTextBoxColumn.DataPropertyName = "ProductDescription";
-            this.productDescriptionDataGridViewTextBoxColumn.HeaderText = "Produkto aprašymas";
+            this.productDescriptionDataGridViewTextBoxColumn.HeaderText = "ProductDescription";
             this.productDescriptionDataGridViewTextBoxColumn.Name = "productDescriptionDataGridViewTextBoxColumn";
             this.productDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productQuantityDataGridViewTextBoxColumn
             // 
             this.productQuantityDataGridViewTextBoxColumn.DataPropertyName = "ProductQuantity";
-            this.productQuantityDataGridViewTextBoxColumn.HeaderText = "Produkto kiekis";
+            this.productQuantityDataGridViewTextBoxColumn.HeaderText = "ProductQuantity";
             this.productQuantityDataGridViewTextBoxColumn.Name = "productQuantityDataGridViewTextBoxColumn";
             this.productQuantityDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productQuantityLeftDataGridViewTextBoxColumn
             // 
             this.productQuantityLeftDataGridViewTextBoxColumn.DataPropertyName = "ProductQuantityLeft";
-            this.productQuantityLeftDataGridViewTextBoxColumn.HeaderText = "Likes produkto kiekis";
+            this.productQuantityLeftDataGridViewTextBoxColumn.HeaderText = "ProductQuantityLeft";
             this.productQuantityLeftDataGridViewTextBoxColumn.Name = "productQuantityLeftDataGridViewTextBoxColumn";
             this.productQuantityLeftDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productOriginalCostPriceCurrencyDataGridViewTextBoxColumn
             // 
             this.productOriginalCostPriceCurrencyDataGridViewTextBoxColumn.DataPropertyName = "ProductOriginalCostPriceCurrency";
-            this.productOriginalCostPriceCurrencyDataGridViewTextBoxColumn.HeaderText = "Produkto kaina pirkta valiuta";
+            this.productOriginalCostPriceCurrencyDataGridViewTextBoxColumn.HeaderText = "ProductOriginalCostPriceCurrency";
             this.productOriginalCostPriceCurrencyDataGridViewTextBoxColumn.Name = "productOriginalCostPriceCurrencyDataGridViewTextBoxColumn";
             this.productOriginalCostPriceCurrencyDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productAllQuantityCostPriceAtOriginalCurrencyDataGridViewTextBoxColumn
             // 
             this.productAllQuantityCostPriceAtOriginalCurrencyDataGridViewTextBoxColumn.DataPropertyName = "ProductAllQuantityCostPriceAtOriginalCurrency";
-            this.productAllQuantityCostPriceAtOriginalCurrencyDataGridViewTextBoxColumn.HeaderText = "Produktų visa kaina pirkta valiuta";
+            this.productAllQuantityCostPriceAtOriginalCurrencyDataGridViewTextBoxColumn.HeaderText = "ProductAllQuantityCostPriceAtOriginalCurrency";
             this.productAllQuantityCostPriceAtOriginalCurrencyDataGridViewTextBoxColumn.Name = "productAllQuantityCostPriceAtOriginalCurrencyDataGridViewTextBoxColumn";
             this.productAllQuantityCostPriceAtOriginalCurrencyDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productQuantityPriceInEuroDataGridViewTextBoxColumn
             // 
             this.productQuantityPriceInEuroDataGridViewTextBoxColumn.DataPropertyName = "ProductQuantityPriceInEuro";
-            this.productQuantityPriceInEuroDataGridViewTextBoxColumn.HeaderText = "Produkto kaina Eurais";
+            this.productQuantityPriceInEuroDataGridViewTextBoxColumn.HeaderText = "ProductQuantityPriceInEuro";
             this.productQuantityPriceInEuroDataGridViewTextBoxColumn.Name = "productQuantityPriceInEuroDataGridViewTextBoxColumn";
             this.productQuantityPriceInEuroDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productAllQuantityPriceInEuroDataGridViewTextBoxColumn
             // 
             this.productAllQuantityPriceInEuroDataGridViewTextBoxColumn.DataPropertyName = "ProductAllQuantityPriceInEuro";
-            this.productAllQuantityPriceInEuroDataGridViewTextBoxColumn.HeaderText = "Produktų kaina Eurais";
+            this.productAllQuantityPriceInEuroDataGridViewTextBoxColumn.HeaderText = "ProductAllQuantityPriceInEuro";
             this.productAllQuantityPriceInEuroDataGridViewTextBoxColumn.Name = "productAllQuantityPriceInEuroDataGridViewTextBoxColumn";
             this.productAllQuantityPriceInEuroDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productExpensesPerQuantityUnitDataGridViewTextBoxColumn
             // 
             this.productExpensesPerQuantityUnitDataGridViewTextBoxColumn.DataPropertyName = "ProductExpensesPerQuantityUnit";
-            this.productExpensesPerQuantityUnitDataGridViewTextBoxColumn.HeaderText = "Produkto išlaidos";
+            this.productExpensesPerQuantityUnitDataGridViewTextBoxColumn.HeaderText = "ProductExpensesPerQuantityUnit";
             this.productExpensesPerQuantityUnitDataGridViewTextBoxColumn.Name = "productExpensesPerQuantityUnitDataGridViewTextBoxColumn";
             this.productExpensesPerQuantityUnitDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productExpectedSellingPriceDataGridViewTextBoxColumn
             // 
             this.productExpectedSellingPriceDataGridViewTextBoxColumn.DataPropertyName = "ProductExpectedSellingPrice";
-            this.productExpectedSellingPriceDataGridViewTextBoxColumn.HeaderText = "Produkto pardavimo kaina";
+            this.productExpectedSellingPriceDataGridViewTextBoxColumn.HeaderText = "ProductExpectedSellingPrice";
             this.productExpectedSellingPriceDataGridViewTextBoxColumn.Name = "productExpectedSellingPriceDataGridViewTextBoxColumn";
             this.productExpectedSellingPriceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productSoldPriceDataGridViewTextBoxColumn
             // 
             this.productSoldPriceDataGridViewTextBoxColumn.DataPropertyName = "ProductSoldPrice";
-            this.productSoldPriceDataGridViewTextBoxColumn.HeaderText = "Produkto parduota kaina";
+            this.productSoldPriceDataGridViewTextBoxColumn.HeaderText = "ProductSoldPrice";
             this.productSoldPriceDataGridViewTextBoxColumn.Name = "productSoldPriceDataGridViewTextBoxColumn";
             this.productSoldPriceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productProfitDataGridViewTextBoxColumn
             // 
             this.productProfitDataGridViewTextBoxColumn.DataPropertyName = "ProductProfit";
-            this.productProfitDataGridViewTextBoxColumn.HeaderText = "Bendras produkto pelnas";
+            this.productProfitDataGridViewTextBoxColumn.HeaderText = "ProductProfit";
             this.productProfitDataGridViewTextBoxColumn.Name = "productProfitDataGridViewTextBoxColumn";
             this.productProfitDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // fullProductInfoModelBindingSource
-            // 
-            this.fullProductInfoModelBindingSource.DataSource = typeof(SellerStorage.Models.FullProductInfoModel);
             // 
             // ListOfProductsFullInfoForm
             // 
@@ -196,6 +211,7 @@ namespace SellerStorage.Forms
             this.Text = "Produktai";
             ((System.ComponentModel.ISupportInitialize)(this.ProductsListDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fullProductInfoModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fullProductInfoWithIdModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -204,6 +220,8 @@ namespace SellerStorage.Forms
         private System.Windows.Forms.DataGridView ProductsListDataGridView;
         private System.Windows.Forms.BindingSource fullProductInfoModelBindingSource;
         private System.Windows.Forms.Button OpenNewProductFormButton;
+        private System.Windows.Forms.BindingSource fullProductInfoWithIdModelBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productReceiptDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productDescriptionDataGridViewTextBoxColumn;
