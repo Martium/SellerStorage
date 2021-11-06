@@ -47,5 +47,20 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
 
             return affectedRows == 1;
         }
+
+        public FullProductInfoWithIdModel GetProductInfoById(int productId)
+        {
+            using (var dbConnection = new SQLiteConnection(DatabaseConfiguration.ConnectionString))
+            {
+                dbConnection.Open();
+
+                string getInfoCommand = _callsCommands.GetFullProductInfoById(productId);
+
+                FullProductInfoWithIdModel getProductInfo =
+                    dbConnection.QuerySingle<FullProductInfoWithIdModel>(getInfoCommand);
+
+                return getProductInfo;
+            }
+        }
     }
 }

@@ -43,5 +43,21 @@ namespace SellerStorage.Repository.SqlLiteDataBase
 
             return updateProductInfoCommand;
         }
+
+        public string GetFullProductInfoById(int productId)
+        {
+            string getProductInfoById = 
+                $@"
+                    SELECT 
+                        FPIT.ProductReceiptDate, FPIT.ProductType, FPIT.ProductDescription, FPIT.ProductQuantity, FPIT.ProductQuantityLeft,
+                        FPIT.ProductOriginalCostPriceCurrency, FPIT.ProductAllQuantityCostPriceAtOriginalCurrency,
+                        FPIT.ProductQuantityPriceInEuro, FPIT.ProductAllQuantityPriceInEuro, FPIT.ProductExpensesPerQuantityUnit, FPIT.ProductExpectedSellingPrice,
+                        FPIT.ProductSoldPrice, FPIT.ProductProfit
+                    FROM {FullProductInfoTableName} FPIT
+                    WHERE ProductId = {productId}
+                ";
+
+            return getProductInfoById;
+        }
     }
 }
