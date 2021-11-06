@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using SellerStorage.Enums;
 using SellerStorage.Models;
 
 namespace SellerStorage.Forms
@@ -16,7 +17,7 @@ namespace SellerStorage.Forms
 
         private void OpenNewProductFormButton_Click(object sender, EventArgs e)
         {
-            OpenAnotherForm(new NewProductForm());
+            OpenAnotherForm(new NewProductForm(NewProductFormOperations.Create));
         }
 
         private void CloseAnotherForm_Closed(object sender, EventArgs e)

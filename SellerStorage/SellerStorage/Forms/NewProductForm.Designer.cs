@@ -54,6 +54,9 @@ namespace SellerStorage.Forms
             this.ProductExpectedSellingPriceTextBox = new System.Windows.Forms.TextBox();
             this.ProductSoldPriceTextBox = new System.Windows.Forms.TextBox();
             this.ProductProfitTextBox = new System.Windows.Forms.TextBox();
+            this.DateLabel = new System.Windows.Forms.Label();
+            this.DateTextBox = new System.Windows.Forms.TextBox();
+            this.CreateNewProductButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,10 +91,13 @@ namespace SellerStorage.Forms
             this.tableLayoutPanel.Controls.Add(this.ProductExpectedSellingPriceTextBox, 2, 9);
             this.tableLayoutPanel.Controls.Add(this.ProductSoldPriceTextBox, 2, 10);
             this.tableLayoutPanel.Controls.Add(this.ProductProfitTextBox, 2, 11);
+            this.tableLayoutPanel.Controls.Add(this.DateLabel, 1, 12);
+            this.tableLayoutPanel.Controls.Add(this.DateTextBox, 2, 12);
+            this.tableLayoutPanel.Controls.Add(this.CreateNewProductButton, 3, 11);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 12;
+            this.tableLayoutPanel.RowCount = 13;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
@@ -104,6 +110,7 @@ namespace SellerStorage.Forms
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.333333F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel.TabIndex = 0;
             // 
@@ -111,7 +118,7 @@ namespace SellerStorage.Forms
             // 
             this.ProductTypeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductTypeLabel.AutoSize = true;
-            this.ProductTypeLabel.Location = new System.Drawing.Point(69, 12);
+            this.ProductTypeLabel.Location = new System.Drawing.Point(69, 11);
             this.ProductTypeLabel.Name = "ProductTypeLabel";
             this.ProductTypeLabel.Size = new System.Drawing.Size(97, 13);
             this.ProductTypeLabel.TabIndex = 0;
@@ -121,7 +128,7 @@ namespace SellerStorage.Forms
             // 
             this.ProductDescriptionlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductDescriptionlabel.AutoSize = true;
-            this.ProductDescriptionlabel.Location = new System.Drawing.Point(69, 42);
+            this.ProductDescriptionlabel.Location = new System.Drawing.Point(69, 39);
             this.ProductDescriptionlabel.Name = "ProductDescriptionlabel";
             this.ProductDescriptionlabel.Size = new System.Drawing.Size(97, 26);
             this.ProductDescriptionlabel.TabIndex = 1;
@@ -131,7 +138,7 @@ namespace SellerStorage.Forms
             // 
             this.ProductQuantityLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductQuantityLabel.AutoSize = true;
-            this.ProductQuantityLabel.Location = new System.Drawing.Point(69, 86);
+            this.ProductQuantityLabel.Location = new System.Drawing.Point(69, 81);
             this.ProductQuantityLabel.Name = "ProductQuantityLabel";
             this.ProductQuantityLabel.Size = new System.Drawing.Size(97, 13);
             this.ProductQuantityLabel.TabIndex = 2;
@@ -141,7 +148,7 @@ namespace SellerStorage.Forms
             // 
             this.ProductQuantityLeftLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductQuantityLeftLabel.AutoSize = true;
-            this.ProductQuantityLeftLabel.Location = new System.Drawing.Point(69, 116);
+            this.ProductQuantityLeftLabel.Location = new System.Drawing.Point(69, 109);
             this.ProductQuantityLeftLabel.Name = "ProductQuantityLeftLabel";
             this.ProductQuantityLeftLabel.Size = new System.Drawing.Size(97, 26);
             this.ProductQuantityLeftLabel.TabIndex = 3;
@@ -151,7 +158,7 @@ namespace SellerStorage.Forms
             // 
             this.ProductOriginalCostPriceCurrencyLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductOriginalCostPriceCurrencyLabel.AutoSize = true;
-            this.ProductOriginalCostPriceCurrencyLabel.Location = new System.Drawing.Point(69, 153);
+            this.ProductOriginalCostPriceCurrencyLabel.Location = new System.Drawing.Point(69, 144);
             this.ProductOriginalCostPriceCurrencyLabel.Name = "ProductOriginalCostPriceCurrencyLabel";
             this.ProductOriginalCostPriceCurrencyLabel.Size = new System.Drawing.Size(97, 26);
             this.ProductOriginalCostPriceCurrencyLabel.TabIndex = 4;
@@ -161,7 +168,7 @@ namespace SellerStorage.Forms
             // 
             this.ProductAllQuantityCostPriceAtOriginalCurrencyLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductAllQuantityCostPriceAtOriginalCurrencyLabel.AutoSize = true;
-            this.ProductAllQuantityCostPriceAtOriginalCurrencyLabel.Location = new System.Drawing.Point(69, 190);
+            this.ProductAllQuantityCostPriceAtOriginalCurrencyLabel.Location = new System.Drawing.Point(69, 179);
             this.ProductAllQuantityCostPriceAtOriginalCurrencyLabel.Name = "ProductAllQuantityCostPriceAtOriginalCurrencyLabel";
             this.ProductAllQuantityCostPriceAtOriginalCurrencyLabel.Size = new System.Drawing.Size(97, 26);
             this.ProductAllQuantityCostPriceAtOriginalCurrencyLabel.TabIndex = 5;
@@ -171,7 +178,7 @@ namespace SellerStorage.Forms
             // 
             this.ProductQuantityPriceInEuroLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductQuantityPriceInEuroLabel.AutoSize = true;
-            this.ProductQuantityPriceInEuroLabel.Location = new System.Drawing.Point(69, 227);
+            this.ProductQuantityPriceInEuroLabel.Location = new System.Drawing.Point(69, 214);
             this.ProductQuantityPriceInEuroLabel.Name = "ProductQuantityPriceInEuroLabel";
             this.ProductQuantityPriceInEuroLabel.Size = new System.Drawing.Size(97, 26);
             this.ProductQuantityPriceInEuroLabel.TabIndex = 6;
@@ -181,7 +188,7 @@ namespace SellerStorage.Forms
             // 
             this.ProductAllQuantityPriceInEuroLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductAllQuantityPriceInEuroLabel.AutoSize = true;
-            this.ProductAllQuantityPriceInEuroLabel.Location = new System.Drawing.Point(69, 264);
+            this.ProductAllQuantityPriceInEuroLabel.Location = new System.Drawing.Point(69, 249);
             this.ProductAllQuantityPriceInEuroLabel.Name = "ProductAllQuantityPriceInEuroLabel";
             this.ProductAllQuantityPriceInEuroLabel.Size = new System.Drawing.Size(97, 26);
             this.ProductAllQuantityPriceInEuroLabel.TabIndex = 7;
@@ -191,7 +198,7 @@ namespace SellerStorage.Forms
             // 
             this.ProductExpensesPerQuantityUnitLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductExpensesPerQuantityUnitLabel.AutoSize = true;
-            this.ProductExpensesPerQuantityUnitLabel.Location = new System.Drawing.Point(69, 301);
+            this.ProductExpensesPerQuantityUnitLabel.Location = new System.Drawing.Point(69, 284);
             this.ProductExpensesPerQuantityUnitLabel.Name = "ProductExpensesPerQuantityUnitLabel";
             this.ProductExpensesPerQuantityUnitLabel.Size = new System.Drawing.Size(97, 26);
             this.ProductExpensesPerQuantityUnitLabel.TabIndex = 8;
@@ -201,7 +208,7 @@ namespace SellerStorage.Forms
             // 
             this.ProductExpectedSellingPriceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductExpectedSellingPriceLabel.AutoSize = true;
-            this.ProductExpectedSellingPriceLabel.Location = new System.Drawing.Point(69, 338);
+            this.ProductExpectedSellingPriceLabel.Location = new System.Drawing.Point(69, 319);
             this.ProductExpectedSellingPriceLabel.Name = "ProductExpectedSellingPriceLabel";
             this.ProductExpectedSellingPriceLabel.Size = new System.Drawing.Size(97, 26);
             this.ProductExpectedSellingPriceLabel.TabIndex = 9;
@@ -211,7 +218,7 @@ namespace SellerStorage.Forms
             // 
             this.ProductSoldPriceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductSoldPriceLabel.AutoSize = true;
-            this.ProductSoldPriceLabel.Location = new System.Drawing.Point(69, 382);
+            this.ProductSoldPriceLabel.Location = new System.Drawing.Point(69, 361);
             this.ProductSoldPriceLabel.Name = "ProductSoldPriceLabel";
             this.ProductSoldPriceLabel.Size = new System.Drawing.Size(97, 13);
             this.ProductSoldPriceLabel.TabIndex = 10;
@@ -221,7 +228,7 @@ namespace SellerStorage.Forms
             // 
             this.ProductProfitLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ProductProfitLabel.AutoSize = true;
-            this.ProductProfitLabel.Location = new System.Drawing.Point(69, 422);
+            this.ProductProfitLabel.Location = new System.Drawing.Point(69, 396);
             this.ProductProfitLabel.Name = "ProductProfitLabel";
             this.ProductProfitLabel.Size = new System.Drawing.Size(97, 13);
             this.ProductProfitLabel.TabIndex = 11;
@@ -230,7 +237,7 @@ namespace SellerStorage.Forms
             // ProductTypeTextBox
             // 
             this.ProductTypeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductTypeTextBox.Location = new System.Drawing.Point(172, 8);
+            this.ProductTypeTextBox.Location = new System.Drawing.Point(172, 7);
             this.ProductTypeTextBox.Name = "ProductTypeTextBox";
             this.ProductTypeTextBox.Size = new System.Drawing.Size(425, 20);
             this.ProductTypeTextBox.TabIndex = 12;
@@ -238,7 +245,7 @@ namespace SellerStorage.Forms
             // ProductDescriptionTextBox
             // 
             this.ProductDescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductDescriptionTextBox.Location = new System.Drawing.Point(172, 45);
+            this.ProductDescriptionTextBox.Location = new System.Drawing.Point(172, 42);
             this.ProductDescriptionTextBox.Name = "ProductDescriptionTextBox";
             this.ProductDescriptionTextBox.Size = new System.Drawing.Size(425, 20);
             this.ProductDescriptionTextBox.TabIndex = 13;
@@ -246,7 +253,7 @@ namespace SellerStorage.Forms
             // ProductQuantityTextBox
             // 
             this.ProductQuantityTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductQuantityTextBox.Location = new System.Drawing.Point(172, 82);
+            this.ProductQuantityTextBox.Location = new System.Drawing.Point(172, 77);
             this.ProductQuantityTextBox.Name = "ProductQuantityTextBox";
             this.ProductQuantityTextBox.Size = new System.Drawing.Size(425, 20);
             this.ProductQuantityTextBox.TabIndex = 14;
@@ -254,7 +261,7 @@ namespace SellerStorage.Forms
             // ProductQuantityLeftTextBox
             // 
             this.ProductQuantityLeftTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductQuantityLeftTextBox.Location = new System.Drawing.Point(172, 119);
+            this.ProductQuantityLeftTextBox.Location = new System.Drawing.Point(172, 112);
             this.ProductQuantityLeftTextBox.Name = "ProductQuantityLeftTextBox";
             this.ProductQuantityLeftTextBox.Size = new System.Drawing.Size(425, 20);
             this.ProductQuantityLeftTextBox.TabIndex = 15;
@@ -262,7 +269,7 @@ namespace SellerStorage.Forms
             // ProductOriginalCostPriceCurrencyTextBox
             // 
             this.ProductOriginalCostPriceCurrencyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductOriginalCostPriceCurrencyTextBox.Location = new System.Drawing.Point(172, 156);
+            this.ProductOriginalCostPriceCurrencyTextBox.Location = new System.Drawing.Point(172, 147);
             this.ProductOriginalCostPriceCurrencyTextBox.Name = "ProductOriginalCostPriceCurrencyTextBox";
             this.ProductOriginalCostPriceCurrencyTextBox.Size = new System.Drawing.Size(425, 20);
             this.ProductOriginalCostPriceCurrencyTextBox.TabIndex = 16;
@@ -270,7 +277,7 @@ namespace SellerStorage.Forms
             // ProductAllQuantityCostPriceAtOriginalCurrencyTextBox
             // 
             this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Location = new System.Drawing.Point(172, 193);
+            this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Location = new System.Drawing.Point(172, 182);
             this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Name = "ProductAllQuantityCostPriceAtOriginalCurrencyTextBox";
             this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Size = new System.Drawing.Size(425, 20);
             this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.TabIndex = 17;
@@ -278,7 +285,7 @@ namespace SellerStorage.Forms
             // ProductQuantityPriceInEuroTextBox
             // 
             this.ProductQuantityPriceInEuroTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductQuantityPriceInEuroTextBox.Location = new System.Drawing.Point(172, 230);
+            this.ProductQuantityPriceInEuroTextBox.Location = new System.Drawing.Point(172, 217);
             this.ProductQuantityPriceInEuroTextBox.Name = "ProductQuantityPriceInEuroTextBox";
             this.ProductQuantityPriceInEuroTextBox.Size = new System.Drawing.Size(425, 20);
             this.ProductQuantityPriceInEuroTextBox.TabIndex = 18;
@@ -286,7 +293,7 @@ namespace SellerStorage.Forms
             // ProductAllQuantityPriceInEuroTextBox
             // 
             this.ProductAllQuantityPriceInEuroTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductAllQuantityPriceInEuroTextBox.Location = new System.Drawing.Point(172, 267);
+            this.ProductAllQuantityPriceInEuroTextBox.Location = new System.Drawing.Point(172, 252);
             this.ProductAllQuantityPriceInEuroTextBox.Name = "ProductAllQuantityPriceInEuroTextBox";
             this.ProductAllQuantityPriceInEuroTextBox.Size = new System.Drawing.Size(425, 20);
             this.ProductAllQuantityPriceInEuroTextBox.TabIndex = 19;
@@ -294,7 +301,7 @@ namespace SellerStorage.Forms
             // ProductExpensesPerQuantityUnitTextBox
             // 
             this.ProductExpensesPerQuantityUnitTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductExpensesPerQuantityUnitTextBox.Location = new System.Drawing.Point(172, 304);
+            this.ProductExpensesPerQuantityUnitTextBox.Location = new System.Drawing.Point(172, 287);
             this.ProductExpensesPerQuantityUnitTextBox.Name = "ProductExpensesPerQuantityUnitTextBox";
             this.ProductExpensesPerQuantityUnitTextBox.Size = new System.Drawing.Size(425, 20);
             this.ProductExpensesPerQuantityUnitTextBox.TabIndex = 20;
@@ -302,7 +309,7 @@ namespace SellerStorage.Forms
             // ProductExpectedSellingPriceTextBox
             // 
             this.ProductExpectedSellingPriceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductExpectedSellingPriceTextBox.Location = new System.Drawing.Point(172, 341);
+            this.ProductExpectedSellingPriceTextBox.Location = new System.Drawing.Point(172, 322);
             this.ProductExpectedSellingPriceTextBox.Name = "ProductExpectedSellingPriceTextBox";
             this.ProductExpectedSellingPriceTextBox.Size = new System.Drawing.Size(425, 20);
             this.ProductExpectedSellingPriceTextBox.TabIndex = 21;
@@ -310,7 +317,7 @@ namespace SellerStorage.Forms
             // ProductSoldPriceTextBox
             // 
             this.ProductSoldPriceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductSoldPriceTextBox.Location = new System.Drawing.Point(172, 378);
+            this.ProductSoldPriceTextBox.Location = new System.Drawing.Point(172, 357);
             this.ProductSoldPriceTextBox.Name = "ProductSoldPriceTextBox";
             this.ProductSoldPriceTextBox.Size = new System.Drawing.Size(425, 20);
             this.ProductSoldPriceTextBox.TabIndex = 22;
@@ -318,10 +325,41 @@ namespace SellerStorage.Forms
             // ProductProfitTextBox
             // 
             this.ProductProfitTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductProfitTextBox.Location = new System.Drawing.Point(172, 418);
+            this.ProductProfitTextBox.Location = new System.Drawing.Point(172, 392);
             this.ProductProfitTextBox.Name = "ProductProfitTextBox";
             this.ProductProfitTextBox.Size = new System.Drawing.Size(425, 20);
             this.ProductProfitTextBox.TabIndex = 23;
+            // 
+            // DateLabel
+            // 
+            this.DateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.DateLabel.AutoSize = true;
+            this.DateLabel.Location = new System.Drawing.Point(69, 428);
+            this.DateLabel.Name = "DateLabel";
+            this.DateLabel.Size = new System.Drawing.Size(97, 13);
+            this.DateLabel.TabIndex = 24;
+            this.DateLabel.Text = "Data";
+            // 
+            // DateTextBox
+            // 
+            this.DateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.DateTextBox.Location = new System.Drawing.Point(172, 425);
+            this.DateTextBox.Name = "DateTextBox";
+            this.DateTextBox.Size = new System.Drawing.Size(425, 20);
+            this.DateTextBox.TabIndex = 25;
+            // 
+            // CreateNewProductButton
+            // 
+            this.CreateNewProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CreateNewProductButton.Location = new System.Drawing.Point(603, 388);
+            this.CreateNewProductButton.Name = "CreateNewProductButton";
+            this.CreateNewProductButton.Size = new System.Drawing.Size(194, 29);
+            this.CreateNewProductButton.TabIndex = 26;
+            this.CreateNewProductButton.Text = "Sukurti ";
+            this.CreateNewProductButton.UseVisualStyleBackColor = true;
+            this.CreateNewProductButton.Click += new System.EventHandler(this.CreateNewProductButton_Click);
             // 
             // NewProductForm
             // 
@@ -331,7 +369,8 @@ namespace SellerStorage.Forms
             this.Controls.Add(this.tableLayoutPanel);
             this.Name = "NewProductForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "Form";
+            this.Load += new System.EventHandler(this.NewProductForm_Load);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -365,5 +404,8 @@ namespace SellerStorage.Forms
         private System.Windows.Forms.TextBox ProductExpectedSellingPriceTextBox;
         private System.Windows.Forms.TextBox ProductSoldPriceTextBox;
         private System.Windows.Forms.TextBox ProductProfitTextBox;
+        private System.Windows.Forms.Label DateLabel;
+        private System.Windows.Forms.TextBox DateTextBox;
+        private System.Windows.Forms.Button CreateNewProductButton;
     }
 }

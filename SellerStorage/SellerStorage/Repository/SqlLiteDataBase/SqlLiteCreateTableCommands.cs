@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing.Text;
 using SellerStorage.Forms.Constants;
 
 namespace SellerStorage.Repository.SqlLiteDataBase
@@ -10,8 +9,8 @@ namespace SellerStorage.Repository.SqlLiteDataBase
         {
             string createFullProductInfoTable = 
                 $@"
-                CREATE TABLE [FullProductInfoTable] (
-                    [ProductId] [Integer] NOT NULL,
+                  CREATE TABLE [FullProductInfoTable] (
+                    [ProductId] [Integer] PRIMARY KEY AUTOINCREMENT NOT NULL,
                     [ProductReceiptDate] [Date] NOT NULL,
 
                     [ProductType] [nvarchar] ({FormLengthLimitTextBox.ProductType}) NULL,
@@ -30,7 +29,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                     [ProductSoldPrice] [Numeric] NULL,
                     [ProductProfit] [Numeric] NULL,
 
-                    UNIQUE (ProductId, ProductReceiptDate)
+                    UNIQUE (ProductId)
                   );
 
                 "; 

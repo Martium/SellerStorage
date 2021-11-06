@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SellerStorage.Models
+﻿namespace SellerStorage.Models
 {
-    class FullProductInfoWithIdModel
+    public class FullProductInfoWithIdModel : FullProductInfoModel
     {
+        public int ProductId { get; set; }
     }
 }
