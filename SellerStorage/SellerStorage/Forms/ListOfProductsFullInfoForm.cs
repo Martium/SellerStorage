@@ -13,6 +13,16 @@ namespace SellerStorage.Forms
             FillFakeInfo();
         }
 
+        private void openNewProductFormButton_Click(object sender, System.EventArgs e)
+        {
+            OpenAnotherForm(new NewProductForm());
+        }
+
+        private void AnotherForm_Closed(object sender, System.EventArgs e)
+        {
+            this.Show();
+        }
+
         #region Helpers
 
         private void SetDataGridColumnSize()
@@ -51,6 +61,24 @@ namespace SellerStorage.Forms
             }
         }
 
+        private void OpenAnotherForm(Form form)
+        {
+            form.Closed += AnotherForm_Closed;
+            HideListOfProductsFullInfoForm(form);
+        }
+
+        private void HideListOfProductsFullInfoForm(Form form)
+        {
+            this.Hide();
+            form.Show();
+
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                form.WindowState = FormWindowState.Maximized;
+            }
+        }
+
         #endregion
+
     }
 }

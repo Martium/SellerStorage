@@ -31,7 +31,7 @@ namespace SellerStorage.Forms
         {
             this.components = new System.ComponentModel.Container();
             this.productsListDataGridView = new System.Windows.Forms.DataGridView();
-            this.fullProductInfoModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.openNewProductFormButton = new System.Windows.Forms.Button();
             this.productTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productQuantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,6 +44,7 @@ namespace SellerStorage.Forms
             this.productExpectedSellingPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productSoldPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productProfitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullProductInfoModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.productsListDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fullProductInfoModelBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -74,9 +75,15 @@ namespace SellerStorage.Forms
             this.productsListDataGridView.Size = new System.Drawing.Size(1259, 433);
             this.productsListDataGridView.TabIndex = 1;
             // 
-            // fullProductInfoModelBindingSource
+            // openNewProductFormButton
             // 
-            this.fullProductInfoModelBindingSource.DataSource = typeof(SellerStorage.Models.FullProductInfoModel);
+            this.openNewProductFormButton.Location = new System.Drawing.Point(12, 48);
+            this.openNewProductFormButton.Name = "openNewProductFormButton";
+            this.openNewProductFormButton.Size = new System.Drawing.Size(142, 40);
+            this.openNewProductFormButton.TabIndex = 2;
+            this.openNewProductFormButton.Text = "Pridėti naują produktą";
+            this.openNewProductFormButton.UseVisualStyleBackColor = true;
+            this.openNewProductFormButton.Click += new System.EventHandler(this.openNewProductFormButton_Click);
             // 
             // productTypeDataGridViewTextBoxColumn
             // 
@@ -150,11 +157,16 @@ namespace SellerStorage.Forms
             this.productProfitDataGridViewTextBoxColumn.HeaderText = "Produkto bendras pelnas";
             this.productProfitDataGridViewTextBoxColumn.Name = "productProfitDataGridViewTextBoxColumn";
             // 
+            // fullProductInfoModelBindingSource
+            // 
+            this.fullProductInfoModelBindingSource.DataSource = typeof(SellerStorage.Models.FullProductInfoModel);
+            // 
             // ListOfProductsFullInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1283, 588);
+            this.Controls.Add(this.openNewProductFormButton);
             this.Controls.Add(this.productsListDataGridView);
             this.Name = "ListOfProductsFullInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -180,6 +192,7 @@ namespace SellerStorage.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn productExpectedSellingPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productSoldPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productProfitDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button openNewProductFormButton;
     }
 }
 
