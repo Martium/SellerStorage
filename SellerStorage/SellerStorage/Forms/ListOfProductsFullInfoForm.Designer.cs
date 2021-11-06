@@ -30,8 +30,8 @@ namespace SellerStorage.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.productsListDataGridView = new System.Windows.Forms.DataGridView();
-            this.openNewProductFormButton = new System.Windows.Forms.Button();
+            this.ProductsListDataGridView = new System.Windows.Forms.DataGridView();
+            this.OpenNewProductFormButton = new System.Windows.Forms.Button();
             this.productTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productQuantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,18 +45,18 @@ namespace SellerStorage.Forms
             this.productSoldPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productProfitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullProductInfoModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.productsListDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductsListDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fullProductInfoModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // productsListDataGridView
+            // ProductsListDataGridView
             // 
-            this.productsListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ProductsListDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.productsListDataGridView.AutoGenerateColumns = false;
-            this.productsListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.productsListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ProductsListDataGridView.AutoGenerateColumns = false;
+            this.ProductsListDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProductsListDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.productTypeDataGridViewTextBoxColumn,
             this.productDescriptionDataGridViewTextBoxColumn,
             this.productQuantityDataGridViewTextBoxColumn,
@@ -69,21 +69,21 @@ namespace SellerStorage.Forms
             this.productExpectedSellingPriceDataGridViewTextBoxColumn,
             this.productSoldPriceDataGridViewTextBoxColumn,
             this.productProfitDataGridViewTextBoxColumn});
-            this.productsListDataGridView.DataSource = this.fullProductInfoModelBindingSource;
-            this.productsListDataGridView.Location = new System.Drawing.Point(12, 105);
-            this.productsListDataGridView.Name = "productsListDataGridView";
-            this.productsListDataGridView.Size = new System.Drawing.Size(1259, 433);
-            this.productsListDataGridView.TabIndex = 1;
+            this.ProductsListDataGridView.DataSource = this.fullProductInfoModelBindingSource;
+            this.ProductsListDataGridView.Location = new System.Drawing.Point(12, 105);
+            this.ProductsListDataGridView.Name = "ProductsListDataGridView";
+            this.ProductsListDataGridView.Size = new System.Drawing.Size(1259, 433);
+            this.ProductsListDataGridView.TabIndex = 1;
             // 
-            // openNewProductFormButton
+            // OpenNewProductFormButton
             // 
-            this.openNewProductFormButton.Location = new System.Drawing.Point(12, 48);
-            this.openNewProductFormButton.Name = "openNewProductFormButton";
-            this.openNewProductFormButton.Size = new System.Drawing.Size(142, 40);
-            this.openNewProductFormButton.TabIndex = 2;
-            this.openNewProductFormButton.Text = "Pridėti naują produktą";
-            this.openNewProductFormButton.UseVisualStyleBackColor = true;
-            this.openNewProductFormButton.Click += new System.EventHandler(this.openNewProductFormButton_Click);
+            this.OpenNewProductFormButton.Location = new System.Drawing.Point(12, 48);
+            this.OpenNewProductFormButton.Name = "OpenNewProductFormButton";
+            this.OpenNewProductFormButton.Size = new System.Drawing.Size(142, 40);
+            this.OpenNewProductFormButton.TabIndex = 2;
+            this.OpenNewProductFormButton.Text = "Pridėti naują produktą";
+            this.OpenNewProductFormButton.UseVisualStyleBackColor = true;
+            this.OpenNewProductFormButton.Click += new System.EventHandler(this.OpenNewProductFormButton_Click);
             // 
             // productTypeDataGridViewTextBoxColumn
             // 
@@ -166,19 +166,19 @@ namespace SellerStorage.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1283, 588);
-            this.Controls.Add(this.openNewProductFormButton);
-            this.Controls.Add(this.productsListDataGridView);
+            this.Controls.Add(this.OpenNewProductFormButton);
+            this.Controls.Add(this.ProductsListDataGridView);
             this.Name = "ListOfProductsFullInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Produktai";
-            ((System.ComponentModel.ISupportInitialize)(this.productsListDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductsListDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fullProductInfoModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView productsListDataGridView;
+        private System.Windows.Forms.DataGridView ProductsListDataGridView;
         private System.Windows.Forms.BindingSource fullProductInfoModelBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn productTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productDescriptionDataGridViewTextBoxColumn;
@@ -192,7 +192,7 @@ namespace SellerStorage.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn productExpectedSellingPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productSoldPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productProfitDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button openNewProductFormButton;
+        private System.Windows.Forms.Button OpenNewProductFormButton;
     }
 }
 

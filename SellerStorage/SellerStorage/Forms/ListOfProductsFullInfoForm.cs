@@ -13,12 +13,12 @@ namespace SellerStorage.Forms
             FillFakeInfo();
         }
 
-        private void openNewProductFormButton_Click(object sender, System.EventArgs e)
+        private void OpenNewProductFormButton_Click(object sender, System.EventArgs e)
         {
             OpenAnotherForm(new NewProductForm());
         }
 
-        private void AnotherForm_Closed(object sender, System.EventArgs e)
+        private void CloseAnotherForm_Closed(object sender, System.EventArgs e)
         {
             this.Show();
         }
@@ -27,14 +27,14 @@ namespace SellerStorage.Forms
 
         private void SetDataGridColumnSize()
         {
-            productsListDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ProductsListDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void FillFakeInfo()
         {
             BindingList<FullProductInfoModel> list = new BindingList<FullProductInfoModel>();
 
-            productsListDataGridView.DataSource = list;
+            ProductsListDataGridView.DataSource = list;
 
             for (int i = 1; i < 200; i++)
             {
@@ -63,7 +63,7 @@ namespace SellerStorage.Forms
 
         private void OpenAnotherForm(Form form)
         {
-            form.Closed += AnotherForm_Closed;
+            form.Closed += CloseAnotherForm_Closed;
             HideListOfProductsFullInfoForm(form);
         }
 

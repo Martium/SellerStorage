@@ -42,18 +42,18 @@ namespace SellerStorage.Forms
             this.ProductExpectedSellingPriceLabel = new System.Windows.Forms.Label();
             this.ProductSoldPriceLabel = new System.Windows.Forms.Label();
             this.ProductProfitLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.ProductTypeTextBox = new System.Windows.Forms.TextBox();
+            this.ProductDescriptionTextBox = new System.Windows.Forms.TextBox();
+            this.ProductQuantityTextBox = new System.Windows.Forms.TextBox();
+            this.ProductQuantityLeftTextBox = new System.Windows.Forms.TextBox();
+            this.ProductOriginalCostPriceCurrencyTextBox = new System.Windows.Forms.TextBox();
+            this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox = new System.Windows.Forms.TextBox();
+            this.ProductQuantityPriceInEuroTextBox = new System.Windows.Forms.TextBox();
+            this.ProductAllQuantityPriceInEuroTextBox = new System.Windows.Forms.TextBox();
+            this.ProductExpensesPerQuantityUnitTextBox = new System.Windows.Forms.TextBox();
+            this.ProductExpectedSellingPriceTextBox = new System.Windows.Forms.TextBox();
+            this.ProductSoldPriceTextBox = new System.Windows.Forms.TextBox();
+            this.ProductProfitTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,18 +76,18 @@ namespace SellerStorage.Forms
             this.tableLayoutPanel.Controls.Add(this.ProductExpectedSellingPriceLabel, 1, 9);
             this.tableLayoutPanel.Controls.Add(this.ProductSoldPriceLabel, 1, 10);
             this.tableLayoutPanel.Controls.Add(this.ProductProfitLabel, 1, 11);
-            this.tableLayoutPanel.Controls.Add(this.textBox1, 2, 0);
-            this.tableLayoutPanel.Controls.Add(this.textBox2, 2, 1);
-            this.tableLayoutPanel.Controls.Add(this.textBox3, 2, 2);
-            this.tableLayoutPanel.Controls.Add(this.textBox4, 2, 3);
-            this.tableLayoutPanel.Controls.Add(this.textBox5, 2, 4);
-            this.tableLayoutPanel.Controls.Add(this.textBox6, 2, 5);
-            this.tableLayoutPanel.Controls.Add(this.textBox7, 2, 6);
-            this.tableLayoutPanel.Controls.Add(this.textBox8, 2, 7);
-            this.tableLayoutPanel.Controls.Add(this.textBox9, 2, 8);
-            this.tableLayoutPanel.Controls.Add(this.textBox10, 2, 9);
-            this.tableLayoutPanel.Controls.Add(this.textBox11, 2, 10);
-            this.tableLayoutPanel.Controls.Add(this.textBox12, 2, 11);
+            this.tableLayoutPanel.Controls.Add(this.ProductTypeTextBox, 2, 0);
+            this.tableLayoutPanel.Controls.Add(this.ProductDescriptionTextBox, 2, 1);
+            this.tableLayoutPanel.Controls.Add(this.ProductQuantityTextBox, 2, 2);
+            this.tableLayoutPanel.Controls.Add(this.ProductQuantityLeftTextBox, 2, 3);
+            this.tableLayoutPanel.Controls.Add(this.ProductOriginalCostPriceCurrencyTextBox, 2, 4);
+            this.tableLayoutPanel.Controls.Add(this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox, 2, 5);
+            this.tableLayoutPanel.Controls.Add(this.ProductQuantityPriceInEuroTextBox, 2, 6);
+            this.tableLayoutPanel.Controls.Add(this.ProductAllQuantityPriceInEuroTextBox, 2, 7);
+            this.tableLayoutPanel.Controls.Add(this.ProductExpensesPerQuantityUnitTextBox, 2, 8);
+            this.tableLayoutPanel.Controls.Add(this.ProductExpectedSellingPriceTextBox, 2, 9);
+            this.tableLayoutPanel.Controls.Add(this.ProductSoldPriceTextBox, 2, 10);
+            this.tableLayoutPanel.Controls.Add(this.ProductProfitTextBox, 2, 11);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
@@ -227,101 +227,101 @@ namespace SellerStorage.Forms
             this.ProductProfitLabel.TabIndex = 11;
             this.ProductProfitLabel.Text = "Produkto pelnas";
             // 
-            // textBox1
+            // ProductTypeTextBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(172, 8);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(425, 20);
-            this.textBox1.TabIndex = 12;
+            this.ProductTypeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductTypeTextBox.Location = new System.Drawing.Point(172, 8);
+            this.ProductTypeTextBox.Name = "ProductTypeTextBox";
+            this.ProductTypeTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductTypeTextBox.TabIndex = 12;
             // 
-            // textBox2
+            // ProductDescriptionTextBox
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(172, 45);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(425, 20);
-            this.textBox2.TabIndex = 13;
+            this.ProductDescriptionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductDescriptionTextBox.Location = new System.Drawing.Point(172, 45);
+            this.ProductDescriptionTextBox.Name = "ProductDescriptionTextBox";
+            this.ProductDescriptionTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductDescriptionTextBox.TabIndex = 13;
             // 
-            // textBox3
+            // ProductQuantityTextBox
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(172, 82);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(425, 20);
-            this.textBox3.TabIndex = 14;
+            this.ProductQuantityTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductQuantityTextBox.Location = new System.Drawing.Point(172, 82);
+            this.ProductQuantityTextBox.Name = "ProductQuantityTextBox";
+            this.ProductQuantityTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductQuantityTextBox.TabIndex = 14;
             // 
-            // textBox4
+            // ProductQuantityLeftTextBox
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(172, 119);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(425, 20);
-            this.textBox4.TabIndex = 15;
+            this.ProductQuantityLeftTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductQuantityLeftTextBox.Location = new System.Drawing.Point(172, 119);
+            this.ProductQuantityLeftTextBox.Name = "ProductQuantityLeftTextBox";
+            this.ProductQuantityLeftTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductQuantityLeftTextBox.TabIndex = 15;
             // 
-            // textBox5
+            // ProductOriginalCostPriceCurrencyTextBox
             // 
-            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox5.Location = new System.Drawing.Point(172, 156);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(425, 20);
-            this.textBox5.TabIndex = 16;
+            this.ProductOriginalCostPriceCurrencyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductOriginalCostPriceCurrencyTextBox.Location = new System.Drawing.Point(172, 156);
+            this.ProductOriginalCostPriceCurrencyTextBox.Name = "ProductOriginalCostPriceCurrencyTextBox";
+            this.ProductOriginalCostPriceCurrencyTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductOriginalCostPriceCurrencyTextBox.TabIndex = 16;
             // 
-            // textBox6
+            // ProductAllQuantityCostPriceAtOriginalCurrencyTextBox
             // 
-            this.textBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox6.Location = new System.Drawing.Point(172, 193);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(425, 20);
-            this.textBox6.TabIndex = 17;
+            this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Location = new System.Drawing.Point(172, 193);
+            this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Name = "ProductAllQuantityCostPriceAtOriginalCurrencyTextBox";
+            this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.TabIndex = 17;
             // 
-            // textBox7
+            // ProductQuantityPriceInEuroTextBox
             // 
-            this.textBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox7.Location = new System.Drawing.Point(172, 230);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(425, 20);
-            this.textBox7.TabIndex = 18;
+            this.ProductQuantityPriceInEuroTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductQuantityPriceInEuroTextBox.Location = new System.Drawing.Point(172, 230);
+            this.ProductQuantityPriceInEuroTextBox.Name = "ProductQuantityPriceInEuroTextBox";
+            this.ProductQuantityPriceInEuroTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductQuantityPriceInEuroTextBox.TabIndex = 18;
             // 
-            // textBox8
+            // ProductAllQuantityPriceInEuroTextBox
             // 
-            this.textBox8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox8.Location = new System.Drawing.Point(172, 267);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(425, 20);
-            this.textBox8.TabIndex = 19;
+            this.ProductAllQuantityPriceInEuroTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductAllQuantityPriceInEuroTextBox.Location = new System.Drawing.Point(172, 267);
+            this.ProductAllQuantityPriceInEuroTextBox.Name = "ProductAllQuantityPriceInEuroTextBox";
+            this.ProductAllQuantityPriceInEuroTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductAllQuantityPriceInEuroTextBox.TabIndex = 19;
             // 
-            // textBox9
+            // ProductExpensesPerQuantityUnitTextBox
             // 
-            this.textBox9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox9.Location = new System.Drawing.Point(172, 304);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(425, 20);
-            this.textBox9.TabIndex = 20;
+            this.ProductExpensesPerQuantityUnitTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductExpensesPerQuantityUnitTextBox.Location = new System.Drawing.Point(172, 304);
+            this.ProductExpensesPerQuantityUnitTextBox.Name = "ProductExpensesPerQuantityUnitTextBox";
+            this.ProductExpensesPerQuantityUnitTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductExpensesPerQuantityUnitTextBox.TabIndex = 20;
             // 
-            // textBox10
+            // ProductExpectedSellingPriceTextBox
             // 
-            this.textBox10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox10.Location = new System.Drawing.Point(172, 341);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(425, 20);
-            this.textBox10.TabIndex = 21;
+            this.ProductExpectedSellingPriceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductExpectedSellingPriceTextBox.Location = new System.Drawing.Point(172, 341);
+            this.ProductExpectedSellingPriceTextBox.Name = "ProductExpectedSellingPriceTextBox";
+            this.ProductExpectedSellingPriceTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductExpectedSellingPriceTextBox.TabIndex = 21;
             // 
-            // textBox11
+            // ProductSoldPriceTextBox
             // 
-            this.textBox11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox11.Location = new System.Drawing.Point(172, 378);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(425, 20);
-            this.textBox11.TabIndex = 22;
+            this.ProductSoldPriceTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductSoldPriceTextBox.Location = new System.Drawing.Point(172, 378);
+            this.ProductSoldPriceTextBox.Name = "ProductSoldPriceTextBox";
+            this.ProductSoldPriceTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductSoldPriceTextBox.TabIndex = 22;
             // 
-            // textBox12
+            // ProductProfitTextBox
             // 
-            this.textBox12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox12.Location = new System.Drawing.Point(172, 418);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(425, 20);
-            this.textBox12.TabIndex = 23;
+            this.ProductProfitTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductProfitTextBox.Location = new System.Drawing.Point(172, 418);
+            this.ProductProfitTextBox.Name = "ProductProfitTextBox";
+            this.ProductProfitTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductProfitTextBox.TabIndex = 23;
             // 
             // NewProductForm
             // 
@@ -353,17 +353,17 @@ namespace SellerStorage.Forms
         private System.Windows.Forms.Label ProductExpectedSellingPriceLabel;
         private System.Windows.Forms.Label ProductSoldPriceLabel;
         private System.Windows.Forms.Label ProductProfitLabel;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox ProductTypeTextBox;
+        private System.Windows.Forms.TextBox ProductDescriptionTextBox;
+        private System.Windows.Forms.TextBox ProductQuantityTextBox;
+        private System.Windows.Forms.TextBox ProductQuantityLeftTextBox;
+        private System.Windows.Forms.TextBox ProductOriginalCostPriceCurrencyTextBox;
+        private System.Windows.Forms.TextBox ProductAllQuantityCostPriceAtOriginalCurrencyTextBox;
+        private System.Windows.Forms.TextBox ProductQuantityPriceInEuroTextBox;
+        private System.Windows.Forms.TextBox ProductAllQuantityPriceInEuroTextBox;
+        private System.Windows.Forms.TextBox ProductExpensesPerQuantityUnitTextBox;
+        private System.Windows.Forms.TextBox ProductExpectedSellingPriceTextBox;
+        private System.Windows.Forms.TextBox ProductSoldPriceTextBox;
+        private System.Windows.Forms.TextBox ProductProfitTextBox;
     }
 }
