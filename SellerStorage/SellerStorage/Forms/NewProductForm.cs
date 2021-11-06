@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
 using SellerStorage.Enums;
@@ -13,29 +14,34 @@ namespace SellerStorage.Forms
     public partial class NewProductForm : Form
     {
         private const string DateFormat = "yyyy-MM-dd";
+        private int? _productId;
 
         private readonly NewProductFormOperations _productFormOperations;
         private readonly FullProductInfoRepositorySql _fullProductInfoRepository;
         private readonly MessageBoxService _messageBoxService;
-        
 
-
-        public NewProductForm(NewProductFormOperations productFormOperations)
+        public NewProductForm(NewProductFormOperations productFormOperations, int? productId)
         {
             _productFormOperations = productFormOperations;
             _fullProductInfoRepository = new FullProductInfoRepositorySql(new SqLiteFullProductInfoRepository());
             _messageBoxService = new MessageBoxService(new MessageBoxBoxDialogService());
 
+            if (_productFormOperations == NewProductFormOperations.Update)
+            {
+                _productId = productId;
+            }
+
             InitializeComponent();
         }
 
-        private void NewProductForm_Load(object sender, System.EventArgs e)
+        private void NewProductForm_Load(object sender, EventArgs e)
         {
             ChangeFormHeaderTextByOperation();
             ChangeFormCreateNewButtonHeaderTextByFormOperation();
+            FillProductTextBoxForUpdateOperation();
         }
 
-        private void CreateNewProductButton_Click(object sender, System.EventArgs e)
+        private void CreateNewProductButton_Click(object sender, EventArgs e)
         {
             FullProductInfoModel getAllInfo = GetAllNewProductInfo();
             bool isCreated = _fullProductInfoRepository.CreateNewFullProductInfo(getAllInfo);
@@ -107,6 +113,14 @@ namespace SellerStorage.Forms
             else
             {
                 _messageBoxService.ShowErrorMessage("nepavyko išsaugoti bandyti dar kartą arba kreiptis į Administratorių");
+            }
+        }
+
+        private void FillProductTextBoxForUpdateOperation()
+        {
+            if (_productFormOperations == NewProductFormOperations.Update)
+            {
+                ProductTypeTextBox.Text = _productId.ToString();
             }
         }
 

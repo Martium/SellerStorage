@@ -17,12 +17,28 @@ namespace SellerStorage.Forms
 
         private void OpenNewProductFormButton_Click(object sender, EventArgs e)
         {
-            OpenAnotherForm(new NewProductForm(NewProductFormOperations.Create));
+            OpenAnotherForm(new NewProductForm(NewProductFormOperations.Create, null));
         }
 
         private void UpdateSelectedProductButton_Click(object sender, EventArgs e)
         {
-            OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update));
+            if (ProductsListDataGridView.Rows.Count != 0)
+            {
+                int productId = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[0].Value.ToString());
+                OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update, productId));
+            }
+            else
+            {
+                OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update, null));
+            }
+        }
+
+        private void ProductsListDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (ProductsListDataGridView.Rows.Count != 0)
+            {
+                UpdateSelectedProductButton_Click(this, new EventArgs());
+            }
         }
 
         private void CloseAnotherForm_Closed(object sender, EventArgs e)
@@ -35,6 +51,7 @@ namespace SellerStorage.Forms
         private void SetDataGridDefaultControl()
         {
             ProductsListDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ProductsListDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             ProductsListDataGridView.AllowUserToResizeColumns = false;
             ProductsListDataGridView.AllowUserToAddRows = false;
             ProductsListDataGridView.AllowUserToDeleteRows = false;
@@ -57,6 +74,7 @@ namespace SellerStorage.Forms
             ProductsListDataGridView.Columns[11].HeaderText = @"Planuojamas vnt pelnas";
             ProductsListDataGridView.Columns[12].HeaderText = @"Produkto kiekio pelnas";
             ProductsListDataGridView.Columns[13].HeaderText = @"Parduota vnt kaina";
+
         }
 
         private void FillFakeInfo()
@@ -107,8 +125,8 @@ namespace SellerStorage.Forms
             }
         }
 
-
-
         #endregion
+
+       
     }
 }
