@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Forms\Constants\FormLengthLimitTextBox.cs" />
     <Compile Include="Interface\SqlLite\ISqlLiteInitializeDataBase.cs" />
+    <Compile Include="Models\FullProductInfoWithIdModel.cs" />
     <Compile Include="Repository\SqlLiteDatabaseInterfaceClass\DatabaseConfiguration.cs" />
     <Compile Include="Repository\SqlLiteDatabaseInterfaceClass\InitializeDatabaseRepositorySqlLite.cs" />
     <Compile Include="Forms\NewProductForm.cs">

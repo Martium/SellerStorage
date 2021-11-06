@@ -5,8 +5,6 @@ using SellerStorage.Repository.SqlLiteDataBase;
 
 namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
 {
-
-
     public class InitializeDatabaseRepositorySqlLite : ISqlLiteInitializeDataBase
     {
         private readonly SqlLiteCreateTableCommands _sqlLiteCreateTableCommands;

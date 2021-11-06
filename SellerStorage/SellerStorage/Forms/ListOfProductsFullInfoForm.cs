@@ -14,12 +14,12 @@ namespace SellerStorage.Forms
             FillFakeInfo();
         }
 
-        private void OpenNewProductFormButton_Click(object sender, System.EventArgs e)
+        private void OpenNewProductFormButton_Click(object sender, EventArgs e)
         {
             OpenAnotherForm(new NewProductForm());
         }
 
-        private void CloseAnotherForm_Closed(object sender, System.EventArgs e)
+        private void CloseAnotherForm_Closed(object sender, EventArgs e)
         {
             this.Show();
         }
