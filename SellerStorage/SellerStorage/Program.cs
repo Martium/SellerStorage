@@ -51,6 +51,9 @@ namespace SellerStorage
             try
             {
                 _initializeDatabaseRepositorySql.InitializeDatabaseIfNotExists();
+                _initializeDatabaseRepositorySql.DropAllTablesCommand();
+                _initializeDatabaseRepositorySql.CreateAllTableCommand();
+                
             }
             catch (Exception e)
             {

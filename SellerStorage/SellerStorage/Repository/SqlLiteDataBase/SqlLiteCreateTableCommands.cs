@@ -1,11 +1,15 @@
-﻿using SellerStorage.Forms.Constants;
+﻿using System.Collections.Generic;
+using System.Drawing.Text;
+using SellerStorage.Forms.Constants;
 
 namespace SellerStorage.Repository.SqlLiteDataBase
 {
     public class SqlLiteCreateTableCommands
     {
-        public static string CreateFullProductInfoTable = 
-            $@"
+        public Dictionary<string, string> GetTableCommand()
+        {
+            string createFullProductInfoTable = 
+                $@"
                 CREATE TABLE [FullProductInfoTable]
                     [ProductId] [Integer] NOT NULL,
                     [ProductReceiptDate] [Date] NOT NULL,
@@ -25,6 +29,15 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                     [ProductExpectedSellingPrice] [Numeric] NULL,
                     [ProductSoldPrice] [Numeric] NULL,
                     [ProductProfit] [Numeric] NULL
-            ";
+
+                "; 
+
+            var tableCommands = new Dictionary<string, string>
+            {
+                {"FullProductInfoTable", createFullProductInfoTable}
+            };
+
+            return tableCommands;
+        }
     }
 }

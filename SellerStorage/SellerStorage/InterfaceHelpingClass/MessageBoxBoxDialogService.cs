@@ -5,7 +5,6 @@ namespace SellerStorage.InterfaceHelpingClass
 {
     public class MessageBoxBoxDialogService : IMessageBoxService
     {
-
         public void ShowInfoMessage(string message)
         {
             MessageBox.Show(message);

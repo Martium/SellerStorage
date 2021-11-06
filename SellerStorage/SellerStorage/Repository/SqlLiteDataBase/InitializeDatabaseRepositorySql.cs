@@ -15,5 +15,15 @@ namespace SellerStorage.Repository.SqlLiteDataBase
         {
             _sqlLiteInitializeDataBase.InitializeDatabaseIfNotExists();
         }
+
+        public void DropAllTablesCommand()
+        {
+            _sqlLiteInitializeDataBase.DropAllTablesCommand();
+        }
+
+        public void CreateAllTableCommand()
+        {
+            _sqlLiteInitializeDataBase.CreateAllTablesCommand();
+        }
     }
 }
