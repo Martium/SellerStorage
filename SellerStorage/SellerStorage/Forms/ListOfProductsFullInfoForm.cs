@@ -20,6 +20,11 @@ namespace SellerStorage.Forms
             OpenAnotherForm(new NewProductForm(NewProductFormOperations.Create));
         }
 
+        private void UpdateSelectedProductButton_Click(object sender, EventArgs e)
+        {
+            OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update));
+        }
+
         private void CloseAnotherForm_Closed(object sender, EventArgs e)
         {
             this.Show();
@@ -102,8 +107,8 @@ namespace SellerStorage.Forms
             }
         }
 
+
+
         #endregion
-
-
     }
 }

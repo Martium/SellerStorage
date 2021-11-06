@@ -30,10 +30,22 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
 
             return affectedRows == 1;
         }
+        
 
-        public bool UpdateProductInfo(FullProductInfoModel fullProductInfo)
+        public bool UpdateProductInfo(FullProductInfoWithIdModel fullProductInfo)
         {
-            throw new System.NotImplementedException();
+            int affectedRows;
+
+            using (var dbConnection = new SQLiteConnection(DatabaseConfiguration.ConnectionString))
+            {
+                dbConnection.Open();
+
+                string createNewCommand = _callsCommands.UpdateFullProductInfoCommand(fullProductInfo);
+
+                affectedRows = dbConnection.Execute(createNewCommand);
+            }
+
+            return affectedRows == 1;
         }
     }
 }
