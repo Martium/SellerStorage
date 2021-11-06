@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DatabaseConfiguration.cs" />
+    <Compile Include="Database\InitializeDatabase.cs" />
     <Compile Include="Forms\NewProductForm.cs">
       <SubType>Form</SubType>
     </Compile>

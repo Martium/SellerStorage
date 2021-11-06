@@ -9,7 +9,7 @@ namespace SellerStorage.Forms
         public ListOfProductsFullInfoForm()
         {
             InitializeComponent();
-            SetDataGridColumnSize();
+            SetDataGridDefaultControl();
             FillFakeInfo();
         }
 
@@ -25,9 +25,13 @@ namespace SellerStorage.Forms
 
         #region Helpers
 
-        private void SetDataGridColumnSize()
+        private void SetDataGridDefaultControl()
         {
             ProductsListDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            ProductsListDataGridView.AllowUserToResizeColumns = false;
+            ProductsListDataGridView.AllowUserToAddRows = false;
+            ProductsListDataGridView.AllowUserToDeleteRows = false;
+            ProductsListDataGridView.AllowUserToOrderColumns = false;
         }
 
         private void FillFakeInfo()
