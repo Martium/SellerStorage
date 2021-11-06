@@ -10,7 +10,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
         {
             string createFullProductInfoTable = 
                 $@"
-                CREATE TABLE [FullProductInfoTable]
+                CREATE TABLE [FullProductInfoTable] (
                     [ProductId] [Integer] NOT NULL,
                     [ProductReceiptDate] [Date] NOT NULL,
 
@@ -28,7 +28,10 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                     [ProductExpensesPerQuantityUnit] [Numeric] NULL,
                     [ProductExpectedSellingPrice] [Numeric] NULL,
                     [ProductSoldPrice] [Numeric] NULL,
-                    [ProductProfit] [Numeric] NULL
+                    [ProductProfit] [Numeric] NULL,
+
+                    UNIQUE (ProductId, ProductReceiptDate)
+                  );
 
                 "; 
 

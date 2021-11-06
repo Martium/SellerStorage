@@ -57,7 +57,6 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
             {
                 CreateTable(tableCommand.Value);
             }
-
         }
 
         #region Helpers
@@ -81,6 +80,7 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
         {
             using (var dbConnection = new SQLiteConnection(DatabaseConfiguration.ConnectionString))
             {
+                dbConnection.Open();
                 string dropTableQuery = $"DROP TABLE IF EXISTS [{tableName}]";
                 SQLiteCommand tableCommand = new SQLiteCommand(dropTableQuery, dbConnection);
                 tableCommand.ExecuteNonQuery();
@@ -91,6 +91,7 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
         {
             using (var dbConnection = new SQLiteConnection(DatabaseConfiguration.ConnectionString))
             {
+                dbConnection.Open();
                 SQLiteCommand sqLiteCommand = new SQLiteCommand(tableCommand, dbConnection);
                 sqLiteCommand.ExecuteNonQuery();
             }
