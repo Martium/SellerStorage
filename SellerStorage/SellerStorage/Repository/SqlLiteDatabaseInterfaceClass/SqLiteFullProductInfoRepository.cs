@@ -48,7 +48,7 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
             return affectedRows == 1;
         }
 
-        public FullProductInfoWithIdModel GetProductInfoById(int productId)
+        public FullProductInfoModel GetProductInfoById(int productId)
         {
             using (var dbConnection = new SQLiteConnection(DatabaseConfiguration.ConnectionString))
             {
@@ -56,8 +56,8 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
 
                 string getInfoCommand = _callsCommands.GetFullProductInfoById(productId);
 
-                FullProductInfoWithIdModel getProductInfo =
-                    dbConnection.QuerySingle<FullProductInfoWithIdModel>(getInfoCommand);
+                FullProductInfoModel getProductInfo =
+                    dbConnection.QuerySingle<FullProductInfoModel>(getInfoCommand);
 
                 return getProductInfo;
             }

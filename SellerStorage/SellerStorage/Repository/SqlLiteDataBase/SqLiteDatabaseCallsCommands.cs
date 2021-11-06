@@ -46,17 +46,17 @@ namespace SellerStorage.Repository.SqlLiteDataBase
 
         public string GetFullProductInfoById(int productId)
         {
-            string getProductInfoById = 
+            string getProductInfoById =
                 $@"
                     SELECT 
-                        FPIT.ProductType, FPIT.ProductDescription, FPIT.ProductQuantity, FPIT.ProductQuantityLeft,
-                        FPIT.ProductOriginalCostPriceCurrency, FPIT.ProductAllQuantityCostPriceAtOriginalCurrency,
-                        FPIT.ProductQuantityPriceInEuro, FPIT.ProductAllQuantityPriceInEuro, FPIT.ProductExpensesPerQuantityUnit, FPIT.ProductExpectedSellingPrice,
-                        FPIT.ProductSoldPrice, FPIT.ProductProfit
+                        FPIT.ProductReceiptDate , FPIT.ProductType , FPIT.ProductDescription , FPIT.ProductQuantity, FPIT.ProductQuantityLeft ,
+                        FPIT.ProductOriginalCostPriceCurrency , FPIT.ProductAllQuantityCostPriceAtOriginalCurrency ,
+                        FPIT.ProductQuantityPriceInEuro , FPIT.ProductAllQuantityPriceInEuro , FPIT.ProductExpensesPerQuantityUnit ,
+                        FPIT.ProductExpectedSellingPrice ,
+                        FPIT.ProductSoldPrice , FPIT.ProductProfit
                     FROM {FullProductInfoTableName} FPIT
-                    WHERE ProductId = {productId}
+                    WHERE FPIT.ProductId = {productId}
                 ";
-
             return getProductInfoById;
         }
     }

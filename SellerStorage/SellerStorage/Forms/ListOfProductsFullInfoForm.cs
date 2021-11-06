@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Windows.Forms;
 using SellerStorage.Enums;
 using SellerStorage.Models;
@@ -8,6 +9,7 @@ namespace SellerStorage.Forms
 {
     public partial class ListOfProductsFullInfoForm : Form
     {
+        private const string DateFormat = "yyyy-MM-dd";
         public ListOfProductsFullInfoForm()
         {
             InitializeComponent();
@@ -25,7 +27,9 @@ namespace SellerStorage.Forms
             if (ProductsListDataGridView.Rows.Count != 0)
             {
                 int productId = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[0].Value.ToString());
-                OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update, productId));
+
+                FullProductInfoWithIdModel getFullProductInfoWithId = GetAllProductInfo();
+                OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update, getFullProductInfoWithId));
             }
             else
             {
@@ -123,6 +127,32 @@ namespace SellerStorage.Forms
             {
                 form.WindowState = FormWindowState.Maximized;
             }
+        }
+
+        private FullProductInfoWithIdModel GetAllProductInfo()
+        {
+            FullProductInfoWithIdModel getAllProductInfo = new FullProductInfoWithIdModel()
+            {
+                ProductId = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[0].Value.ToString()),
+                ProductReceiptDate = DateTime.ParseExact(ProductsListDataGridView.SelectedRows[0].Cells[1].ToString(), DateFormat, CultureInfo.InvariantCulture),
+                ProductType = ProductsListDataGridView.SelectedRows[0].Cells[2].Value.ToString(),
+                ProductDescription = ProductsListDataGridView.SelectedRows[0].Cells[3].ToString(),
+
+                ProductQuantity = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[4].ToString()),
+                ProductQuantityLeft = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[5].Value.ToString()),
+                ProductOriginalCostPriceCurrency = ProductsListDataGridView.SelectedRows[0].Cells[6].Value.ToString(),
+                ProductAllQuantityCostPriceAtOriginalCurrency = ProductsListDataGridView.SelectedRows[0].Cells[7].Value.ToString(),
+                ProductQuantityPriceInEuro = double.Parse(ProductsListDataGridView.SelectedRows[0].Cells[8].Value.ToString()),
+                ProductAllQuantityPriceInEuro = double.Parse(ProductsListDataGridView.SelectedRows[0].Cells[9].Value.ToString()),
+
+                ProductExpensesPerQuantityUnit = double.Parse(ProductsListDataGridView.SelectedRows[0].Cells[10].Value.ToString()),
+                ProductExpectedSellingPrice = double.Parse(ProductsListDataGridView.SelectedRows[0].Cells[11].Value.ToString()),
+                ProductProfit = double.Parse(ProductsListDataGridView.SelectedRows[0].Cells[12].Value.ToString()),
+                ProductSoldPrice = double.Parse(ProductsListDataGridView.SelectedRows[0].Cells[13].Value.ToString())
+
+            };
+
+            return getAllProductInfo;
         }
 
         #endregion

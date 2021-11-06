@@ -6,6 +6,6 @@ namespace SellerStorage.Interface.SqlLite
     {
         bool CreateNewProductInfo(FullProductInfoModel fullProductInfo);
         bool UpdateProductInfo(FullProductInfoWithIdModel fullProductInfo);
-        FullProductInfoWithIdModel GetProductInfoById(int productId);
+        FullProductInfoModel GetProductInfoById(int productId);
     }
 }

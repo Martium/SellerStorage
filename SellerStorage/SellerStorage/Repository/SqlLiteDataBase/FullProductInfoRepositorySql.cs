@@ -18,9 +18,9 @@ namespace SellerStorage.Repository.SqlLiteDataBase
             return isSuccess;
         }
 
-        public FullProductInfoWithIdModel GetProductInfoById(int productId)
+        public FullProductInfoModel GetProductInfoById(int productId)
         {
-            FullProductInfoWithIdModel getProductInfoById = _fullProductInfoRepository.GetProductInfoById(productId);
+            FullProductInfoModel getProductInfoById = _fullProductInfoRepository.GetProductInfoById(productId);
             return getProductInfoById;
         }
     }

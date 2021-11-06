@@ -13,13 +13,12 @@ namespace SellerStorage.Forms
     public partial class NewProductForm : Form
     {
         private const string DateFormat = "yyyy-MM-dd";
-        private int? _productId;
 
         private readonly NewProductFormOperations _productFormOperations;
         private readonly FullProductInfoRepositorySql _fullProductInfoRepository;
         private readonly MessageBoxService _messageBoxService;
 
-        public NewProductForm(NewProductFormOperations productFormOperations, int? productId)
+        public NewProductForm(NewProductFormOperations productFormOperations, FullProductInfoWithIdModel getFullProductInfoWithId)
         {
             _productFormOperations = productFormOperations;
             _fullProductInfoRepository = new FullProductInfoRepositorySql(new SqLiteFullProductInfoRepository());
@@ -27,8 +26,7 @@ namespace SellerStorage.Forms
 
             if (_productFormOperations == NewProductFormOperations.Update)
             {
-                _productId = productId;
-                FillProductTextBoxForUpdateOperation();
+                FillProductTextBoxForUpdateOperation(getFullProductInfoWithId);
             }
 
             InitializeComponent();
@@ -38,7 +36,6 @@ namespace SellerStorage.Forms
         {
             ChangeFormHeaderTextByOperation();
             ChangeFormCreateNewButtonHeaderTextByFormOperation();
-            FillProductTextBoxForUpdateOperation();
         }
 
         private void CreateNewProductButton_Click(object sender, EventArgs e)
@@ -116,19 +113,17 @@ namespace SellerStorage.Forms
             }
         }
 
-        private void FillProductTextBoxForUpdateOperation()
+        private void FillProductTextBoxForUpdateOperation(FullProductInfoWithIdModel fullProductInfo)
         {
-            if (_productFormOperations == NewProductFormOperations.Update && _productId.HasValue)
+            if (_productFormOperations == NewProductFormOperations.Update)
             {
-                FullProductInfoWithIdModel getFullInfoById =
-                    _fullProductInfoRepository.GetProductInfoById(_productId.Value);
-                FillTextBoxWithProductInfo(getFullInfoById);
+                FillTextBoxWithProductInfo(fullProductInfo);
             }
         }
 
         private void FillTextBoxWithProductInfo(FullProductInfoWithIdModel fullProductInfo)
         {
-           // DateTextBox.Text = fullProductInfo.ProductReceiptDate.ToString(CultureInfo.InvariantCulture);
+            DateTextBox.Text = fullProductInfo.ProductReceiptDate.ToString(CultureInfo.InvariantCulture);
             ProductTypeTextBox.Text = fullProductInfo.ProductType;
             ProductDescriptionTextBox.Text = fullProductInfo.ProductDescription;
 
