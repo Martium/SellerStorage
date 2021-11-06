@@ -49,7 +49,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
             string getProductInfoById = 
                 $@"
                     SELECT 
-                        FPIT.ProductReceiptDate, FPIT.ProductType, FPIT.ProductDescription, FPIT.ProductQuantity, FPIT.ProductQuantityLeft,
+                        FPIT.ProductType, FPIT.ProductDescription, FPIT.ProductQuantity, FPIT.ProductQuantityLeft,
                         FPIT.ProductOriginalCostPriceCurrency, FPIT.ProductAllQuantityCostPriceAtOriginalCurrency,
                         FPIT.ProductQuantityPriceInEuro, FPIT.ProductAllQuantityPriceInEuro, FPIT.ProductExpensesPerQuantityUnit, FPIT.ProductExpectedSellingPrice,
                         FPIT.ProductSoldPrice, FPIT.ProductProfit

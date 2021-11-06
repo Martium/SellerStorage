@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Forms;
 using SellerStorage.Enums;
@@ -29,6 +28,7 @@ namespace SellerStorage.Forms
             if (_productFormOperations == NewProductFormOperations.Update)
             {
                 _productId = productId;
+                FillProductTextBoxForUpdateOperation();
             }
 
             InitializeComponent();
@@ -118,14 +118,37 @@ namespace SellerStorage.Forms
 
         private void FillProductTextBoxForUpdateOperation()
         {
-            if (_productFormOperations == NewProductFormOperations.Update)
+            if (_productFormOperations == NewProductFormOperations.Update && _productId.HasValue)
             {
-                ProductTypeTextBox.Text = _productId.ToString();
+                FullProductInfoWithIdModel getFullInfoById =
+                    _fullProductInfoRepository.GetProductInfoById(_productId.Value);
+                FillTextBoxWithProductInfo(getFullInfoById);
             }
         }
 
-        #endregion
+        private void FillTextBoxWithProductInfo(FullProductInfoWithIdModel fullProductInfo)
+        {
+           // DateTextBox.Text = fullProductInfo.ProductReceiptDate.ToString(CultureInfo.InvariantCulture);
+            ProductTypeTextBox.Text = fullProductInfo.ProductType;
+            ProductDescriptionTextBox.Text = fullProductInfo.ProductDescription;
 
-        
+            ProductQuantityTextBox.Text = fullProductInfo.ProductQuantity.ToString();
+            ProductQuantityLeftTextBox.Text = fullProductInfo.ProductQuantityLeft.ToString();
+
+            ProductOriginalCostPriceCurrencyTextBox.Text = fullProductInfo.ProductOriginalCostPriceCurrency;
+            ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Text = fullProductInfo.ProductAllQuantityCostPriceAtOriginalCurrency;
+
+            ProductQuantityPriceInEuroTextBox.Text = fullProductInfo.ProductQuantityPriceInEuro.ToString(CultureInfo.InvariantCulture);
+            ProductAllQuantityPriceInEuroTextBox.Text = fullProductInfo.ProductAllQuantityPriceInEuro.ToString(CultureInfo.InvariantCulture);
+
+            ProductExpensesPerQuantityUnitTextBox.Text = fullProductInfo.ProductExpensesPerQuantityUnit.ToString(CultureInfo.InvariantCulture);
+            ProductExpectedSellingPriceTextBox.Text =
+                fullProductInfo.ProductExpectedSellingPrice.ToString(CultureInfo.InvariantCulture);
+            ProductSoldPriceTextBox.Text = fullProductInfo.ProductSoldPrice.ToString(CultureInfo.InvariantCulture);
+            ProductProfitTextBox.Text = fullProductInfo.ProductProfit.ToString(CultureInfo.InvariantCulture);
+
+        }
+
+        #endregion
     }
 }
