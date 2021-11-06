@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using SellerStorage.Models;
 
@@ -13,12 +14,12 @@ namespace SellerStorage.Forms
             FillFakeInfo();
         }
 
-        private void OpenNewProductFormButton_Click(object sender, System.EventArgs e)
+        private void OpenNewProductFormButton_Click(object sender, EventArgs e)
         {
             OpenAnotherForm(new NewProductForm());
         }
 
-        private void CloseAnotherForm_Closed(object sender, System.EventArgs e)
+        private void CloseAnotherForm_Closed(object sender, EventArgs e)
         {
             this.Show();
         }
@@ -32,6 +33,7 @@ namespace SellerStorage.Forms
             ProductsListDataGridView.AllowUserToAddRows = false;
             ProductsListDataGridView.AllowUserToDeleteRows = false;
             ProductsListDataGridView.AllowUserToOrderColumns = false;
+            ProductsListDataGridView.AllowUserToResizeRows = false;
         }
 
         private void FillFakeInfo()
@@ -44,6 +46,7 @@ namespace SellerStorage.Forms
             {
                 list.Add(new FullProductInfoModel()
                 {
+                    ProductReceiptDate = DateTime.Now.Date,
                     ProductType = "kazkas",
                     ProductDescription = "bazinga",
 
@@ -61,7 +64,6 @@ namespace SellerStorage.Forms
                     ProductSoldPrice = 2
 
                 });
-
             }
         }
 
