@@ -1,4 +1,4 @@
-﻿using SellerStorage.Interface;
+﻿using SellerStorage.Interface.SqlLite;
 
 namespace SellerStorage.Repository.SqlLiteDataBase
 {

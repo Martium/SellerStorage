@@ -1,4 +1,4 @@
-﻿namespace SellerStorage.Interface
+﻿namespace SellerStorage.Interface.SqlLite
 {
     public interface ISqlLiteInitializeDataBase
     {

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Reflection;
 
-namespace SellerStorage.Repository.Sql_Lite_Database
+namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
 {
     public class DatabaseConfiguration
     {

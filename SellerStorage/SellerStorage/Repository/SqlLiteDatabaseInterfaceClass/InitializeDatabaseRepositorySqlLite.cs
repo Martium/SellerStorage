@@ -1,6 +1,5 @@
 ﻿using System.IO;
-using SellerStorage.Interface;
-using SellerStorage.Repository.Sql_Lite_Database;
+using SellerStorage.Interface.SqlLite;
 
 namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
 {

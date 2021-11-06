@@ -54,7 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\ISqlLiteInitializeDataBase.cs" />
+    <Compile Include="Forms\Constants\FormLengthLimitTextBox.cs" />
+    <Compile Include="Interface\SqlLite\ISqlLiteInitializeDataBase.cs" />
     <Compile Include="Repository\SqlLiteDatabaseInterfaceClass\DatabaseConfiguration.cs" />
     <Compile Include="Repository\SqlLiteDatabaseInterfaceClass\InitializeDatabaseRepositorySqlLite.cs" />
     <Compile Include="Forms\NewProductForm.cs">
@@ -74,6 +75,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="InterfaceHelpingClass\MessageBoxBoxDialogService.cs" />
+    <Compile Include="Repository\SqlLiteDataBase\SqlLiteCreateTableCommands.cs" />
     <Compile Include="Repository\SqlLiteDataBase\InitializeDatabaseRepositorySql.cs" />
     <Compile Include="Service\MessageBoxService.cs" />
     <EmbeddedResource Include="Forms\ListOfProductsFullInfoForm.resx">
