@@ -23,13 +23,25 @@ namespace SellerStorage.Repository.SqlLiteDataBase
             return createNewProductInfoCommand;
         }
 
-       /* public string UpdateFullProductInfoCommand(FullProductInfoWithIdModel fullProductInfoModel)
+        public string UpdateFullProductInfoCommand(FullProductInfoWithIdModel fullProductInfoModel)
         {
             string updateProductInfoCommand = 
                 $@"
                       UPDATE '{FullProductInfoTableName}'
-                        SET 
+                        SET ProductReceiptDate = '{fullProductInfoModel.ProductReceiptDate}', ProductType = '{fullProductInfoModel.ProductType}',
+                            ProductDescription = '{fullProductInfoModel.ProductDescription}', ProductQuantity = {fullProductInfoModel.ProductQuantity},
+                            ProductQuantityLeft = {fullProductInfoModel.ProductQuantityLeft}, 
+                            ProductOriginalCostPriceCurrency = '{fullProductInfoModel.ProductOriginalCostPriceCurrency}',
+                            ProductAllQuantityCostPriceAtOriginalCurrency = '{fullProductInfoModel.ProductAllQuantityCostPriceAtOriginalCurrency}',
+                            ProductQuantityPriceInEuro = {fullProductInfoModel.ProductQuantityPriceInEuro},
+                            ProductAllQuantityPriceInEuro = {fullProductInfoModel.ProductAllQuantityPriceInEuro},
+                            ProductExpensesPerQuantityUnit = {fullProductInfoModel.ProductExpensesPerQuantityUnit},
+                            ProductExpectedSellingPrice = {fullProductInfoModel.ProductExpectedSellingPrice},
+                            ProductSoldPrice = {fullProductInfoModel.ProductSoldPrice}, ProductProfit = {fullProductInfoModel.ProductProfit}
+                        WHERE ProductId = {fullProductInfoModel.ProductId}
                 ";
-        }*/
+
+            return updateProductInfoCommand;
+        }
     }
 }
