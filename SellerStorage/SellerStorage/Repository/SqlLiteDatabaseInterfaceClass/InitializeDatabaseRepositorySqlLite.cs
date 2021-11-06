@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Data.SQLite;
+using System.IO;
 using SellerStorage.Interface.SqlLite;
 
 namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
@@ -24,6 +25,8 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
             {
                 DeleteLeftoverFilesAndFolders();
             }
+
+            SQLiteConnection.CreateFile(DatabaseConfiguration.DatabaseFile);
         }
 
         private void DeleteLeftoverFilesAndFolders()

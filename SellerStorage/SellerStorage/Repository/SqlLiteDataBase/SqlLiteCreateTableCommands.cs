@@ -18,6 +18,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                     
                     [ProductOriginalCostPriceCurrency] [nvarchar] ({FormLengthLimitTextBox.ProductOriginalCostPriceCurrency}) NULL,
                     [ProductAllQuantityCostPriceAtOriginalCurrency] [nvarchar] ({FormLengthLimitTextBox.ProductAllQuantityCostPriceAtOriginalCurrency}) NULL,
+
                     [ProductQuantityPriceInEuro] [Numeric] NULL,
                     [ProductAllQuantityPriceInEuro] [Numeric] NULL,
                     [ProductExpensesPerQuantityUnit] [Numeric] NULL,
