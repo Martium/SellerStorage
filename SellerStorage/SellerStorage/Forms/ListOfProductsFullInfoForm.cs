@@ -26,8 +26,6 @@ namespace SellerStorage.Forms
         {
             if (ProductsListDataGridView.Rows.Count != 0)
             {
-                int productId = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[0].Value.ToString());
-
                 FullProductInfoWithIdModel getFullProductInfoWithId = GetAllProductInfo();
                 OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update, getFullProductInfoWithId));
             }
@@ -134,11 +132,11 @@ namespace SellerStorage.Forms
             FullProductInfoWithIdModel getAllProductInfo = new FullProductInfoWithIdModel()
             {
                 ProductId = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[0].Value.ToString()),
-                ProductReceiptDate = DateTime.ParseExact(ProductsListDataGridView.SelectedRows[0].Cells[1].ToString(), DateFormat, CultureInfo.InvariantCulture),
+               
                 ProductType = ProductsListDataGridView.SelectedRows[0].Cells[2].Value.ToString(),
-                ProductDescription = ProductsListDataGridView.SelectedRows[0].Cells[3].ToString(),
+                ProductDescription = ProductsListDataGridView.SelectedRows[0].Cells[3].Value.ToString(),
 
-                ProductQuantity = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[4].ToString()),
+                ProductQuantity = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[4].Value.ToString()),
                 ProductQuantityLeft = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[5].Value.ToString()),
                 ProductOriginalCostPriceCurrency = ProductsListDataGridView.SelectedRows[0].Cells[6].Value.ToString(),
                 ProductAllQuantityCostPriceAtOriginalCurrency = ProductsListDataGridView.SelectedRows[0].Cells[7].Value.ToString(),

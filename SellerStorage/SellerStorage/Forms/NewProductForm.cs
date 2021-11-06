@@ -123,7 +123,6 @@ namespace SellerStorage.Forms
 
         private void FillTextBoxWithProductInfo(FullProductInfoWithIdModel fullProductInfo)
         {
-            DateTextBox.Text = fullProductInfo.ProductReceiptDate.ToString(CultureInfo.InvariantCulture);
             ProductTypeTextBox.Text = fullProductInfo.ProductType;
             ProductDescriptionTextBox.Text = fullProductInfo.ProductDescription;
 
