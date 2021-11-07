@@ -31,8 +31,6 @@ namespace SellerStorage.Forms
         {
             this.components = new System.ComponentModel.Container();
             this.ProductsListDataGridView = new System.Windows.Forms.DataGridView();
-            this.OpenNewProductFormButton = new System.Windows.Forms.Button();
-            this.UpdateSelectedProductButton = new System.Windows.Forms.Button();
             this.productIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productReceiptDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +46,8 @@ namespace SellerStorage.Forms
             this.productSoldPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productProfitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullProductInfoWithIdModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.OpenNewProductFormButton = new System.Windows.Forms.Button();
+            this.UpdateSelectedProductButton = new System.Windows.Forms.Button();
             this.fullProductInfoModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ProductsListDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fullProductInfoWithIdModelBindingSource)).BeginInit();
@@ -84,26 +84,6 @@ namespace SellerStorage.Forms
             this.ProductsListDataGridView.Size = new System.Drawing.Size(1259, 433);
             this.ProductsListDataGridView.TabIndex = 1;
             this.ProductsListDataGridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductsListDataGridView_CellDoubleClick);
-            // 
-            // OpenNewProductFormButton
-            // 
-            this.OpenNewProductFormButton.Location = new System.Drawing.Point(12, 48);
-            this.OpenNewProductFormButton.Name = "OpenNewProductFormButton";
-            this.OpenNewProductFormButton.Size = new System.Drawing.Size(142, 40);
-            this.OpenNewProductFormButton.TabIndex = 2;
-            this.OpenNewProductFormButton.Text = "Pridėti naują produktą";
-            this.OpenNewProductFormButton.UseVisualStyleBackColor = true;
-            this.OpenNewProductFormButton.Click += new System.EventHandler(this.OpenNewProductFormButton_Click);
-            // 
-            // UpdateSelectedProductButton
-            // 
-            this.UpdateSelectedProductButton.Location = new System.Drawing.Point(160, 48);
-            this.UpdateSelectedProductButton.Name = "UpdateSelectedProductButton";
-            this.UpdateSelectedProductButton.Size = new System.Drawing.Size(168, 40);
-            this.UpdateSelectedProductButton.TabIndex = 3;
-            this.UpdateSelectedProductButton.Text = "Atnaujinti pasirinktą produktą";
-            this.UpdateSelectedProductButton.UseVisualStyleBackColor = true;
-            this.UpdateSelectedProductButton.Click += new System.EventHandler(this.UpdateSelectedProductButton_Click);
             // 
             // productIdDataGridViewTextBoxColumn
             // 
@@ -207,6 +187,26 @@ namespace SellerStorage.Forms
             // 
             this.fullProductInfoWithIdModelBindingSource.DataSource = typeof(SellerStorage.Models.FullProductInfoWithIdModel);
             // 
+            // OpenNewProductFormButton
+            // 
+            this.OpenNewProductFormButton.Location = new System.Drawing.Point(12, 48);
+            this.OpenNewProductFormButton.Name = "OpenNewProductFormButton";
+            this.OpenNewProductFormButton.Size = new System.Drawing.Size(142, 40);
+            this.OpenNewProductFormButton.TabIndex = 2;
+            this.OpenNewProductFormButton.Text = "Pridėti naują produktą";
+            this.OpenNewProductFormButton.UseVisualStyleBackColor = true;
+            this.OpenNewProductFormButton.Click += new System.EventHandler(this.OpenNewProductFormButton_Click);
+            // 
+            // UpdateSelectedProductButton
+            // 
+            this.UpdateSelectedProductButton.Location = new System.Drawing.Point(160, 48);
+            this.UpdateSelectedProductButton.Name = "UpdateSelectedProductButton";
+            this.UpdateSelectedProductButton.Size = new System.Drawing.Size(168, 40);
+            this.UpdateSelectedProductButton.TabIndex = 3;
+            this.UpdateSelectedProductButton.Text = "Atnaujinti pasirinktą produktą";
+            this.UpdateSelectedProductButton.UseVisualStyleBackColor = true;
+            this.UpdateSelectedProductButton.Click += new System.EventHandler(this.UpdateSelectedProductButton_Click);
+            // 
             // fullProductInfoModelBindingSource
             // 
             this.fullProductInfoModelBindingSource.DataSource = typeof(SellerStorage.Models.FullProductInfoModel);
@@ -222,6 +222,7 @@ namespace SellerStorage.Forms
             this.Name = "ListOfProductsFullInfoForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Produktai";
+            this.Load += new System.EventHandler(this.ListOfProductsFullInfoForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ProductsListDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fullProductInfoWithIdModelBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fullProductInfoModelBindingSource)).EndInit();

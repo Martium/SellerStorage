@@ -1,4 +1,5 @@
-﻿using SellerStorage.Models;
+﻿using System.Collections.Generic;
+using SellerStorage.Models;
 
 namespace SellerStorage.Interface.SqlLite
 {
@@ -7,5 +8,6 @@ namespace SellerStorage.Interface.SqlLite
         bool CreateNewProductInfo(FullProductInfoModel fullProductInfo);
         bool UpdateProductInfo(FullProductInfoModel fullProductInfo, int productId);
         FullProductInfoWithIdModel GetProductInfoById(int productId);
+        IEnumerable<FullProductInfoWithIdModel> GetAllInfo();
     }
 }

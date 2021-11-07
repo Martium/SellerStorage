@@ -1,20 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows.Forms;
 using SellerStorage.Enums;
 using SellerStorage.Models;
+using SellerStorage.Repository.SqlLiteDataBase;
+using SellerStorage.Repository.SqlLiteDatabaseInterfaceClass;
 
 namespace SellerStorage.Forms
 {
     public partial class ListOfProductsFullInfoForm : Form
     {
         private const string DateFormat = "yyyy-MM-dd";
+        private readonly FullProductInfoRepositorySql _fullProductInfoRepository;
         public ListOfProductsFullInfoForm()
         {
+            _fullProductInfoRepository = new FullProductInfoRepositorySql(new SqLiteFullProductInfoRepository());
             InitializeComponent();
             SetDataGridDefaultControl();
             //FillFakeInfo();
+        }
+
+        private void ListOfProductsFullInfoForm_Load(object sender, EventArgs e)
+        {
+            LoadFullProductInfo();
         }
 
         private void OpenNewProductFormButton_Click(object sender, EventArgs e)
@@ -43,6 +53,7 @@ namespace SellerStorage.Forms
         private void CloseAnotherForm_Closed(object sender, EventArgs e)
         {
             this.Show();
+            LoadFullProductInfo();
         }
 
         #region Helpers
@@ -124,8 +135,14 @@ namespace SellerStorage.Forms
             }
         }
 
-        #endregion
+        private void LoadFullProductInfo()
+        {
+            IEnumerable<FullProductInfoWithIdModel> loadFullProductInfo = _fullProductInfoRepository.GetAllProductInfo();
+            fullProductInfoWithIdModelBindingSource.DataSource = loadFullProductInfo;
+            ProductsListDataGridView.DataSource = fullProductInfoWithIdModelBindingSource;
+        }
 
-       
+
+        #endregion
     }
 }

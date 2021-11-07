@@ -60,5 +60,21 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                 ";
             return getProductInfoById;
         }
+
+        public string GetAllProductInfo()
+        {
+            string getAllInfo = 
+                $@"SELECT 
+                        FPI.ProductId, 
+                        FPI.ProductReceiptDate , FPI.ProductType , FPI.ProductDescription , FPI.ProductQuantity, FPI.ProductQuantityLeft ,
+                        FPI.ProductOriginalCostPriceCurrency , FPI.ProductAllQuantityCostPriceAtOriginalCurrency ,
+                        FPI.ProductQuantityPriceInEuro , FPI.ProductAllQuantityPriceInEuro , FPI.ProductExpensesPerQuantityUnit ,
+                        FPI.ProductExpectedSellingPrice ,
+                        FPI.ProductSoldPrice , FPI.ProductProfit
+                    FROM {FullProductInfoTableName} FPI
+                ";
+
+            return getAllInfo;
+        }
     }
 }

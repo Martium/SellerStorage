@@ -1,4 +1,6 @@
-﻿using SellerStorage.Interface.SqlLite;
+﻿using System.Collections;
+using System.Collections.Generic;
+using SellerStorage.Interface.SqlLite;
 using SellerStorage.Models;
 
 namespace SellerStorage.Repository.SqlLiteDataBase
@@ -28,6 +30,12 @@ namespace SellerStorage.Repository.SqlLiteDataBase
         {
             FullProductInfoModel getProductInfoById = _fullProductInfoRepository.GetProductInfoById(productId);
             return getProductInfoById;
+        }
+
+        public IEnumerable<FullProductInfoWithIdModel> GetAllProductInfo()
+        {
+            IEnumerable<FullProductInfoWithIdModel> getAllInfo = _fullProductInfoRepository.GetAllInfo();
+            return getAllInfo;
         }
     }
 }

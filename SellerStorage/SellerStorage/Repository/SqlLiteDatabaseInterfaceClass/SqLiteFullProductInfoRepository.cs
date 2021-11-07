@@ -1,4 +1,6 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SQLite;
 using Dapper;
 using SellerStorage.Interface.SqlLite;
 using SellerStorage.Models;
@@ -59,6 +61,21 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
                     dbConnection.QuerySingle<FullProductInfoWithIdModel>(getInfoCommand);
 
                 return getProductInfo;
+            }
+        }
+
+        public IEnumerable<FullProductInfoWithIdModel> GetAllInfo()
+        {
+            using (var dbConnection = new SQLiteConnection(DatabaseConfiguration.ConnectionString))
+            {
+                dbConnection.Open();
+
+                string getAllInfo = _callsCommands.GetAllProductInfo();
+
+                IEnumerable<FullProductInfoWithIdModel> getAll =
+                    dbConnection.Query<FullProductInfoWithIdModel>(getAllInfo);
+
+                return getAll;
             }
         }
     }
