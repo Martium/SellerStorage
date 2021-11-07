@@ -4,7 +4,7 @@ namespace SellerStorage.Models
 {
     public class FullProductInfoModel
     {
-        public DateTime ProductReceiptDate { get; set; }
+        public string ProductReceiptDate { get; set; }
         public string ProductType { get; set; }
         public string ProductDescription { get; set; }
 

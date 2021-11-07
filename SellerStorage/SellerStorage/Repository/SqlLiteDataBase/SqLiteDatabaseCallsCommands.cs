@@ -23,7 +23,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
             return createNewProductInfoCommand;
         }
 
-        public string UpdateFullProductInfoCommand(FullProductInfoWithIdModel fullProductInfoModel)
+        public string UpdateFullProductInfoCommand(FullProductInfoModel fullProductInfoModel, int productId)
         {
             string updateProductInfoCommand = 
                 $@"
@@ -38,7 +38,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                             ProductExpensesPerQuantityUnit = {fullProductInfoModel.ProductExpensesPerQuantityUnit},
                             ProductExpectedSellingPrice = {fullProductInfoModel.ProductExpectedSellingPrice},
                             ProductSoldPrice = {fullProductInfoModel.ProductSoldPrice}, ProductProfit = {fullProductInfoModel.ProductProfit}
-                        WHERE ProductId = {fullProductInfoModel.ProductId}
+                        WHERE ProductId = {productId}
                 ";
 
             return updateProductInfoCommand;
@@ -49,13 +49,14 @@ namespace SellerStorage.Repository.SqlLiteDataBase
             string getProductInfoById =
                 $@"
                     SELECT 
-                        FPIT.ProductReceiptDate , FPIT.ProductType , FPIT.ProductDescription , FPIT.ProductQuantity, FPIT.ProductQuantityLeft ,
-                        FPIT.ProductOriginalCostPriceCurrency , FPIT.ProductAllQuantityCostPriceAtOriginalCurrency ,
-                        FPIT.ProductQuantityPriceInEuro , FPIT.ProductAllQuantityPriceInEuro , FPIT.ProductExpensesPerQuantityUnit ,
-                        FPIT.ProductExpectedSellingPrice ,
-                        FPIT.ProductSoldPrice , FPIT.ProductProfit
-                    FROM {FullProductInfoTableName} FPIT
-                    WHERE FPIT.ProductId = {productId}
+                        FPI.ProductId, 
+                        FPI.ProductReceiptDate , FPI.ProductType , FPI.ProductDescription , FPI.ProductQuantity, FPI.ProductQuantityLeft ,
+                        FPI.ProductOriginalCostPriceCurrency , FPI.ProductAllQuantityCostPriceAtOriginalCurrency ,
+                        FPI.ProductQuantityPriceInEuro , FPI.ProductAllQuantityPriceInEuro , FPI.ProductExpensesPerQuantityUnit ,
+                        FPI.ProductExpectedSellingPrice ,
+                        FPI.ProductSoldPrice , FPI.ProductProfit
+                    FROM {FullProductInfoTableName} FPI
+                    WHERE FPI.ProductId = {productId}
                 ";
             return getProductInfoById;
         }

@@ -18,18 +18,19 @@ namespace SellerStorage.Forms
         private readonly FullProductInfoRepositorySql _fullProductInfoRepository;
         private readonly MessageBoxService _messageBoxService;
 
-        public NewProductForm(NewProductFormOperations productFormOperations, FullProductInfoWithIdModel getFullProductInfoWithId)
+        public NewProductForm(NewProductFormOperations productFormOperations, int? productId)
         {
             _productFormOperations = productFormOperations;
             _fullProductInfoRepository = new FullProductInfoRepositorySql(new SqLiteFullProductInfoRepository());
             _messageBoxService = new MessageBoxService(new MessageBoxBoxDialogService());
 
-            if (_productFormOperations == NewProductFormOperations.Update)
-            {
-                FillProductTextBoxForUpdateOperation(getFullProductInfoWithId);
-            }
-
             InitializeComponent();
+
+            if (_productFormOperations == NewProductFormOperations.Update && productId.HasValue)
+            {
+                FullProductInfoModel fullProductInfo = _fullProductInfoRepository.GetProductInfoById(productId.Value);
+                FillTextBoxWithProductInfo(fullProductInfo, productId.Value);
+            }
         }
 
         private void NewProductForm_Load(object sender, EventArgs e)
@@ -41,8 +42,20 @@ namespace SellerStorage.Forms
         private void CreateNewProductButton_Click(object sender, EventArgs e)
         {
             FullProductInfoModel getAllInfo = GetAllNewProductInfo();
-            bool isCreated = _fullProductInfoRepository.CreateNewFullProductInfo(getAllInfo);
-            ShowInfoMessageForSavedProduct(isCreated);
+            bool isSuccess = false;
+
+            switch (_productFormOperations)
+            {
+                case NewProductFormOperations.Create:
+                    isSuccess = _fullProductInfoRepository.CreateNewFullProductInfo(getAllInfo);
+                    break;
+                case NewProductFormOperations.Update:
+                    int productId = int.Parse(ProductIdTextBox.Text);
+                    isSuccess = _fullProductInfoRepository.UpdateFullProductInfo(productId,getAllInfo);
+                    break;
+            }
+
+            ShowInfoMessageForSavedProduct(isSuccess);
         }
 
         #region Helpers
@@ -52,10 +65,10 @@ namespace SellerStorage.Forms
             switch (_productFormOperations)
             {
                 case NewProductFormOperations.Create:
-                    this.Text = "Sukurti naują produktą";
+                    this.Text = @"Sukurti naują produktą";
                     break;
                 case NewProductFormOperations.Update:
-                    this.Text = "Atnaujinti produktą";
+                    this.Text = @"Atnaujinti produktą";
                     break;
             }
         }
@@ -65,10 +78,10 @@ namespace SellerStorage.Forms
             switch (_productFormOperations)
             {
                 case NewProductFormOperations.Create:
-                    CreateNewProductButton.Text = "Sukurti";
+                    CreateNewProductButton.Text = @"Sukurti";
                     break;
                 case NewProductFormOperations.Update:
-                    CreateNewProductButton.Text = "Atnaujinti";
+                    CreateNewProductButton.Text = @"Atnaujinti";
                     break;
             }
         }
@@ -79,7 +92,7 @@ namespace SellerStorage.Forms
 
             var getAllNewProductInfo = new FullProductInfoModel()
             {
-                ProductReceiptDate = DateTime.ParseExact(DateTextBox.Text, DateFormat, CultureInfo.InvariantCulture),
+                ProductReceiptDate = DateTextBox.Text,
                 ProductType = ProductTypeTextBox.Text,
                 ProductDescription = ProductDescriptionTextBox.Text,
 
@@ -113,16 +126,10 @@ namespace SellerStorage.Forms
             }
         }
 
-        private void FillProductTextBoxForUpdateOperation(FullProductInfoWithIdModel fullProductInfo)
+        private void FillTextBoxWithProductInfo(FullProductInfoModel fullProductInfo, int productId)
         {
-            if (_productFormOperations == NewProductFormOperations.Update)
-            {
-                FillTextBoxWithProductInfo(fullProductInfo);
-            }
-        }
-
-        private void FillTextBoxWithProductInfo(FullProductInfoWithIdModel fullProductInfo)
-        {
+            ProductIdTextBox.Text = productId.ToString();
+            DateTextBox.Text = fullProductInfo.ProductReceiptDate;
             ProductTypeTextBox.Text = fullProductInfo.ProductType;
             ProductDescriptionTextBox.Text = fullProductInfo.ProductDescription;
 
@@ -140,7 +147,6 @@ namespace SellerStorage.Forms
                 fullProductInfo.ProductExpectedSellingPrice.ToString(CultureInfo.InvariantCulture);
             ProductSoldPriceTextBox.Text = fullProductInfo.ProductSoldPrice.ToString(CultureInfo.InvariantCulture);
             ProductProfitTextBox.Text = fullProductInfo.ProductProfit.ToString(CultureInfo.InvariantCulture);
-
         }
 
         #endregion

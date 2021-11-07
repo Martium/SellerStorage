@@ -30,9 +30,8 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
 
             return affectedRows == 1;
         }
-        
 
-        public bool UpdateProductInfo(FullProductInfoWithIdModel fullProductInfo)
+        public bool UpdateProductInfo(FullProductInfoModel fullProductInfo, int productId)
         {
             int affectedRows;
 
@@ -40,7 +39,7 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
             {
                 dbConnection.Open();
 
-                string createNewCommand = _callsCommands.UpdateFullProductInfoCommand(fullProductInfo);
+                string createNewCommand = _callsCommands.UpdateFullProductInfoCommand(fullProductInfo, productId);
 
                 affectedRows = dbConnection.Execute(createNewCommand);
             }
@@ -48,7 +47,7 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
             return affectedRows == 1;
         }
 
-        public FullProductInfoModel GetProductInfoById(int productId)
+        public FullProductInfoWithIdModel GetProductInfoById(int productId)
         {
             using (var dbConnection = new SQLiteConnection(DatabaseConfiguration.ConnectionString))
             {
@@ -56,8 +55,8 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
 
                 string getInfoCommand = _callsCommands.GetFullProductInfoById(productId);
 
-                FullProductInfoModel getProductInfo =
-                    dbConnection.QuerySingle<FullProductInfoModel>(getInfoCommand);
+                FullProductInfoWithIdModel getProductInfo =
+                    dbConnection.QuerySingle<FullProductInfoWithIdModel>(getInfoCommand);
 
                 return getProductInfo;
             }

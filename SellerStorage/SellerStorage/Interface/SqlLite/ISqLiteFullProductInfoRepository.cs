@@ -5,7 +5,7 @@ namespace SellerStorage.Interface.SqlLite
     public interface ISqLiteFullProductInfoRepository
     {
         bool CreateNewProductInfo(FullProductInfoModel fullProductInfo);
-        bool UpdateProductInfo(FullProductInfoWithIdModel fullProductInfo);
-        FullProductInfoModel GetProductInfoById(int productId);
+        bool UpdateProductInfo(FullProductInfoModel fullProductInfo, int productId);
+        FullProductInfoWithIdModel GetProductInfoById(int productId);
     }
 }

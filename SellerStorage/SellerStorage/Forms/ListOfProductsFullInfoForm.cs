@@ -14,7 +14,7 @@ namespace SellerStorage.Forms
         {
             InitializeComponent();
             SetDataGridDefaultControl();
-            FillFakeInfo();
+            //FillFakeInfo();
         }
 
         private void OpenNewProductFormButton_Click(object sender, EventArgs e)
@@ -26,13 +26,10 @@ namespace SellerStorage.Forms
         {
             if (ProductsListDataGridView.Rows.Count != 0)
             {
-                FullProductInfoWithIdModel getFullProductInfoWithId = GetAllProductInfo();
-                OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update, getFullProductInfoWithId));
+                int productId = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[0].Value.ToString());
+                OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update, productId));
             }
-            else
-            {
-                OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update, null));
-            }
+           
         }
 
         private void ProductsListDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -90,7 +87,7 @@ namespace SellerStorage.Forms
                 list.Add(new FullProductInfoWithIdModel()
                 {
                     ProductId = i,
-                    ProductReceiptDate = DateTime.Now.Date,
+                    ProductReceiptDate = DateTime.Now.Date.ToString(CultureInfo.InvariantCulture),
                     ProductType = "kazkas",
                     ProductDescription = "bazinga",
 
@@ -125,32 +122,6 @@ namespace SellerStorage.Forms
             {
                 form.WindowState = FormWindowState.Maximized;
             }
-        }
-
-        private FullProductInfoWithIdModel GetAllProductInfo()
-        {
-            FullProductInfoWithIdModel getAllProductInfo = new FullProductInfoWithIdModel()
-            {
-                ProductId = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[0].Value.ToString()),
-               
-                ProductType = ProductsListDataGridView.SelectedRows[0].Cells[2].Value.ToString(),
-                ProductDescription = ProductsListDataGridView.SelectedRows[0].Cells[3].Value.ToString(),
-
-                ProductQuantity = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[4].Value.ToString()),
-                ProductQuantityLeft = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[5].Value.ToString()),
-                ProductOriginalCostPriceCurrency = ProductsListDataGridView.SelectedRows[0].Cells[6].Value.ToString(),
-                ProductAllQuantityCostPriceAtOriginalCurrency = ProductsListDataGridView.SelectedRows[0].Cells[7].Value.ToString(),
-                ProductQuantityPriceInEuro = double.Parse(ProductsListDataGridView.SelectedRows[0].Cells[8].Value.ToString()),
-                ProductAllQuantityPriceInEuro = double.Parse(ProductsListDataGridView.SelectedRows[0].Cells[9].Value.ToString()),
-
-                ProductExpensesPerQuantityUnit = double.Parse(ProductsListDataGridView.SelectedRows[0].Cells[10].Value.ToString()),
-                ProductExpectedSellingPrice = double.Parse(ProductsListDataGridView.SelectedRows[0].Cells[11].Value.ToString()),
-                ProductProfit = double.Parse(ProductsListDataGridView.SelectedRows[0].Cells[12].Value.ToString()),
-                ProductSoldPrice = double.Parse(ProductsListDataGridView.SelectedRows[0].Cells[13].Value.ToString())
-
-            };
-
-            return getAllProductInfo;
         }
 
         #endregion
