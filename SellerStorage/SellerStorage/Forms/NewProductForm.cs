@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows.Forms;
 using SellerStorage.Enums;
+using SellerStorage.Forms.Constants;
 using SellerStorage.InterfaceHelpingClass;
 using SellerStorage.Models;
 using SellerStorage.Repository.SqlLiteDataBase;
@@ -12,8 +13,6 @@ namespace SellerStorage.Forms
 {
     public partial class NewProductForm : Form
     {
-        private const string DateFormat = "yyyy-MM-dd";
-
         private readonly NewProductFormOperations _productFormOperations;
         private readonly FullProductInfoRepositorySql _fullProductInfoRepository;
         private readonly MessageBoxService _messageBoxService;
@@ -25,6 +24,7 @@ namespace SellerStorage.Forms
             _messageBoxService = new MessageBoxService(new MessageBoxBoxDialogService());
 
             InitializeComponent();
+            SetTextBoxMaxLength();
 
             if (_productFormOperations == NewProductFormOperations.Update && productId.HasValue)
             {
@@ -151,7 +151,21 @@ namespace SellerStorage.Forms
 
         private void SetTextBoxMaxLength()
         {
+            DateTextBox.MaxLength = FormLengthLimitTextBox.ProductReceiptDate;
+            ProductTypeTextBox.MaxLength = FormLengthLimitTextBox.ProductType;
+            ProductDescriptionTextBox.MaxLength = FormLengthLimitTextBox.ProductDescription;
 
+            ProductQuantityTextBox.MaxLength = FormLengthLimitTextBox.ProductQuantity;
+            ProductQuantityLeftTextBox.MaxLength = FormLengthLimitTextBox.ProductQuantityLeft;
+            ProductOriginalCostPriceCurrencyTextBox.MaxLength = FormLengthLimitTextBox.ProductOriginalCostPriceCurrency;
+            ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.MaxLength =
+                FormLengthLimitTextBox.ProductAllQuantityCostPriceAtOriginalCurrency;
+            ProductQuantityPriceInEuroTextBox.MaxLength = FormLengthLimitTextBox.ProductQuantityPriceInEuro;
+            ProductAllQuantityPriceInEuroTextBox.MaxLength = FormLengthLimitTextBox.ProductAllQuantityPriceInEuro;
+            ProductExpensesPerQuantityUnitTextBox.MaxLength = FormLengthLimitTextBox.ProductExpensesPerQuantityUnit;
+            ProductExpectedSellingPriceTextBox.MaxLength = FormLengthLimitTextBox.ProductExpectedSellingPrice;
+            ProductSoldPriceTextBox.MaxLength = FormLengthLimitTextBox.ProductSoldPrice;
+            ProductProfitTextBox.MaxLength = FormLengthLimitTextBox.ProductProfit;
         }
 
         #endregion
