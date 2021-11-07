@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -40,6 +41,20 @@ namespace SellerStorage.Forms
                 OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update, productId));
             }
            
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            string searchPhrase = SearchTextBox.Text;
+            IEnumerable<FullProductInfoWithIdModel> loadFullProductInfo = _fullProductInfoRepository.GetAllProductInfo(searchPhrase);
+            fullProductInfoWithIdModelBindingSource.DataSource = loadFullProductInfo;
+            ProductsListDataGridView.DataSource = fullProductInfoWithIdModelBindingSource;
+        }
+
+        private void CancelSearchButton_Click(object sender, EventArgs e)
+        {
+            SearchTextBox.Text = default;
+            LoadFullProductInfo();
         }
 
         private void ProductsListDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -143,6 +158,8 @@ namespace SellerStorage.Forms
         }
 
 
+
         #endregion
+        
     }
 }

@@ -64,16 +64,21 @@ namespace SellerStorage.Repository.SqlLiteDatabaseInterfaceClass
             }
         }
 
-        public IEnumerable<FullProductInfoWithIdModel> GetAllInfo()
+        public IEnumerable<FullProductInfoWithIdModel> GetAllInfo(string searchPhrase = null)
         {
             using (var dbConnection = new SQLiteConnection(DatabaseConfiguration.ConnectionString))
             {
                 dbConnection.Open();
 
-                string getAllInfo = _callsCommands.GetAllProductInfo();
+                string getAllInfo = _callsCommands.GetAllProductInfo(searchPhrase);
+
+                object queryParameters = new
+                {
+                    SearchPhrase = $"%{searchPhrase}%"
+                };
 
                 IEnumerable<FullProductInfoWithIdModel> getAll =
-                    dbConnection.Query<FullProductInfoWithIdModel>(getAllInfo);
+                    dbConnection.Query<FullProductInfoWithIdModel>(getAllInfo, queryParameters);
 
                 return getAll;
             }

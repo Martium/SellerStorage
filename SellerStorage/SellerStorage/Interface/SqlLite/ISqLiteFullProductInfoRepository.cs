@@ -8,6 +8,6 @@ namespace SellerStorage.Interface.SqlLite
         bool CreateNewProductInfo(FullProductInfoModel fullProductInfo);
         bool UpdateProductInfo(FullProductInfoModel fullProductInfo, int productId);
         FullProductInfoWithIdModel GetProductInfoById(int productId);
-        IEnumerable<FullProductInfoWithIdModel> GetAllInfo();
+        IEnumerable<FullProductInfoWithIdModel> GetAllInfo(string searchPhrase = null);
     }
 }

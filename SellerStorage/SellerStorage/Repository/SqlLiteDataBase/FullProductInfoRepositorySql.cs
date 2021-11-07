@@ -32,9 +32,9 @@ namespace SellerStorage.Repository.SqlLiteDataBase
             return getProductInfoById;
         }
 
-        public IEnumerable<FullProductInfoWithIdModel> GetAllProductInfo()
+        public IEnumerable<FullProductInfoWithIdModel> GetAllProductInfo(string searchPhrase = null)
         {
-            IEnumerable<FullProductInfoWithIdModel> getAllInfo = _fullProductInfoRepository.GetAllInfo();
+            IEnumerable<FullProductInfoWithIdModel> getAllInfo = _fullProductInfoRepository.GetAllInfo(searchPhrase);
             return getAllInfo;
         }
     }

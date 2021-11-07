@@ -61,7 +61,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
             return getProductInfoById;
         }
 
-        public string GetAllProductInfo()
+        public string GetAllProductInfo(string searchPhrase = null)
         {
             string getAllInfo = 
                 $@"SELECT 
@@ -73,6 +73,18 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                         FPI.ProductSoldPrice , FPI.ProductProfit
                     FROM {FullProductInfoTableName} FPI
                 ";
+
+            if (!string.IsNullOrWhiteSpace(searchPhrase))
+            {
+                getAllInfo +=
+                    $@"
+                        WHERE
+                          FPI.ProductId LIKE  @SearchPhrase OR FPI.ProductReceiptDate LIKE @SearchPhrase OR FPI.ProductType LIKE @SearchPhrase
+                          OR FPI.ProductDescription LIKE  @SearchPhrase
+                    ";
+            }
+
+            getAllInfo += "ORDER BY FPI.ProductId DESC";
 
             return getAllInfo;
         }
