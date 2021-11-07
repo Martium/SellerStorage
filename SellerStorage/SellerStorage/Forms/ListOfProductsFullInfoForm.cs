@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
 using System.Windows.Forms;
 using SellerStorage.Enums;
 using SellerStorage.Models;
@@ -13,14 +10,13 @@ namespace SellerStorage.Forms
 {
     public partial class ListOfProductsFullInfoForm : Form
     {
-        private const string DateFormat = "yyyy-MM-dd";
         private readonly FullProductInfoRepositorySql _fullProductInfoRepository;
+
         public ListOfProductsFullInfoForm()
         {
             _fullProductInfoRepository = new FullProductInfoRepositorySql(new SqLiteFullProductInfoRepository());
             InitializeComponent();
             SetDataGridDefaultControl();
-            //FillFakeInfo();
         }
 
         private void ListOfProductsFullInfoForm_Load(object sender, EventArgs e)
@@ -40,7 +36,6 @@ namespace SellerStorage.Forms
                 int productId = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[0].Value.ToString());
                 OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update, productId));
             }
-           
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -49,6 +44,7 @@ namespace SellerStorage.Forms
             IEnumerable<FullProductInfoWithIdModel> loadFullProductInfo = _fullProductInfoRepository.GetAllProductInfo(searchPhrase);
             fullProductInfoWithIdModelBindingSource.DataSource = loadFullProductInfo;
             ProductsListDataGridView.DataSource = fullProductInfoWithIdModelBindingSource;
+            TrySelectedFirstRowInDataGridView();
         }
 
         private void CancelSearchButton_Click(object sender, EventArgs e)
@@ -69,6 +65,7 @@ namespace SellerStorage.Forms
         {
             this.Show();
             LoadFullProductInfo();
+            TrySelectedFirstRowInDataGridView();
         }
 
         #region Helpers
@@ -99,38 +96,6 @@ namespace SellerStorage.Forms
             ProductsListDataGridView.Columns[11].HeaderText = @"Planuojamas vnt pelnas";
             ProductsListDataGridView.Columns[12].HeaderText = @"Produkto kiekio pelnas";
             ProductsListDataGridView.Columns[13].HeaderText = @"Parduota vnt kaina";
-
-        }
-
-        private void FillFakeInfo()
-        {
-            BindingList<FullProductInfoWithIdModel> list = new BindingList<FullProductInfoWithIdModel>();
-
-            ProductsListDataGridView.DataSource = list;
-
-            for (int i = 1; i < 200; i++)
-            {
-                list.Add(new FullProductInfoWithIdModel()
-                {
-                    ProductId = i,
-                    ProductReceiptDate = DateTime.Now.Date.ToString(CultureInfo.InvariantCulture),
-                    ProductType = "kazkas",
-                    ProductDescription = "bazinga",
-
-                    ProductQuantity = 2,
-                    ProductQuantityLeft = 1,
-
-                    ProductOriginalCostPriceCurrency = "5 zlotai",
-                    ProductAllQuantityCostPriceAtOriginalCurrency = "10 zlotu",
-
-                    ProductQuantityPriceInEuro = 1,
-                    ProductAllQuantityPriceInEuro = 2,
-                    ProductExpensesPerQuantityUnit = 0.5,
-                    ProductExpectedSellingPrice = 2,
-                    ProductProfit = 2,
-                    ProductSoldPrice = 2
-                });
-            }
         }
 
         private void OpenAnotherForm(Form form)
@@ -155,11 +120,17 @@ namespace SellerStorage.Forms
             IEnumerable<FullProductInfoWithIdModel> loadFullProductInfo = _fullProductInfoRepository.GetAllProductInfo();
             fullProductInfoWithIdModelBindingSource.DataSource = loadFullProductInfo;
             ProductsListDataGridView.DataSource = fullProductInfoWithIdModelBindingSource;
+            TrySelectedFirstRowInDataGridView();
         }
 
-
+        private void TrySelectedFirstRowInDataGridView()
+        {
+            if (ProductsListDataGridView.Rows.Count != 0)
+            {
+                ProductsListDataGridView.Rows[0].Selected = true;
+            }
+        }
 
         #endregion
-        
     }
 }
