@@ -149,6 +149,11 @@ namespace SellerStorage.Forms
             ProductProfitTextBox.Text = fullProductInfo.ProductProfit.ToString(CultureInfo.InvariantCulture);
         }
 
+        private void SetTextBoxMaxLength()
+        {
+
+        }
+
         #endregion
     }
 }

@@ -3,6 +3,7 @@
     public class FormLengthLimitTextBox
     {
         public static int ProductType => 50;
+        public static int ProductReceiptDate => 12;
         public static int ProductDescription => 100;
 
         public static int ProductQuantity => 9;
