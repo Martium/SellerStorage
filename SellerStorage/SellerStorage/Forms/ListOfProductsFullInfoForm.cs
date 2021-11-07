@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using SellerStorage.Enums;
+using SellerStorage.Forms.Constants;
 using SellerStorage.Models;
 using SellerStorage.Repository.SqlLiteDataBase;
 using SellerStorage.Repository.SqlLiteDatabaseInterfaceClass;
@@ -17,6 +18,7 @@ namespace SellerStorage.Forms
             _fullProductInfoRepository = new FullProductInfoRepositorySql(new SqLiteFullProductInfoRepository());
             InitializeComponent();
             SetDataGridDefaultControl();
+            SetTextBoxLength();
         }
 
         private void ListOfProductsFullInfoForm_Load(object sender, EventArgs e)
@@ -129,6 +131,11 @@ namespace SellerStorage.Forms
             {
                 ProductsListDataGridView.Rows[0].Selected = true;
             }
+        }
+
+        private void SetTextBoxLength()
+        {
+            SearchTextBox.MaxLength = FormLengthLimitTextBox.ProductDescription;
         }
 
         #endregion
