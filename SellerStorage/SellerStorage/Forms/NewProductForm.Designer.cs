@@ -55,8 +55,8 @@ namespace SellerStorage.Forms
             this.ProductSoldPriceTextBox = new System.Windows.Forms.TextBox();
             this.ProductProfitTextBox = new System.Windows.Forms.TextBox();
             this.DateLabel = new System.Windows.Forms.Label();
-            this.DateTextBox = new System.Windows.Forms.TextBox();
             this.CreateNewProductButton = new System.Windows.Forms.Button();
+            this.DateTextBox = new System.Windows.Forms.TextBox();
             this.ProductIdLabel = new System.Windows.Forms.Label();
             this.ProductIdTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel.SuspendLayout();
@@ -346,14 +346,6 @@ namespace SellerStorage.Forms
             this.DateLabel.TabIndex = 24;
             this.DateLabel.Text = "Data";
             // 
-            // DateTextBox
-            // 
-            this.DateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.DateTextBox.Location = new System.Drawing.Point(172, 365);
-            this.DateTextBox.Name = "DateTextBox";
-            this.DateTextBox.Size = new System.Drawing.Size(425, 20);
-            this.DateTextBox.TabIndex = 25;
-            // 
             // CreateNewProductButton
             // 
             this.CreateNewProductButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -366,6 +358,15 @@ namespace SellerStorage.Forms
             this.CreateNewProductButton.Text = "Sukurti ";
             this.CreateNewProductButton.UseVisualStyleBackColor = true;
             this.CreateNewProductButton.Click += new System.EventHandler(this.CreateNewProductButton_Click);
+            // 
+            // DateTextBox
+            // 
+            this.DateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.DateTextBox.Location = new System.Drawing.Point(172, 365);
+            this.DateTextBox.Name = "DateTextBox";
+            this.DateTextBox.Size = new System.Drawing.Size(425, 20);
+            this.DateTextBox.TabIndex = 25;
+            this.DateTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.DateTextBox_Validating);
             // 
             // ProductIdLabel
             // 
@@ -380,6 +381,7 @@ namespace SellerStorage.Forms
             // ProductIdTextBox
             // 
             this.ProductIdTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductIdTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.ProductIdTextBox.Location = new System.Drawing.Point(172, 395);
             this.ProductIdTextBox.Name = "ProductIdTextBox";
             this.ProductIdTextBox.ReadOnly = true;

@@ -16,27 +16,36 @@ namespace SellerStorage.Forms
         private readonly NewProductFormOperations _productFormOperations;
         private readonly FullProductInfoRepositorySql _fullProductInfoRepository;
         private readonly MessageBoxService _messageBoxService;
+        private readonly NumberService _numberService;
+        private readonly int? _productId;
 
         public NewProductForm(NewProductFormOperations productFormOperations, int? productId)
         {
+            if (productId.HasValue)
+            {
+                _productId = productId.Value;
+            }
+
             _productFormOperations = productFormOperations;
             _fullProductInfoRepository = new FullProductInfoRepositorySql(new SqLiteFullProductInfoRepository());
             _messageBoxService = new MessageBoxService(new MessageBoxBoxDialogService());
+            _numberService = new NumberService();
 
             InitializeComponent();
             SetTextBoxMaxLength();
-
-            if (_productFormOperations == NewProductFormOperations.Update && productId.HasValue)
-            {
-                FullProductInfoModel fullProductInfo = _fullProductInfoRepository.GetProductInfoById(productId.Value);
-                FillTextBoxWithProductInfo(fullProductInfo, productId.Value);
-            }
+            SetControlInitialState();
         }
 
         private void NewProductForm_Load(object sender, EventArgs e)
         {
             ChangeFormHeaderTextByOperation();
             ChangeFormCreateNewButtonHeaderTextByFormOperation();
+
+            if (_productFormOperations == NewProductFormOperations.Update && _productId.HasValue)
+            {
+                FullProductInfoModel fullProductInfo = _fullProductInfoRepository.GetProductInfoById(_productId.Value);
+                FillTextBoxWithProductInfo(fullProductInfo, _productId.Value);
+            }
         }
 
         private void CreateNewProductButton_Click(object sender, EventArgs e)
@@ -58,7 +67,17 @@ namespace SellerStorage.Forms
             ShowInfoMessageForSavedProduct(isSuccess);
         }
 
+        private void DateTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
         #region Helpers
+
+        private void SetControlInitialState()
+        {
+            
+        }
 
         private void ChangeFormHeaderTextByOperation()
         {
@@ -96,19 +115,19 @@ namespace SellerStorage.Forms
                 ProductType = ProductTypeTextBox.Text,
                 ProductDescription = ProductDescriptionTextBox.Text,
 
-                ProductQuantity = int.Parse(ProductQuantityTextBox.Text),
-                ProductQuantityLeft = int.Parse(ProductQuantityLeftTextBox.Text),
+                ProductQuantity = _numberService.TryParseToNumberOrReturnZero(ProductQuantityTextBox.Text),
+                ProductQuantityLeft = _numberService.TryParseToNumberOrReturnZero(ProductQuantityLeftTextBox.Text),
 
                 ProductOriginalCostPriceCurrency = ProductOriginalCostPriceCurrencyTextBox.Text,
                 ProductAllQuantityCostPriceAtOriginalCurrency = ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Text,
 
-                ProductQuantityPriceInEuro = double.Parse(ProductQuantityPriceInEuroTextBox.Text, CultureInfo.InvariantCulture),
-                ProductAllQuantityPriceInEuro = double.Parse(ProductAllQuantityPriceInEuroTextBox.Text,CultureInfo.InvariantCulture),
+                ProductQuantityPriceInEuro = _numberService.TryParseToDoubleOrReturnZero(ProductQuantityPriceInEuroTextBox.Text),
+                ProductAllQuantityPriceInEuro = _numberService.TryParseToDoubleOrReturnZero(ProductAllQuantityPriceInEuroTextBox.Text),
 
-                ProductExpensesPerQuantityUnit = double.Parse(ProductExpensesPerQuantityUnitTextBox.Text, CultureInfo.InvariantCulture),
-                ProductExpectedSellingPrice = double.Parse(ProductExpectedSellingPriceTextBox.Text, CultureInfo.InvariantCulture),
-                ProductSoldPrice = double.Parse(ProductSoldPriceTextBox.Text, CultureInfo.InvariantCulture),
-                ProductProfit = double.Parse(ProductProfitTextBox.Text, CultureInfo.InvariantCulture)
+                ProductExpensesPerQuantityUnit = _numberService.TryParseToDoubleOrReturnZero(ProductExpensesPerQuantityUnitTextBox.Text),
+                ProductExpectedSellingPrice = _numberService.TryParseToDoubleOrReturnZero(ProductExpectedSellingPriceTextBox.Text),
+                ProductSoldPrice = _numberService.TryParseToDoubleOrReturnZero(ProductSoldPriceTextBox.Text),
+                ProductProfit = _numberService.TryParseToDoubleOrReturnZero(ProductProfitTextBox.Text)
             };
 
             return getAllNewProductInfo;
@@ -169,5 +188,6 @@ namespace SellerStorage.Forms
         }
 
         #endregion
+        
     }
 }
