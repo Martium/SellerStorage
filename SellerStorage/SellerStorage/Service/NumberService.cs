@@ -30,7 +30,6 @@ namespace SellerStorage.Service
 
             if (isDouble)
             {
-                
                 number = numberResult;
             }
             else
