@@ -84,6 +84,7 @@
     <Compile Include="Repository\SqlLiteDataBase\SqlLiteCreateTableCommands.cs" />
     <Compile Include="Repository\SqlLiteDataBase\InitializeDatabaseRepositorySql.cs" />
     <Compile Include="Service\MessageBoxService.cs" />
+    <Compile Include="Service\NumberService.cs" />
     <EmbeddedResource Include="Forms\ListOfProductsFullInfoForm.resx">
       <DependentUpon>ListOfProductsFullInfoForm.cs</DependentUpon>
     </EmbeddedResource>
