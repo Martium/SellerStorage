@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Forms;
+using System.Xml.Schema;
 using SellerStorage.Enums;
 using SellerStorage.Forms.Constants;
 using SellerStorage.InterfaceHelpingClass;
@@ -18,6 +19,8 @@ namespace SellerStorage.Forms
         private readonly MessageBoxService _messageBoxService;
         private readonly NumberService _numberService;
         private readonly int? _productId;
+
+        private const string DateFormat = "yyyy-MM-dd";
 
         public NewProductForm(NewProductFormOperations productFormOperations, int? productId)
         {
@@ -69,14 +72,40 @@ namespace SellerStorage.Forms
 
         private void DateTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            string dateTimeNow = DateTime.Now.Date.ToString(DateFormat);
+            bool isValidDate = DateTime.TryParseExact(DateTextBox.Text, DateFormat, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out _);
 
+            if (string.IsNullOrWhiteSpace(DateTextBox.Text))
+            {
+                e.Cancel = true;
+                CreateNewProductButton.Enabled = false;
+                _messageBoxService.ShowErrorMessage($"Įveskite datą raudonam langelyje pvz {dateTimeNow}");
+              
+            }
+            else if (isValidDate)
+            {
+                e.Cancel = false;
+                CreateNewProductButton.Enabled = true;
+            }
+            else
+            {
+                e.Cancel = true;
+                CreateNewProductButton.Enabled = false;
+                _messageBoxService.ShowErrorMessage($"Įveskite teisingą datą raudonam langelyje pvz {dateTimeNow}");
+            }
+
+            
         }
 
         #region Helpers
 
         private void SetControlInitialState()
         {
-            
+            if (_productFormOperations == NewProductFormOperations.Create)
+            {
+                DateTextBox.Text = DateTime.Now.ToString(DateFormat);
+            }
         }
 
         private void ChangeFormHeaderTextByOperation()
