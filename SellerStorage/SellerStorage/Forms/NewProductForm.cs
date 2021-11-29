@@ -8,6 +8,7 @@ using SellerStorage.Models;
 using SellerStorage.Repository.SqlLiteDataBase;
 using SellerStorage.Repository.SqlLiteDatabaseInterfaceClass;
 using SellerStorage.Service;
+using SellerStorage.Service.ServiceInterfaceClass;
 
 namespace SellerStorage.Forms
 {
@@ -31,7 +32,7 @@ namespace SellerStorage.Forms
             _productFormOperations = productFormOperations;
             _fullProductInfoRepository = new FullProductInfoRepositorySql(new SqLiteFullProductInfoRepository());
             _messageBoxService = new MessageBoxService(new MessageBoxBoxDialogService());
-            _numberService = new NumberService();
+            _numberService = new NumberService(new NumberServiceForCultureInfoInvariantCulture());
 
             InitializeComponent();
             SetTextBoxMaxLength();
@@ -50,8 +51,6 @@ namespace SellerStorage.Forms
                 //todo make labels and text box letter default 
             }
         }
-
-
 
         private void NewProductForm_Load(object sender, EventArgs e)
         {
@@ -110,6 +109,22 @@ namespace SellerStorage.Forms
             }
         }
 
+        private void ProductQuantityTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (_productFormOperations == NewProductFormOperations.Create)
+            {
+                ProductQuantityLeftTextBox.Text = ProductQuantityTextBox.Text;
+            }
+        }
+
+        private void ProductOriginalCostPriceCurrencyTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (_productFormOperations == NewProductFormOperations.Create)
+            {
+                ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Text = ""; // todo calculation option 
+            }
+        }
+
         #region Helpers
 
         private void SetControlInitialState()
@@ -146,11 +161,6 @@ namespace SellerStorage.Forms
                     CreateNewProductButton.Text = @"Atnaujinti";
                     break;
             }
-        }
-
-        private void ChangeTextLetterSizeIfFormIsMaximized()
-        {
-
         }
 
         private FullProductInfoModel GetAllNewProductInfo()
@@ -237,7 +247,6 @@ namespace SellerStorage.Forms
         }
 
         #endregion
-
        
     }
 }

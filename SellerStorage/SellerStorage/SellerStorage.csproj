@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Enums\NewProductFormOperations.cs" />
     <Compile Include="Forms\Constants\FormLengthLimitTextBox.cs" />
+    <Compile Include="Interface\Service\INumberService.cs" />
     <Compile Include="Interface\SqlLite\ISqLiteFullProductInfoRepository.cs" />
     <Compile Include="Interface\SqlLite\ISqlLiteInitializeDataBase.cs" />
     <Compile Include="Models\FullProductInfoWithIdModel.cs" />
@@ -73,7 +74,7 @@
     <Compile Include="Forms\ListOfProductsFullInfoForm.Designer.cs">
       <DependentUpon>ListOfProductsFullInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interface\IMessageBoxService.cs" />
+    <Compile Include="Interface\Service\IMessageBoxService.cs" />
     <Compile Include="Models\FullProductInfoModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -83,8 +84,10 @@
     <Compile Include="Repository\SqlLiteDataBase\SqLiteDatabaseCallsCommands.cs" />
     <Compile Include="Repository\SqlLiteDataBase\SqlLiteCreateTableCommands.cs" />
     <Compile Include="Repository\SqlLiteDataBase\InitializeDatabaseRepositorySql.cs" />
+    <Compile Include="Service\CalculatorService.cs" />
     <Compile Include="Service\MessageBoxService.cs" />
     <Compile Include="Service\NumberService.cs" />
+    <Compile Include="Service\ServiceInterfaceClass\NumberServiceForCultureInfoInvariantCulture.cs" />
     <EmbeddedResource Include="Forms\ListOfProductsFullInfoForm.resx">
       <DependentUpon>ListOfProductsFullInfoForm.cs</DependentUpon>
     </EmbeddedResource>
