@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows.Forms;
 using SellerStorage.Enums;
+using SellerStorage.Forms.Constants;
 using SellerStorage.InterfaceHelpingClass;
 using SellerStorage.Models;
 using SellerStorage.Repository.SqlLiteDataBase;
@@ -12,31 +13,56 @@ namespace SellerStorage.Forms
 {
     public partial class NewProductForm : Form
     {
-        private const string DateFormat = "yyyy-MM-dd";
-
         private readonly NewProductFormOperations _productFormOperations;
         private readonly FullProductInfoRepositorySql _fullProductInfoRepository;
         private readonly MessageBoxService _messageBoxService;
+        private readonly NumberService _numberService;
+        private readonly int? _productId;
+
+        private const string DateFormat = "yyyy-MM-dd";
 
         public NewProductForm(NewProductFormOperations productFormOperations, int? productId)
         {
+            if (productId.HasValue)
+            {
+                _productId = productId.Value;
+            }
+
             _productFormOperations = productFormOperations;
             _fullProductInfoRepository = new FullProductInfoRepositorySql(new SqLiteFullProductInfoRepository());
             _messageBoxService = new MessageBoxService(new MessageBoxBoxDialogService());
+            _numberService = new NumberService();
 
             InitializeComponent();
+            SetTextBoxMaxLength();
+            SetControlInitialState();
+        }
 
-            if (_productFormOperations == NewProductFormOperations.Update && productId.HasValue)
+        private void NewProductForm_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
             {
-                FullProductInfoModel fullProductInfo = _fullProductInfoRepository.GetProductInfoById(productId.Value);
-                FillTextBoxWithProductInfo(fullProductInfo, productId.Value);
+                //todo make labels and text box letters bigger 
+            }
+
+            if (WindowState == FormWindowState.Normal)
+            {
+                //todo make labels and text box letter default 
             }
         }
+
+
 
         private void NewProductForm_Load(object sender, EventArgs e)
         {
             ChangeFormHeaderTextByOperation();
             ChangeFormCreateNewButtonHeaderTextByFormOperation();
+
+            if (_productFormOperations == NewProductFormOperations.Update && _productId.HasValue)
+            {
+                FullProductInfoModel fullProductInfo = _fullProductInfoRepository.GetProductInfoById(_productId.Value);
+                FillTextBoxWithProductInfo(fullProductInfo, _productId.Value);
+            }
         }
 
         private void CreateNewProductButton_Click(object sender, EventArgs e)
@@ -58,7 +84,43 @@ namespace SellerStorage.Forms
             ShowInfoMessageForSavedProduct(isSuccess);
         }
 
+        private void DateTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            string dateTimeNow = DateTime.Now.Date.ToString(DateFormat);
+            bool isValidDate = DateTime.TryParseExact(DateTextBox.Text, DateFormat, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out _);
+
+            if (string.IsNullOrWhiteSpace(DateTextBox.Text))
+            {
+                e.Cancel = true;
+                CreateNewProductButton.Enabled = false;
+                _messageBoxService.ShowErrorMessage($"Įveskite datą raudonam langelyje pvz {dateTimeNow}");
+              
+            }
+            else if (isValidDate)
+            {
+                e.Cancel = false;
+                CreateNewProductButton.Enabled = true;
+            }
+            else
+            {
+                e.Cancel = true;
+                CreateNewProductButton.Enabled = false;
+                _messageBoxService.ShowErrorMessage($"Įveskite teisingą datą raudonam langelyje pvz {dateTimeNow}");
+            }
+        }
+
         #region Helpers
+
+        private void SetControlInitialState()
+        {
+            if (_productFormOperations == NewProductFormOperations.Create)
+            {
+                DateTextBox.Text = DateTime.Now.ToString(DateFormat);
+            }
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        }
 
         private void ChangeFormHeaderTextByOperation()
         {
@@ -86,29 +148,33 @@ namespace SellerStorage.Forms
             }
         }
 
+        private void ChangeTextLetterSizeIfFormIsMaximized()
+        {
+
+        }
+
         private FullProductInfoModel GetAllNewProductInfo()
         {
-            //todo defense programing before load this method
-
             var getAllNewProductInfo = new FullProductInfoModel()
             {
                 ProductReceiptDate = DateTextBox.Text,
                 ProductType = ProductTypeTextBox.Text,
                 ProductDescription = ProductDescriptionTextBox.Text,
+                ProductBuyPlace = ProductBuyPlaceTextBox.Text,
 
-                ProductQuantity = int.Parse(ProductQuantityTextBox.Text),
-                ProductQuantityLeft = int.Parse(ProductQuantityLeftTextBox.Text),
+                ProductQuantity = _numberService.TryParseToNumberOrReturnZero(ProductQuantityTextBox.Text),
+                ProductQuantityLeft = _numberService.TryParseToNumberOrReturnZero(ProductQuantityLeftTextBox.Text),
 
                 ProductOriginalCostPriceCurrency = ProductOriginalCostPriceCurrencyTextBox.Text,
                 ProductAllQuantityCostPriceAtOriginalCurrency = ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Text,
 
-                ProductQuantityPriceInEuro = double.Parse(ProductQuantityPriceInEuroTextBox.Text, CultureInfo.InvariantCulture),
-                ProductAllQuantityPriceInEuro = double.Parse(ProductAllQuantityPriceInEuroTextBox.Text,CultureInfo.InvariantCulture),
+                ProductQuantityPriceInEuro = _numberService.TryParseToDoubleOrReturnZero(ProductQuantityPriceInEuroTextBox.Text),
+                ProductAllQuantityPriceInEuro = _numberService.TryParseToDoubleOrReturnZero(ProductAllQuantityPriceInEuroTextBox.Text),
 
-                ProductExpensesPerQuantityUnit = double.Parse(ProductExpensesPerQuantityUnitTextBox.Text, CultureInfo.InvariantCulture),
-                ProductExpectedSellingPrice = double.Parse(ProductExpectedSellingPriceTextBox.Text, CultureInfo.InvariantCulture),
-                ProductSoldPrice = double.Parse(ProductSoldPriceTextBox.Text, CultureInfo.InvariantCulture),
-                ProductProfit = double.Parse(ProductProfitTextBox.Text, CultureInfo.InvariantCulture)
+                ProductExpensesPerQuantityUnit = _numberService.TryParseToDoubleOrReturnZero(ProductExpensesPerQuantityUnitTextBox.Text),
+                ProductExpectedSellingPrice = _numberService.TryParseToDoubleOrReturnZero(ProductExpectedSellingPriceTextBox.Text),
+                ProductSoldPrice = _numberService.TryParseToDoubleOrReturnZero(ProductSoldPriceTextBox.Text),
+                ProductProfit = _numberService.TryParseToDoubleOrReturnZero(ProductProfitTextBox.Text)
             };
 
             return getAllNewProductInfo;
@@ -132,6 +198,7 @@ namespace SellerStorage.Forms
             DateTextBox.Text = fullProductInfo.ProductReceiptDate;
             ProductTypeTextBox.Text = fullProductInfo.ProductType;
             ProductDescriptionTextBox.Text = fullProductInfo.ProductDescription;
+            ProductBuyPlaceTextBox.Text = fullProductInfo.ProductBuyPlace;
 
             ProductQuantityTextBox.Text = fullProductInfo.ProductQuantity.ToString();
             ProductQuantityLeftTextBox.Text = fullProductInfo.ProductQuantityLeft.ToString();
@@ -149,6 +216,28 @@ namespace SellerStorage.Forms
             ProductProfitTextBox.Text = fullProductInfo.ProductProfit.ToString(CultureInfo.InvariantCulture);
         }
 
+        private void SetTextBoxMaxLength()
+        {
+            DateTextBox.MaxLength = FormLengthLimitTextBox.ProductReceiptDate;
+            ProductTypeTextBox.MaxLength = FormLengthLimitTextBox.ProductType;
+            ProductDescriptionTextBox.MaxLength = FormLengthLimitTextBox.ProductDescription;
+            ProductBuyPlaceTextBox.MaxLength = FormLengthLimitTextBox.ProductBuyPlace;
+
+            ProductQuantityTextBox.MaxLength = FormLengthLimitTextBox.ProductQuantity;
+            ProductQuantityLeftTextBox.MaxLength = FormLengthLimitTextBox.ProductQuantityLeft;
+            ProductOriginalCostPriceCurrencyTextBox.MaxLength = FormLengthLimitTextBox.ProductOriginalCostPriceCurrency;
+            ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.MaxLength =
+                FormLengthLimitTextBox.ProductAllQuantityCostPriceAtOriginalCurrency;
+            ProductQuantityPriceInEuroTextBox.MaxLength = FormLengthLimitTextBox.ProductQuantityPriceInEuro;
+            ProductAllQuantityPriceInEuroTextBox.MaxLength = FormLengthLimitTextBox.ProductAllQuantityPriceInEuro;
+            ProductExpensesPerQuantityUnitTextBox.MaxLength = FormLengthLimitTextBox.ProductExpensesPerQuantityUnit;
+            ProductExpectedSellingPriceTextBox.MaxLength = FormLengthLimitTextBox.ProductExpectedSellingPrice;
+            ProductSoldPriceTextBox.MaxLength = FormLengthLimitTextBox.ProductSoldPrice;
+            ProductProfitTextBox.MaxLength = FormLengthLimitTextBox.ProductProfit;
+        }
+
         #endregion
+
+       
     }
 }

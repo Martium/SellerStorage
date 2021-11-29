@@ -36,10 +36,13 @@ namespace SellerStorage.Forms
             this.SearchTextBox = new System.Windows.Forms.TextBox();
             this.SearchButton = new System.Windows.Forms.Button();
             this.CancelSearchButton = new System.Windows.Forms.Button();
+            this.fullProductInfoWithIdModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fullProductInfoModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productReceiptDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productBuyPlaceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productQuantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productQuantityLeftDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productOriginalCostPriceCurrencyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,8 +53,6 @@ namespace SellerStorage.Forms
             this.productExpectedSellingPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productSoldPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productProfitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullProductInfoWithIdModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.fullProductInfoModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ProductsListDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fullProductInfoWithIdModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fullProductInfoModelBindingSource)).BeginInit();
@@ -69,6 +70,7 @@ namespace SellerStorage.Forms
             this.productReceiptDateDataGridViewTextBoxColumn,
             this.productTypeDataGridViewTextBoxColumn,
             this.productDescriptionDataGridViewTextBoxColumn,
+            this.productBuyPlaceDataGridViewTextBoxColumn,
             this.productQuantityDataGridViewTextBoxColumn,
             this.productQuantityLeftDataGridViewTextBoxColumn,
             this.productOriginalCostPriceCurrencyDataGridViewTextBoxColumn,
@@ -135,6 +137,14 @@ namespace SellerStorage.Forms
             this.CancelSearchButton.UseVisualStyleBackColor = true;
             this.CancelSearchButton.Click += new System.EventHandler(this.CancelSearchButton_Click);
             // 
+            // fullProductInfoWithIdModelBindingSource
+            // 
+            this.fullProductInfoWithIdModelBindingSource.DataSource = typeof(SellerStorage.Models.FullProductInfoWithIdModel);
+            // 
+            // fullProductInfoModelBindingSource
+            // 
+            this.fullProductInfoModelBindingSource.DataSource = typeof(SellerStorage.Models.FullProductInfoModel);
+            // 
             // productIdDataGridViewTextBoxColumn
             // 
             this.productIdDataGridViewTextBoxColumn.DataPropertyName = "ProductId";
@@ -162,6 +172,13 @@ namespace SellerStorage.Forms
             this.productDescriptionDataGridViewTextBoxColumn.HeaderText = "ProductDescription";
             this.productDescriptionDataGridViewTextBoxColumn.Name = "productDescriptionDataGridViewTextBoxColumn";
             this.productDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // productBuyPlaceDataGridViewTextBoxColumn
+            // 
+            this.productBuyPlaceDataGridViewTextBoxColumn.DataPropertyName = "ProductBuyPlace";
+            this.productBuyPlaceDataGridViewTextBoxColumn.HeaderText = "ProductBuyPlace";
+            this.productBuyPlaceDataGridViewTextBoxColumn.Name = "productBuyPlaceDataGridViewTextBoxColumn";
+            this.productBuyPlaceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // productQuantityDataGridViewTextBoxColumn
             // 
@@ -233,14 +250,6 @@ namespace SellerStorage.Forms
             this.productProfitDataGridViewTextBoxColumn.Name = "productProfitDataGridViewTextBoxColumn";
             this.productProfitDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // fullProductInfoWithIdModelBindingSource
-            // 
-            this.fullProductInfoWithIdModelBindingSource.DataSource = typeof(SellerStorage.Models.FullProductInfoWithIdModel);
-            // 
-            // fullProductInfoModelBindingSource
-            // 
-            this.fullProductInfoModelBindingSource.DataSource = typeof(SellerStorage.Models.FullProductInfoModel);
-            // 
             // ListOfProductsFullInfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,10 +278,15 @@ namespace SellerStorage.Forms
         private System.Windows.Forms.BindingSource fullProductInfoModelBindingSource;
         private System.Windows.Forms.Button OpenNewProductFormButton;
         private System.Windows.Forms.BindingSource fullProductInfoWithIdModelBindingSource;
+        private System.Windows.Forms.Button UpdateSelectedProductButton;
+        private System.Windows.Forms.TextBox SearchTextBox;
+        private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.Button CancelSearchButton;
         private System.Windows.Forms.DataGridViewTextBoxColumn productIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productReceiptDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productTypeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productDescriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productBuyPlaceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productQuantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productQuantityLeftDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productOriginalCostPriceCurrencyDataGridViewTextBoxColumn;
@@ -283,10 +297,6 @@ namespace SellerStorage.Forms
         private System.Windows.Forms.DataGridViewTextBoxColumn productExpectedSellingPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productSoldPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productProfitDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button UpdateSelectedProductButton;
-        private System.Windows.Forms.TextBox SearchTextBox;
-        private System.Windows.Forms.Button SearchButton;
-        private System.Windows.Forms.Button CancelSearchButton;
     }
 }
 

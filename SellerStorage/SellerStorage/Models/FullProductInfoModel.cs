@@ -7,6 +7,7 @@ namespace SellerStorage.Models
         public string ProductReceiptDate { get; set; }
         public string ProductType { get; set; }
         public string ProductDescription { get; set; }
+        public string ProductBuyPlace { get; set; }
 
         public int ProductQuantity { get; set; }
         public int ProductQuantityLeft { get; set; }

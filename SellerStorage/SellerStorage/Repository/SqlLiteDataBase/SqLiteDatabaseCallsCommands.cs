@@ -12,7 +12,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                 $@" INSERT INTO '{FullProductInfoTableName}'
                         Values ( NULL, 
                                 '{fullProductInfoModel.ProductReceiptDate}', '{fullProductInfoModel.ProductType}', 
-                                '{fullProductInfoModel.ProductDescription}', {fullProductInfoModel.ProductQuantity},
+                                '{fullProductInfoModel.ProductDescription}', '{fullProductInfoModel.ProductBuyPlace}', {fullProductInfoModel.ProductQuantity},
                                 {fullProductInfoModel.ProductQuantityLeft}, '{fullProductInfoModel.ProductOriginalCostPriceCurrency}',
                                 '{fullProductInfoModel.ProductAllQuantityCostPriceAtOriginalCurrency}',{fullProductInfoModel.ProductQuantityPriceInEuro},
                                 {fullProductInfoModel.ProductAllQuantityPriceInEuro}, {fullProductInfoModel.ProductExpensesPerQuantityUnit},
@@ -30,6 +30,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                       UPDATE '{FullProductInfoTableName}'
                         SET ProductReceiptDate = '{fullProductInfoModel.ProductReceiptDate}', ProductType = '{fullProductInfoModel.ProductType}',
                             ProductDescription = '{fullProductInfoModel.ProductDescription}', ProductQuantity = {fullProductInfoModel.ProductQuantity},
+                            ProductBuyPlace = '{fullProductInfoModel.ProductBuyPlace}'
                             ProductQuantityLeft = {fullProductInfoModel.ProductQuantityLeft}, 
                             ProductOriginalCostPriceCurrency = '{fullProductInfoModel.ProductOriginalCostPriceCurrency}',
                             ProductAllQuantityCostPriceAtOriginalCurrency = '{fullProductInfoModel.ProductAllQuantityCostPriceAtOriginalCurrency}',
@@ -50,7 +51,8 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                 $@"
                     SELECT 
                         FPI.ProductId, 
-                        FPI.ProductReceiptDate , FPI.ProductType , FPI.ProductDescription , FPI.ProductQuantity, FPI.ProductQuantityLeft ,
+                        FPI.ProductReceiptDate , FPI.ProductType , FPI.ProductDescription , FPI.ProductBuyPlace , FPI.ProductBuyPlace ,
+                        FPI.ProductQuantity, FPI.ProductQuantityLeft ,
                         FPI.ProductOriginalCostPriceCurrency , FPI.ProductAllQuantityCostPriceAtOriginalCurrency ,
                         FPI.ProductQuantityPriceInEuro , FPI.ProductAllQuantityPriceInEuro , FPI.ProductExpensesPerQuantityUnit ,
                         FPI.ProductExpectedSellingPrice ,
@@ -66,7 +68,8 @@ namespace SellerStorage.Repository.SqlLiteDataBase
             string getAllInfo = 
                 $@"SELECT 
                         FPI.ProductId, 
-                        FPI.ProductReceiptDate , FPI.ProductType , FPI.ProductDescription , FPI.ProductQuantity, FPI.ProductQuantityLeft ,
+                        FPI.ProductReceiptDate , FPI.ProductType , FPI.ProductDescription , FPI.ProductBuyPlace ,
+                        FPI.ProductQuantity, FPI.ProductQuantityLeft ,
                         FPI.ProductOriginalCostPriceCurrency , FPI.ProductAllQuantityCostPriceAtOriginalCurrency ,
                         FPI.ProductQuantityPriceInEuro , FPI.ProductAllQuantityPriceInEuro , FPI.ProductExpensesPerQuantityUnit ,
                         FPI.ProductExpectedSellingPrice ,

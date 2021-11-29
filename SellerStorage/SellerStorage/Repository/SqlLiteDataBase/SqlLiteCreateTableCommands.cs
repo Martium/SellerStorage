@@ -11,10 +11,11 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                 $@"
                   CREATE TABLE [FullProductInfoTable] (
                     [ProductId] [Integer] PRIMARY KEY AUTOINCREMENT NOT NULL,
-                    [ProductReceiptDate] [nvarchar] (12) NOT NULL,
+                    [ProductReceiptDate] [nvarchar] ({FormLengthLimitTextBox.ProductReceiptDate}) NOT NULL,
 
                     [ProductType] [nvarchar] ({FormLengthLimitTextBox.ProductType}) NULL,
                     [ProductDescription] [nvarchar] ({FormLengthLimitTextBox.ProductDescription}) NULL,
+                    [ProductBuyPlace] [nvarchar] ({FormLengthLimitTextBox.ProductBuyPlace}) NULL,
 
                     [ProductQuantity] [Integer] ({FormLengthLimitTextBox.ProductQuantity}) NULL,
                     [ProductQuantityLeft] [Integer] ({FormLengthLimitTextBox.ProductQuantityLeft}) NULL,

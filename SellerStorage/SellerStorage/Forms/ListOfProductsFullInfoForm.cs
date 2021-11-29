@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
 using System.Windows.Forms;
 using SellerStorage.Enums;
+using SellerStorage.Forms.Constants;
 using SellerStorage.Models;
 using SellerStorage.Repository.SqlLiteDataBase;
 using SellerStorage.Repository.SqlLiteDatabaseInterfaceClass;
@@ -13,14 +11,14 @@ namespace SellerStorage.Forms
 {
     public partial class ListOfProductsFullInfoForm : Form
     {
-        private const string DateFormat = "yyyy-MM-dd";
         private readonly FullProductInfoRepositorySql _fullProductInfoRepository;
+
         public ListOfProductsFullInfoForm()
         {
             _fullProductInfoRepository = new FullProductInfoRepositorySql(new SqLiteFullProductInfoRepository());
             InitializeComponent();
-            SetDataGridDefaultControl();
-            //FillFakeInfo();
+            SetControlInitialState();
+            SetTextBoxLength();
         }
 
         private void ListOfProductsFullInfoForm_Load(object sender, EventArgs e)
@@ -40,7 +38,6 @@ namespace SellerStorage.Forms
                 int productId = int.Parse(ProductsListDataGridView.SelectedRows[0].Cells[0].Value.ToString());
                 OpenAnotherForm(new NewProductForm(NewProductFormOperations.Update, productId));
             }
-           
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -49,6 +46,7 @@ namespace SellerStorage.Forms
             IEnumerable<FullProductInfoWithIdModel> loadFullProductInfo = _fullProductInfoRepository.GetAllProductInfo(searchPhrase);
             fullProductInfoWithIdModelBindingSource.DataSource = loadFullProductInfo;
             ProductsListDataGridView.DataSource = fullProductInfoWithIdModelBindingSource;
+            TrySelectedFirstRowInDataGridView();
         }
 
         private void CancelSearchButton_Click(object sender, EventArgs e)
@@ -69,6 +67,7 @@ namespace SellerStorage.Forms
         {
             this.Show();
             LoadFullProductInfo();
+            TrySelectedFirstRowInDataGridView();
         }
 
         #region Helpers
@@ -87,50 +86,19 @@ namespace SellerStorage.Forms
             ProductsListDataGridView.Columns[1].HeaderText = @"Data";
             ProductsListDataGridView.Columns[2].HeaderText = @"Produkto Tipas";
             ProductsListDataGridView.Columns[3].HeaderText = @"Aprašymas";
+            ProductsListDataGridView.Columns[4].HeaderText = @"Pirkimo vieta";
 
-            ProductsListDataGridView.Columns[4].HeaderText = @"Kiekis";
-            ProductsListDataGridView.Columns[5].HeaderText = @"Kiekio Likutis";
-            ProductsListDataGridView.Columns[6].HeaderText = @"Vnt kaina pirktoje valiutoje";
-            ProductsListDataGridView.Columns[7].HeaderText = @"Kiekio kaina pirktoje valiutoje";
-            ProductsListDataGridView.Columns[8].HeaderText = @"Vnt kaina Eurais";
-            ProductsListDataGridView.Columns[9].HeaderText = @"Kiekio kaina Eurais";
-            ProductsListDataGridView.Columns[10].HeaderText = @"Produkto Vnt. išlaidos";
+            ProductsListDataGridView.Columns[5].HeaderText = @"Kiekis";
+            ProductsListDataGridView.Columns[6].HeaderText = @"Kiekio Likutis";
+            ProductsListDataGridView.Columns[7].HeaderText = @"Vnt kaina pirktoje valiutoje";
+            ProductsListDataGridView.Columns[8].HeaderText = @"Kiekio kaina pirktoje valiutoje";
+            ProductsListDataGridView.Columns[9].HeaderText = @"Vnt kaina Eurais";
+            ProductsListDataGridView.Columns[10].HeaderText = @"Kiekio kaina Eurais";
+            ProductsListDataGridView.Columns[11].HeaderText = @"Vnt kaina Eurais + išlaidos";
 
-            ProductsListDataGridView.Columns[11].HeaderText = @"Planuojamas vnt pelnas";
-            ProductsListDataGridView.Columns[12].HeaderText = @"Produkto kiekio pelnas";
-            ProductsListDataGridView.Columns[13].HeaderText = @"Parduota vnt kaina";
-
-        }
-
-        private void FillFakeInfo()
-        {
-            BindingList<FullProductInfoWithIdModel> list = new BindingList<FullProductInfoWithIdModel>();
-
-            ProductsListDataGridView.DataSource = list;
-
-            for (int i = 1; i < 200; i++)
-            {
-                list.Add(new FullProductInfoWithIdModel()
-                {
-                    ProductId = i,
-                    ProductReceiptDate = DateTime.Now.Date.ToString(CultureInfo.InvariantCulture),
-                    ProductType = "kazkas",
-                    ProductDescription = "bazinga",
-
-                    ProductQuantity = 2,
-                    ProductQuantityLeft = 1,
-
-                    ProductOriginalCostPriceCurrency = "5 zlotai",
-                    ProductAllQuantityCostPriceAtOriginalCurrency = "10 zlotu",
-
-                    ProductQuantityPriceInEuro = 1,
-                    ProductAllQuantityPriceInEuro = 2,
-                    ProductExpensesPerQuantityUnit = 0.5,
-                    ProductExpectedSellingPrice = 2,
-                    ProductProfit = 2,
-                    ProductSoldPrice = 2
-                });
-            }
+            ProductsListDataGridView.Columns[12].HeaderText = @"Pardavimo kaina";
+            ProductsListDataGridView.Columns[13].HeaderText = @"Produota vienetų";
+            ProductsListDataGridView.Columns[14].HeaderText = @"Pelnas";
         }
 
         private void OpenAnotherForm(Form form)
@@ -155,11 +123,28 @@ namespace SellerStorage.Forms
             IEnumerable<FullProductInfoWithIdModel> loadFullProductInfo = _fullProductInfoRepository.GetAllProductInfo();
             fullProductInfoWithIdModelBindingSource.DataSource = loadFullProductInfo;
             ProductsListDataGridView.DataSource = fullProductInfoWithIdModelBindingSource;
+            TrySelectedFirstRowInDataGridView();
         }
 
+        private void TrySelectedFirstRowInDataGridView()
+        {
+            if (ProductsListDataGridView.Rows.Count != 0)
+            {
+                ProductsListDataGridView.Rows[0].Selected = true;
+            }
+        }
 
+        private void SetTextBoxLength()
+        {
+            SearchTextBox.MaxLength = FormLengthLimitTextBox.ProductDescription;
+        }
+
+        private void SetControlInitialState()
+        {
+            SetDataGridDefaultControl();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        }
 
         #endregion
-        
     }
 }

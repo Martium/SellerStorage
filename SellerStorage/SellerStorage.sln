@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SellerStorage", "SellerStorage\SellerStorage.csproj", "{974CD002-7848-474E-8719-A254EA4B5CCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{8A386F27-4516-4531-8958-26F7F4F86CFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{974CD002-7848-474E-8719-A254EA4B5CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{974CD002-7848-474E-8719-A254EA4B5CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{974CD002-7848-474E-8719-A254EA4B5CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A386F27-4516-4531-8958-26F7F4F86CFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A386F27-4516-4531-8958-26F7F4F86CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A386F27-4516-4531-8958-26F7F4F86CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A386F27-4516-4531-8958-26F7F4F86CFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
