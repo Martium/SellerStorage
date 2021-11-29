@@ -22,6 +22,5 @@ namespace SellerStorage.Service
             double result = _numberService.TryParseToDoubleOrReturnZero(value);
             return result;
         }
-
     }
 }

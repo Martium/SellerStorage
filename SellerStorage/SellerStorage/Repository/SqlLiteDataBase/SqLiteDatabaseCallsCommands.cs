@@ -14,7 +14,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                                 '{fullProductInfoModel.ProductReceiptDate}', '{fullProductInfoModel.ProductType}', 
                                 '{fullProductInfoModel.ProductDescription}', '{fullProductInfoModel.ProductBuyPlace}', {fullProductInfoModel.ProductQuantity},
                                 {fullProductInfoModel.ProductQuantityLeft}, '{fullProductInfoModel.ProductOriginalCostPriceCurrency}',
-                                '{fullProductInfoModel.ProductAllQuantityCostPriceAtOriginalCurrency}',{fullProductInfoModel.ProductQuantityPriceInEuro},
+                                '{fullProductInfoModel.ProductAllQuantityCostPriceAtOriginalCurrency}',{fullProductInfoModel.ProductUnitPriceInEuro},
                                 {fullProductInfoModel.ProductAllQuantityPriceInEuro}, {fullProductInfoModel.ProductExpensesPerQuantityUnit},
                                 {fullProductInfoModel.ProductExpectedSellingPrice}, {fullProductInfoModel.ProductSoldPrice},
                                 {fullProductInfoModel.ProductProfit} )
@@ -29,12 +29,12 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                 $@"
                       UPDATE '{FullProductInfoTableName}'
                         SET ProductReceiptDate = '{fullProductInfoModel.ProductReceiptDate}', ProductType = '{fullProductInfoModel.ProductType}',
-                            ProductDescription = '{fullProductInfoModel.ProductDescription}', ProductQuantity = {fullProductInfoModel.ProductQuantity},
-                            ProductBuyPlace = '{fullProductInfoModel.ProductBuyPlace}'
+                            ProductDescription = '{fullProductInfoModel.ProductDescription}', ProductBuyPlace = '{fullProductInfoModel.ProductBuyPlace}',
+                            ProductQuantity = {fullProductInfoModel.ProductQuantity},
                             ProductQuantityLeft = {fullProductInfoModel.ProductQuantityLeft}, 
                             ProductOriginalCostPriceCurrency = '{fullProductInfoModel.ProductOriginalCostPriceCurrency}',
                             ProductAllQuantityCostPriceAtOriginalCurrency = '{fullProductInfoModel.ProductAllQuantityCostPriceAtOriginalCurrency}',
-                            ProductQuantityPriceInEuro = {fullProductInfoModel.ProductQuantityPriceInEuro},
+                            ProductUnitPriceInEuro = {fullProductInfoModel.ProductUnitPriceInEuro},
                             ProductAllQuantityPriceInEuro = {fullProductInfoModel.ProductAllQuantityPriceInEuro},
                             ProductExpensesPerQuantityUnit = {fullProductInfoModel.ProductExpensesPerQuantityUnit},
                             ProductExpectedSellingPrice = {fullProductInfoModel.ProductExpectedSellingPrice},
@@ -54,7 +54,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                         FPI.ProductReceiptDate , FPI.ProductType , FPI.ProductDescription , FPI.ProductBuyPlace , FPI.ProductBuyPlace ,
                         FPI.ProductQuantity, FPI.ProductQuantityLeft ,
                         FPI.ProductOriginalCostPriceCurrency , FPI.ProductAllQuantityCostPriceAtOriginalCurrency ,
-                        FPI.ProductQuantityPriceInEuro , FPI.ProductAllQuantityPriceInEuro , FPI.ProductExpensesPerQuantityUnit ,
+                        FPI.ProductUnitPriceInEuro , FPI.ProductAllQuantityPriceInEuro , FPI.ProductExpensesPerQuantityUnit ,
                         FPI.ProductExpectedSellingPrice ,
                         FPI.ProductSoldPrice , FPI.ProductProfit
                     FROM {FullProductInfoTableName} FPI
@@ -71,7 +71,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
                         FPI.ProductReceiptDate , FPI.ProductType , FPI.ProductDescription , FPI.ProductBuyPlace ,
                         FPI.ProductQuantity, FPI.ProductQuantityLeft ,
                         FPI.ProductOriginalCostPriceCurrency , FPI.ProductAllQuantityCostPriceAtOriginalCurrency ,
-                        FPI.ProductQuantityPriceInEuro , FPI.ProductAllQuantityPriceInEuro , FPI.ProductExpensesPerQuantityUnit ,
+                        FPI.ProductUnitPriceInEuro , FPI.ProductAllQuantityPriceInEuro , FPI.ProductExpensesPerQuantityUnit ,
                         FPI.ProductExpectedSellingPrice ,
                         FPI.ProductSoldPrice , FPI.ProductProfit
                     FROM {FullProductInfoTableName} FPI

@@ -15,7 +15,7 @@ namespace SellerStorage.Models
         public string ProductOriginalCostPriceCurrency { get; set; }
         public string ProductAllQuantityCostPriceAtOriginalCurrency { get; set; }
 
-        public double ProductQuantityPriceInEuro { get; set; }
+        public double ProductUnitPriceInEuro { get; set; }
         public double ProductAllQuantityPriceInEuro { get; set; }
         public double ProductExpensesPerQuantityUnit { get; set; }
         public double ProductExpectedSellingPrice { get; set; }

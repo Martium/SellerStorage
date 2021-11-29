@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="Enums\NewProductFormOperations.cs" />
     <Compile Include="Forms\Constants\FormLengthLimitTextBox.cs" />
+    <Compile Include="Interface\Service\ICalculatorService.cs" />
     <Compile Include="Interface\Service\INumberService.cs" />
     <Compile Include="Interface\SqlLite\ISqLiteFullProductInfoRepository.cs" />
     <Compile Include="Interface\SqlLite\ISqlLiteInitializeDataBase.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Service\CalculatorService.cs" />
     <Compile Include="Service\MessageBoxService.cs" />
     <Compile Include="Service\NumberService.cs" />
+    <Compile Include="Service\ServiceInterfaceClass\CalculatorServiceForCultureInfoInvariantCulture.cs" />
     <Compile Include="Service\ServiceInterfaceClass\NumberServiceForCultureInfoInvariantCulture.cs" />
     <EmbeddedResource Include="Forms\ListOfProductsFullInfoForm.resx">
       <DependentUpon>ListOfProductsFullInfoForm.cs</DependentUpon>

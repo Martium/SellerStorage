@@ -50,7 +50,7 @@ namespace SellerStorage.Forms
             this.ProductAllQuantityPriceInEuroLabel = new System.Windows.Forms.Label();
             this.ProductAllQuantityPriceInEuroTextBox = new System.Windows.Forms.TextBox();
             this.ProductQuantityPriceInEuroLabel = new System.Windows.Forms.Label();
-            this.ProductQuantityPriceInEuroTextBox = new System.Windows.Forms.TextBox();
+            this.ProductUnitPriceInEuroTextBox = new System.Windows.Forms.TextBox();
             this.ProductAllQuantityCostPriceAtOriginalCurrencyLabel = new System.Windows.Forms.Label();
             this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox = new System.Windows.Forms.TextBox();
             this.ProductOriginalCostPriceCurrencyLabel = new System.Windows.Forms.Label();
@@ -91,7 +91,7 @@ namespace SellerStorage.Forms
             this.tableLayoutPanel.Controls.Add(this.ProductAllQuantityPriceInEuroLabel, 1, 9);
             this.tableLayoutPanel.Controls.Add(this.ProductAllQuantityPriceInEuroTextBox, 2, 9);
             this.tableLayoutPanel.Controls.Add(this.ProductQuantityPriceInEuroLabel, 1, 8);
-            this.tableLayoutPanel.Controls.Add(this.ProductQuantityPriceInEuroTextBox, 2, 8);
+            this.tableLayoutPanel.Controls.Add(this.ProductUnitPriceInEuroTextBox, 2, 8);
             this.tableLayoutPanel.Controls.Add(this.ProductAllQuantityCostPriceAtOriginalCurrencyLabel, 1, 7);
             this.tableLayoutPanel.Controls.Add(this.ProductAllQuantityCostPriceAtOriginalCurrencyTextBox, 2, 7);
             this.tableLayoutPanel.Controls.Add(this.ProductOriginalCostPriceCurrencyLabel, 1, 6);
@@ -313,13 +313,14 @@ namespace SellerStorage.Forms
             this.ProductQuantityPriceInEuroLabel.TabIndex = 6;
             this.ProductQuantityPriceInEuroLabel.Text = "Produkto pirkimo kaina Eurais";
             // 
-            // ProductQuantityPriceInEuroTextBox
+            // ProductUnitPriceInEuroTextBox
             // 
-            this.ProductQuantityPriceInEuroTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProductQuantityPriceInEuroTextBox.Location = new System.Drawing.Point(172, 245);
-            this.ProductQuantityPriceInEuroTextBox.Name = "ProductQuantityPriceInEuroTextBox";
-            this.ProductQuantityPriceInEuroTextBox.Size = new System.Drawing.Size(425, 20);
-            this.ProductQuantityPriceInEuroTextBox.TabIndex = 18;
+            this.ProductUnitPriceInEuroTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProductUnitPriceInEuroTextBox.Location = new System.Drawing.Point(172, 245);
+            this.ProductUnitPriceInEuroTextBox.Name = "ProductUnitPriceInEuroTextBox";
+            this.ProductUnitPriceInEuroTextBox.Size = new System.Drawing.Size(425, 20);
+            this.ProductUnitPriceInEuroTextBox.TabIndex = 18;
+            this.ProductUnitPriceInEuroTextBox.TextChanged += new System.EventHandler(this.ProductUnitPriceInEuroTextBox_TextChanged);
             // 
             // ProductAllQuantityCostPriceAtOriginalCurrencyLabel
             // 
@@ -451,7 +452,7 @@ namespace SellerStorage.Forms
         private System.Windows.Forms.TextBox ProductQuantityLeftTextBox;
         private System.Windows.Forms.TextBox ProductOriginalCostPriceCurrencyTextBox;
         private System.Windows.Forms.TextBox ProductAllQuantityCostPriceAtOriginalCurrencyTextBox;
-        private System.Windows.Forms.TextBox ProductQuantityPriceInEuroTextBox;
+        private System.Windows.Forms.TextBox ProductUnitPriceInEuroTextBox;
         private System.Windows.Forms.TextBox ProductAllQuantityPriceInEuroTextBox;
         private System.Windows.Forms.TextBox ProductExpensesPerQuantityUnitTextBox;
         private System.Windows.Forms.TextBox ProductExpectedSellingPriceTextBox;

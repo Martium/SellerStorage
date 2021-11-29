@@ -18,6 +18,8 @@ namespace SellerStorage.Forms
         private readonly FullProductInfoRepositorySql _fullProductInfoRepository;
         private readonly MessageBoxService _messageBoxService;
         private readonly NumberService _numberService;
+        private readonly CalculatorService _calculatorService;
+
         private readonly int? _productId;
 
         private const string DateFormat = "yyyy-MM-dd";
@@ -33,6 +35,7 @@ namespace SellerStorage.Forms
             _fullProductInfoRepository = new FullProductInfoRepositorySql(new SqLiteFullProductInfoRepository());
             _messageBoxService = new MessageBoxService(new MessageBoxBoxDialogService());
             _numberService = new NumberService(new NumberServiceForCultureInfoInvariantCulture());
+            _calculatorService = new CalculatorService(new CalculatorServiceForCultureInfoInvariantCulture());
 
             InitializeComponent();
             SetTextBoxMaxLength();
@@ -111,6 +114,17 @@ namespace SellerStorage.Forms
 
         private void ProductQuantityTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (_productFormOperations == NewProductFormOperations.Create && !string.IsNullOrWhiteSpace(ProductOriginalCostPriceCurrencyTextBox.Text))
+            {
+                ChangeTextBoxTextForFullQuantityNewProductIfCalculationPossible(quantityTextBox: ProductQuantityTextBox, unitPriceTextBox: ProductOriginalCostPriceCurrencyTextBox, fullQuantityTextBox: ProductAllQuantityCostPriceAtOriginalCurrencyTextBox);
+            }
+
+            if (_productFormOperations == NewProductFormOperations.Create && !string.IsNullOrWhiteSpace(ProductUnitPriceInEuroTextBox.Text))
+            {
+                ChangeTextBoxTextForFullQuantityNewProductIfCalculationPossible(quantityTextBox: ProductQuantityTextBox,
+                    unitPriceTextBox: ProductUnitPriceInEuroTextBox, fullQuantityTextBox: ProductAllQuantityPriceInEuroTextBox);
+            }
+
             if (_productFormOperations == NewProductFormOperations.Create)
             {
                 ProductQuantityLeftTextBox.Text = ProductQuantityTextBox.Text;
@@ -119,9 +133,18 @@ namespace SellerStorage.Forms
 
         private void ProductOriginalCostPriceCurrencyTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_productFormOperations == NewProductFormOperations.Create)
+            if (_productFormOperations == NewProductFormOperations.Create && !string.IsNullOrWhiteSpace(ProductQuantityTextBox.Text))
             {
-                ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Text = ""; // todo calculation option 
+                ChangeTextBoxTextForFullQuantityNewProductIfCalculationPossible(quantityTextBox: ProductQuantityTextBox, unitPriceTextBox: ProductOriginalCostPriceCurrencyTextBox, fullQuantityTextBox: ProductAllQuantityCostPriceAtOriginalCurrencyTextBox);
+            }
+        }
+
+        private void ProductUnitPriceInEuroTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (_productFormOperations == NewProductFormOperations.Create && !string.IsNullOrWhiteSpace(ProductQuantityTextBox.Text))
+            {
+                ChangeTextBoxTextForFullQuantityNewProductIfCalculationPossible(quantityTextBox: ProductQuantityTextBox, 
+                    unitPriceTextBox: ProductUnitPriceInEuroTextBox, fullQuantityTextBox: ProductAllQuantityPriceInEuroTextBox);
             }
         }
 
@@ -178,7 +201,7 @@ namespace SellerStorage.Forms
                 ProductOriginalCostPriceCurrency = ProductOriginalCostPriceCurrencyTextBox.Text,
                 ProductAllQuantityCostPriceAtOriginalCurrency = ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Text,
 
-                ProductQuantityPriceInEuro = _numberService.TryParseToDoubleOrReturnZero(ProductQuantityPriceInEuroTextBox.Text),
+                ProductUnitPriceInEuro = _numberService.TryParseToDoubleOrReturnZero(ProductUnitPriceInEuroTextBox.Text),
                 ProductAllQuantityPriceInEuro = _numberService.TryParseToDoubleOrReturnZero(ProductAllQuantityPriceInEuroTextBox.Text),
 
                 ProductExpensesPerQuantityUnit = _numberService.TryParseToDoubleOrReturnZero(ProductExpensesPerQuantityUnitTextBox.Text),
@@ -216,7 +239,7 @@ namespace SellerStorage.Forms
             ProductOriginalCostPriceCurrencyTextBox.Text = fullProductInfo.ProductOriginalCostPriceCurrency;
             ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.Text = fullProductInfo.ProductAllQuantityCostPriceAtOriginalCurrency;
 
-            ProductQuantityPriceInEuroTextBox.Text = fullProductInfo.ProductQuantityPriceInEuro.ToString(CultureInfo.InvariantCulture);
+            ProductUnitPriceInEuroTextBox.Text = fullProductInfo.ProductUnitPriceInEuro.ToString(CultureInfo.InvariantCulture);
             ProductAllQuantityPriceInEuroTextBox.Text = fullProductInfo.ProductAllQuantityPriceInEuro.ToString(CultureInfo.InvariantCulture);
 
             ProductExpensesPerQuantityUnitTextBox.Text = fullProductInfo.ProductExpensesPerQuantityUnit.ToString(CultureInfo.InvariantCulture);
@@ -238,12 +261,29 @@ namespace SellerStorage.Forms
             ProductOriginalCostPriceCurrencyTextBox.MaxLength = FormLengthLimitTextBox.ProductOriginalCostPriceCurrency;
             ProductAllQuantityCostPriceAtOriginalCurrencyTextBox.MaxLength =
                 FormLengthLimitTextBox.ProductAllQuantityCostPriceAtOriginalCurrency;
-            ProductQuantityPriceInEuroTextBox.MaxLength = FormLengthLimitTextBox.ProductQuantityPriceInEuro;
+            ProductUnitPriceInEuroTextBox.MaxLength = FormLengthLimitTextBox.ProductQuantityPriceInEuro;
             ProductAllQuantityPriceInEuroTextBox.MaxLength = FormLengthLimitTextBox.ProductAllQuantityPriceInEuro;
             ProductExpensesPerQuantityUnitTextBox.MaxLength = FormLengthLimitTextBox.ProductExpensesPerQuantityUnit;
             ProductExpectedSellingPriceTextBox.MaxLength = FormLengthLimitTextBox.ProductExpectedSellingPrice;
             ProductSoldPriceTextBox.MaxLength = FormLengthLimitTextBox.ProductSoldPrice;
             ProductProfitTextBox.MaxLength = FormLengthLimitTextBox.ProductProfit;
+        }
+
+        private void ChangeTextBoxTextForFullQuantityNewProductIfCalculationPossible(TextBox quantityTextBox, TextBox unitPriceTextBox, TextBox fullQuantityTextBox)
+        {
+            int quantity = _numberService.TryParseToNumberOrReturnZero(quantityTextBox.Text);
+            double unitPrice =
+                _numberService.TryParseToDoubleOrReturnZero(unitPriceTextBox.Text);
+
+            if (quantity > 0 && unitPrice > 0)
+            {
+                string fullQuantity = _calculatorService.CalculateQuantityPriceToString(unitPrice, quantity);
+                fullQuantityTextBox.Text = fullQuantity;
+            }
+            else
+            {
+                fullQuantityTextBox.Text = string.Empty;
+            }
         }
 
         #endregion

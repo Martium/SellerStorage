@@ -40,6 +40,12 @@ namespace SellerStorage.Service.ServiceInterfaceClass
             return number;
         }
 
+        public string ConvertDoubleToString(double number)
+        {
+            string convertedValue = number.ToString(CultureInfo.InvariantCulture);
+            return convertedValue;
+        }
+
         #region Helpers
 
         private string ChangeCommaToDot(string value)
