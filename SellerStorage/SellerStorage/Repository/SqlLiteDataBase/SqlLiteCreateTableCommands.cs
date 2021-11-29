@@ -15,6 +15,7 @@ namespace SellerStorage.Repository.SqlLiteDataBase
 
                     [ProductType] [nvarchar] ({FormLengthLimitTextBox.ProductType}) NULL,
                     [ProductDescription] [nvarchar] ({FormLengthLimitTextBox.ProductDescription}) NULL,
+                    [ProductBuyPlace] [nvarchar] ({FormLengthLimitTextBox.ProductBuyPlace}) NULL,
 
                     [ProductQuantity] [Integer] ({FormLengthLimitTextBox.ProductQuantity}) NULL,
                     [ProductQuantityLeft] [Integer] ({FormLengthLimitTextBox.ProductQuantityLeft}) NULL,
