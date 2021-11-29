@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Forms;
-using System.Xml.Schema;
 using SellerStorage.Enums;
 using SellerStorage.Forms.Constants;
 using SellerStorage.InterfaceHelpingClass;
@@ -136,13 +135,12 @@ namespace SellerStorage.Forms
 
         private FullProductInfoModel GetAllNewProductInfo()
         {
-            //todo defense programing before load this method
-
             var getAllNewProductInfo = new FullProductInfoModel()
             {
                 ProductReceiptDate = DateTextBox.Text,
                 ProductType = ProductTypeTextBox.Text,
                 ProductDescription = ProductDescriptionTextBox.Text,
+                ProductBuyPlace = ProductBuyPlaceTextBox.Text,
 
                 ProductQuantity = _numberService.TryParseToNumberOrReturnZero(ProductQuantityTextBox.Text),
                 ProductQuantityLeft = _numberService.TryParseToNumberOrReturnZero(ProductQuantityLeftTextBox.Text),
@@ -180,6 +178,7 @@ namespace SellerStorage.Forms
             DateTextBox.Text = fullProductInfo.ProductReceiptDate;
             ProductTypeTextBox.Text = fullProductInfo.ProductType;
             ProductDescriptionTextBox.Text = fullProductInfo.ProductDescription;
+            ProductBuyPlaceTextBox.Text = fullProductInfo.ProductBuyPlace;
 
             ProductQuantityTextBox.Text = fullProductInfo.ProductQuantity.ToString();
             ProductQuantityLeftTextBox.Text = fullProductInfo.ProductQuantityLeft.ToString();
@@ -202,6 +201,7 @@ namespace SellerStorage.Forms
             DateTextBox.MaxLength = FormLengthLimitTextBox.ProductReceiptDate;
             ProductTypeTextBox.MaxLength = FormLengthLimitTextBox.ProductType;
             ProductDescriptionTextBox.MaxLength = FormLengthLimitTextBox.ProductDescription;
+            ProductBuyPlaceTextBox.MaxLength = FormLengthLimitTextBox.ProductBuyPlace;
 
             ProductQuantityTextBox.MaxLength = FormLengthLimitTextBox.ProductQuantity;
             ProductQuantityLeftTextBox.MaxLength = FormLengthLimitTextBox.ProductQuantityLeft;

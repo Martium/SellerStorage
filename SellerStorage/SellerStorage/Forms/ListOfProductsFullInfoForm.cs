@@ -86,18 +86,19 @@ namespace SellerStorage.Forms
             ProductsListDataGridView.Columns[1].HeaderText = @"Data";
             ProductsListDataGridView.Columns[2].HeaderText = @"Produkto Tipas";
             ProductsListDataGridView.Columns[3].HeaderText = @"Aprašymas";
+            ProductsListDataGridView.Columns[4].HeaderText = @"Pirkimo vieta";
 
-            ProductsListDataGridView.Columns[4].HeaderText = @"Kiekis";
-            ProductsListDataGridView.Columns[5].HeaderText = @"Kiekio Likutis";
-            ProductsListDataGridView.Columns[6].HeaderText = @"Vnt kaina pirktoje valiutoje";
-            ProductsListDataGridView.Columns[7].HeaderText = @"Kiekio kaina pirktoje valiutoje";
-            ProductsListDataGridView.Columns[8].HeaderText = @"Vnt kaina Eurais";
-            ProductsListDataGridView.Columns[9].HeaderText = @"Kiekio kaina Eurais";
-            ProductsListDataGridView.Columns[10].HeaderText = @"Produkto Vnt. išlaidos";
+            ProductsListDataGridView.Columns[5].HeaderText = @"Kiekis";
+            ProductsListDataGridView.Columns[6].HeaderText = @"Kiekio Likutis";
+            ProductsListDataGridView.Columns[7].HeaderText = @"Vnt kaina pirktoje valiutoje";
+            ProductsListDataGridView.Columns[8].HeaderText = @"Kiekio kaina pirktoje valiutoje";
+            ProductsListDataGridView.Columns[9].HeaderText = @"Vnt kaina Eurais";
+            ProductsListDataGridView.Columns[10].HeaderText = @"Kiekio kaina Eurais";
+            ProductsListDataGridView.Columns[11].HeaderText = @"Vnt kaina Eurais + išlaidos";
 
-            ProductsListDataGridView.Columns[11].HeaderText = @"Planuojamas vnt pelnas";
-            ProductsListDataGridView.Columns[12].HeaderText = @"Produkto kiekio pelnas";
-            ProductsListDataGridView.Columns[13].HeaderText = @"Parduota vnt kaina";
+            ProductsListDataGridView.Columns[12].HeaderText = @"Pardavimo kaina";
+            ProductsListDataGridView.Columns[13].HeaderText = @"Produota vienetų";
+            ProductsListDataGridView.Columns[14].HeaderText = @"Pelnas";
         }
 
         private void OpenAnotherForm(Form form)
