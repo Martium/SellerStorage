@@ -17,7 +17,7 @@ namespace SellerStorage.Forms
         {
             _fullProductInfoRepository = new FullProductInfoRepositorySql(new SqLiteFullProductInfoRepository());
             InitializeComponent();
-            SetDataGridDefaultControl();
+            SetControlInitialState();
             SetTextBoxLength();
         }
 
@@ -137,6 +137,12 @@ namespace SellerStorage.Forms
         private void SetTextBoxLength()
         {
             SearchTextBox.MaxLength = FormLengthLimitTextBox.ProductDescription;
+        }
+
+        private void SetControlInitialState()
+        {
+            SetDataGridDefaultControl();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         #endregion

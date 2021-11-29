@@ -421,6 +421,7 @@ namespace SellerStorage.Forms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form";
             this.Load += new System.EventHandler(this.NewProductForm_Load);
+            this.Resize += new System.EventHandler(this.NewProductForm_Resize);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
             this.ResumeLayout(false);

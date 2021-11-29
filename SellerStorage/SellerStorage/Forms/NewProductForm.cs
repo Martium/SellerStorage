@@ -38,6 +38,21 @@ namespace SellerStorage.Forms
             SetControlInitialState();
         }
 
+        private void NewProductForm_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Maximized)
+            {
+                //todo make labels and text box letters bigger 
+            }
+
+            if (WindowState == FormWindowState.Normal)
+            {
+                //todo make labels and text box letter default 
+            }
+        }
+
+
+
         private void NewProductForm_Load(object sender, EventArgs e)
         {
             ChangeFormHeaderTextByOperation();
@@ -93,8 +108,6 @@ namespace SellerStorage.Forms
                 CreateNewProductButton.Enabled = false;
                 _messageBoxService.ShowErrorMessage($"Įveskite teisingą datą raudonam langelyje pvz {dateTimeNow}");
             }
-
-            
         }
 
         #region Helpers
@@ -105,6 +118,8 @@ namespace SellerStorage.Forms
             {
                 DateTextBox.Text = DateTime.Now.ToString(DateFormat);
             }
+
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void ChangeFormHeaderTextByOperation()
@@ -131,6 +146,11 @@ namespace SellerStorage.Forms
                     CreateNewProductButton.Text = @"Atnaujinti";
                     break;
             }
+        }
+
+        private void ChangeTextLetterSizeIfFormIsMaximized()
+        {
+
         }
 
         private FullProductInfoModel GetAllNewProductInfo()
@@ -217,6 +237,7 @@ namespace SellerStorage.Forms
         }
 
         #endregion
-        
+
+       
     }
 }
