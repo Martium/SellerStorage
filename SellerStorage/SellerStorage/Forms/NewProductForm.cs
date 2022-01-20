@@ -114,12 +114,13 @@ namespace SellerStorage.Forms
 
         private void ProductQuantityTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_productFormOperations == NewProductFormOperations.Create && !string.IsNullOrWhiteSpace(ProductOriginalCostPriceCurrencyTextBox.Text))
+
+            if (CheckIsNewProductOperationAndTextBoxIsNotNullWhiteSpace(ProductOriginalCostPriceCurrencyTextBox))
             {
                 ChangeTextBoxTextForFullQuantityNewProductIfCalculationPossible(quantityTextBox: ProductQuantityTextBox, unitPriceTextBox: ProductOriginalCostPriceCurrencyTextBox, fullQuantityTextBox: ProductAllQuantityCostPriceAtOriginalCurrencyTextBox);
             }
 
-            if (_productFormOperations == NewProductFormOperations.Create && !string.IsNullOrWhiteSpace(ProductUnitPriceInEuroTextBox.Text))
+            if (CheckIsNewProductOperationAndTextBoxIsNotNullWhiteSpace(ProductUnitPriceInEuroTextBox))
             {
                 ChangeTextBoxTextForFullQuantityNewProductIfCalculationPossible(quantityTextBox: ProductQuantityTextBox,
                     unitPriceTextBox: ProductUnitPriceInEuroTextBox, fullQuantityTextBox: ProductAllQuantityPriceInEuroTextBox);
@@ -133,18 +134,44 @@ namespace SellerStorage.Forms
 
         private void ProductOriginalCostPriceCurrencyTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_productFormOperations == NewProductFormOperations.Create && !string.IsNullOrWhiteSpace(ProductQuantityTextBox.Text))
+            if (CheckIsNewProductOperationAndTextBoxIsNotNullWhiteSpace(ProductQuantityTextBox))
             {
                 ChangeTextBoxTextForFullQuantityNewProductIfCalculationPossible(quantityTextBox: ProductQuantityTextBox, unitPriceTextBox: ProductOriginalCostPriceCurrencyTextBox, fullQuantityTextBox: ProductAllQuantityCostPriceAtOriginalCurrencyTextBox);
+            }
+
+            if (CheckIsNewProductOperationAndTextBoxIsNotNullWhiteSpace(CurrencyRateTextBox))
+            {
+                TryConvertCurrencyToEuroIfPossible();
             }
         }
 
         private void ProductUnitPriceInEuroTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (_productFormOperations == NewProductFormOperations.Create && !string.IsNullOrWhiteSpace(ProductQuantityTextBox.Text))
+            if (CheckIsNewProductOperationAndTextBoxIsNotNullWhiteSpace(ProductQuantityTextBox))
             {
                 ChangeTextBoxTextForFullQuantityNewProductIfCalculationPossible(quantityTextBox: ProductQuantityTextBox, 
                     unitPriceTextBox: ProductUnitPriceInEuroTextBox, fullQuantityTextBox: ProductAllQuantityPriceInEuroTextBox);
+            }
+
+            if (CheckIsNewProductOperationAndTextBoxIsNotNullWhiteSpace(AdditionalExpensesTextBox))
+            {
+               ChangeProductExpensesForNewProductIfCalculationPossible();
+            }
+        }
+
+        private void AdditionalExpensesTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (CheckIsNewProductOperationAndTextBoxIsNotNullWhiteSpace(ProductUnitPriceInEuroTextBox))
+            {
+                ChangeProductExpensesForNewProductIfCalculationPossible();
+            }
+        }
+
+        private void CurrencyRateTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (CheckIsNewProductOperationAndTextBoxIsNotNullWhiteSpace(ProductOriginalCostPriceCurrencyTextBox))
+            {
+                TryConvertCurrencyToEuroIfPossible();
             }
         }
 
@@ -267,13 +294,21 @@ namespace SellerStorage.Forms
             ProductExpectedSellingPriceTextBox.MaxLength = FormLengthLimitTextBox.ProductExpectedSellingPrice;
             ProductSoldPriceTextBox.MaxLength = FormLengthLimitTextBox.ProductSoldPrice;
             ProductProfitTextBox.MaxLength = FormLengthLimitTextBox.ProductProfit;
+            CurrencyRateTextBox.MaxLength = FormLengthLimitTextBox.ProductOriginalCostPriceCurrency;
+            AdditionalExpensesTextBox.MaxLength = FormLengthLimitTextBox.ProductExpensesPerQuantityUnit;
+        }
+
+        private bool CheckIsNewProductOperationAndTextBoxIsNotNullWhiteSpace(TextBox textBox)
+        {
+            bool isValid = _productFormOperations == NewProductFormOperations.Create &&
+                           !string.IsNullOrWhiteSpace(textBox.Text);
+            return isValid;
         }
 
         private void ChangeTextBoxTextForFullQuantityNewProductIfCalculationPossible(TextBox quantityTextBox, TextBox unitPriceTextBox, TextBox fullQuantityTextBox)
         {
             int quantity = _numberService.TryParseToNumberOrReturnZero(quantityTextBox.Text);
-            double unitPrice =
-                _numberService.TryParseToDoubleOrReturnZero(unitPriceTextBox.Text);
+            double unitPrice = _numberService.TryParseToDoubleOrReturnZero(unitPriceTextBox.Text);
 
             if (quantity > 0 && unitPrice > 0)
             {
@@ -283,6 +318,30 @@ namespace SellerStorage.Forms
             else
             {
                 fullQuantityTextBox.Text = string.Empty;
+            }
+        }
+
+        private void ChangeProductExpensesForNewProductIfCalculationPossible()
+        {
+            double unitPrice = _numberService.TryParseToDoubleOrReturnZero(ProductUnitPriceInEuroTextBox.Text);
+            double expenses = _numberService.TryParseToDoubleOrReturnZero(AdditionalExpensesTextBox.Text);
+
+            if (unitPrice > 0 && expenses > 0)
+            {
+                string result = _calculatorService.CalculateAdditionalExpensesToString(unitPrice, expenses);
+                ProductExpensesPerQuantityUnitTextBox.Text = result;
+            }
+        }
+
+        private void TryConvertCurrencyToEuroIfPossible()
+        {
+            double currency = _numberService.TryParseToDoubleOrReturnZero(ProductOriginalCostPriceCurrencyTextBox.Text);
+            double euRate = _numberService.TryParseToDoubleOrReturnZero(CurrencyRateTextBox.Text);
+
+            if (currency > 0 && euRate > 0)
+            {
+                string result = _calculatorService.CalculateEuCurrencyRate(currency, euRate);
+                ProductUnitPriceInEuroTextBox.Text = result;
             }
         }
 

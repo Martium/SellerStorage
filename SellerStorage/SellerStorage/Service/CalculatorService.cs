@@ -11,34 +11,24 @@ namespace SellerStorage.Service
             _calculatorService = calculatorService;
         }
 
-        public double CalculateQuantityPrice(double unitPrice, int quantity)
-        {
-            double result = _calculatorService.CalculateQuantityPrice(unitPrice, quantity);
-            return result;
-        }
-
         public string CalculateQuantityPriceToString(double unitPrice, int quantity)
         {
             string result = _calculatorService.CalculateQuantityPriceToString(unitPrice, quantity);
             return result;
         }
 
-        public double ConvertToEuroCurrencyExchangeRate(double productPrice , double euroCurrency)
+        public string CalculateAdditionalExpensesToString(double unitPrice, double expenses)
         {
-            double result = _calculatorService.CalculateCurrencyExchangeRate(productPrice, euroCurrency);
+            string result = _calculatorService.CalculateAdditionalExpensesToString(unitPrice, expenses);
             return result;
         }
 
-        public double CalculateFullProductExpenses(double unitPrice, double additionalExpenses)
+        public string CalculateEuCurrencyRate(double currency, double euRate)
         {
-            double result = _calculatorService.CalculateFullProductExpenses(unitPrice, additionalExpenses);
+            string result = _calculatorService.CalculateEuCurrencyRate(currency, euRate);
             return result;
         }
 
-        public int CalculateProductQuantityBalance(int soldQuantity, int quantity)
-        {
-            int result = _calculatorService.CalculateProductQuantityBalance(soldQuantity, quantity);
-            return result;
-        }
+
     }
 }

@@ -453,6 +453,7 @@ namespace SellerStorage.Forms
             this.CurrencyRateTextBox.Name = "CurrencyRateTextBox";
             this.CurrencyRateTextBox.Size = new System.Drawing.Size(128, 20);
             this.CurrencyRateTextBox.TabIndex = 33;
+            this.CurrencyRateTextBox.TextChanged += new System.EventHandler(this.CurrencyRateTextBox_TextChanged);
             // 
             // AdditionalExpensesTextBox
             // 
@@ -461,6 +462,7 @@ namespace SellerStorage.Forms
             this.AdditionalExpensesTextBox.Name = "AdditionalExpensesTextBox";
             this.AdditionalExpensesTextBox.Size = new System.Drawing.Size(128, 20);
             this.AdditionalExpensesTextBox.TabIndex = 34;
+            this.AdditionalExpensesTextBox.TextChanged += new System.EventHandler(this.AdditionalExpensesTextBox_TextChanged);
             // 
             // NewProductForm
             // 

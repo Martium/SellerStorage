@@ -6,35 +6,34 @@ namespace SellerStorage.Service.ServiceInterfaceClass
 {
     public class CalculatorServiceForCultureInfoInvariantCulture : ICalculatorService
     {
-        public double CalculateQuantityPrice(double unitPrice, int quantity)
-        {
-            double result = unitPrice * quantity;
-            result = Math.Round(result, 2, MidpointRounding.ToEven);
-            return result;
-        }
+        private readonly CultureInfo _cultureInfo = CultureInfo.InvariantCulture;
 
         public string CalculateQuantityPriceToString(double unitPrice, int quantity)
         {
             double result = unitPrice * quantity;
             result = Math.Round(result, 2, MidpointRounding.ToEven);
 
-            string convertToString = result.ToString(CultureInfo.InvariantCulture);
+            string convertToString = result.ToString(_cultureInfo);
             return convertToString;
         }
 
-        public double CalculateCurrencyExchangeRate(double productBuyCurrency, double euroCurrency)
+        public string CalculateAdditionalExpensesToString(double unitPrice, double expenses)
         {
-            throw new NotImplementedException();
+            double result = unitPrice + expenses;
+            result = Math.Round(result, 2, MidpointRounding.ToEven);
+
+            string convertToString = result.ToString(_cultureInfo);
+            return convertToString;
         }
 
-        public double CalculateFullProductExpenses(double unitPrice, double additionalExpenses)
+        public string CalculateEuCurrencyRate(double currency, double euRate)
         {
-            throw new NotImplementedException();
-        }
+            double result = currency / euRate;
+            result = Math.Round(result, 2, MidpointRounding.ToEven);
 
-        public int CalculateProductQuantityBalance(int soldQuantity, int quantity)
-        {
-            throw new NotImplementedException();
+            string convertToString = result.ToString(_cultureInfo);
+            return convertToString;
         }
+       
     }
 }
